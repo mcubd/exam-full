@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.js"></script>
+
+
+    <script>
+        var MQ = MathQuill.getInterface(2);                
+    </script>
+    <title>q</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+
+        }
+
+        @media (min-width: 768px) {
+
+            .parent {
+                width: 66.666667%;
+
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        }
+
+
+
+        @media (min-width: 768px) {
+            .parent {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        .item {
+
+            padding: 1.25rem;
+
+
+            margin-top: .75rem;
+            margin-bottom: .75rem;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #D1D5DB;
+
+
+
+
+
+
+
+
+
+            --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1);
+            --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+
+
+        }
+    </style>
+
+
+
+    <style>
+        .qpart {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+
+
+
+
+        #static1 {
+            width: 75%;
+
+
+            margin-left: 12px;
+            word-wrap: break-word;
+            margin-top: 2px;
+
+        }
+
+
+
+
+
+
+
+
+
+        button {
+            outline: none;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+
+        .container_abcd {
+            width: 100%;
+            margin-top: 30px;
+            margin-left: 10px;
+
+
+        }
+
+        .item_abcd {
+            display: flex;
+            flex-direction: row;
+            /* margin-top: 20px; */
+            width: 30%;
+
+
+
+
+        }
+
+
+
+
+
+
+
+        .roww1,
+        .roww2 {
+            display: flex;
+            flex-direction: row;
+            height: 40px;
+            /* background-color: #28a745; */
+            align-items: center;
+            text-align: center;
+        }
+
+        .abcd_span {
+            margin-left: 10px;
+        }
+
+        .txt_cen {
+
+            text-align: center;
+        }
+
+
+        .hidd {
+            display: none;
+        }
+    </style>
+
+
+    <style>
+        *,
+        :before,
+        :after {
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+
+
+        }
+
+        .q_no {
+            height: 2rem;
+            /* Fixed height */
+            padding-left: .75rem;
+            padding-right: .75rem;
+            font-size: .875rem;
+            padding-top: 0;
+            padding-bottom: 0;
+            border-radius: 8px;
+
+            background-color: hsl(219 14% 28% / 1);
+            color: white;
+            text-align: center;
+            display: inline-flex;
+            /* Use inline-flex for proper centering */
+            align-items: center;
+            /* Vertical centering */
+            justify-content: center;
+            /* Horizontal centering */
+            line-height: 1;
+            /* Remove potential spacing issues */
+
+
+        }
+
+        .choose {
+            margin-top: 12px;
+        }
+
+
+        .choose_abcd {
+            padding: .75rem;
+            border-width: 2px;
+            border-radius: .25rem;
+            margin-top: .75rem;
+            margin-bottom: .75rem;
+            border-color: #e5e7eb;
+            border-style: solid;
+            font-size: 1.125rem;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+
+            /* transition-timing-function: cubic-bezier(.4, 0, .2, 1); */
+
+            transition: transform 0.15s cubic-bezier(.4, 0, .2, 1);
+
+
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+
+
+
+
+
+
+
+
+        .choose_abcd_hover:hover {
+            --tw-scale-x: 1.05;
+            --tw-scale-y: 1.05;
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            font-weight: 600
+        }
+
+        .donee {
+
+            --tw-border-opacity: 1;
+            border-color: rgb(34 197 94 / var(--tw-border-opacity));
+
+        }
+
+        .redd {
+
+            --tw-border-opacity: 1;
+            border-color: rgb(255 0 0 / var(--tw-border-opacity));
+
+
+        }
+    </style>
+
+    <style>
+        .title0 {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            margin-top: 15px;
+            margin-bottom: 35px;
+
+        }
+
+        .submit {
+            padding: 15px 30px;
+            background-color: #28a745;
+            display: inline-block;
+            float: right;
+            margin-top: 50px;
+            margin-right: 20%;
+            margin-bottom: 80px;
+            border-radius: 10px;
+        }
+    </style>
+<!-- header footer style -->
+<style>
+    .header {
+               display: flex;
+               justify-content: space-between;
+               align-items: center;
+               background-color: #2c3e50;
+               color: white;
+               padding: 1rem 2rem;
+               box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+           }
+   
+           .header .logo {
+               font-size: 2rem;
+               font-weight: bold;
+               color: #ecf0f1;
+           }
+   
+           .header .company-name {
+               font-size: 1.5rem;
+               color: #ecf0f1;
+               text-transform: uppercase;
+           }
+   
+           .footer {
+               background-color: #34495e;
+               color: white;
+               text-align: center;
+               padding: 1.5rem 0;
+               margin-top: 4rem;
+          
+           }
+   
+           .footer p {
+               font-size: 1rem;
+           }
+   
+   
+   </style>
+
+
+    <!-- login style 2 style tag below -->
+    <style>
+   
+
+        .mobile-input {
+            display: flex;
+            align-items: center;
+            border: 2px solid #dddddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f9f9f9;
+            margin-bottom: 20px;
+            padding: 10px 10px;
+            width: 50%;
+        }
+
+
+        .pnext {
+            width: 50%;
+            display: block;
+            background-color: #CECFD8;
+            padding: 13px 10px;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .mobile-input img {
+            height: 24px;
+            width: 36px;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+
+        .mobile-input span {
+            font-weight: bold;
+            color: #555555;
+            margin-right: 10px;
+        }
+
+        .mobile-input input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 16px;
+            padding: 5px;
+            background: none;
+        }
+
+        .mobile-input input::placeholder {
+            color: #bbbbbb;
+        }
+
+        .login {
+            width: 40%;
+
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .hidd {
+            display: none;
+        }
+    </style>
+    <style>
+        .otp-input {
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            text-align: center;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            margin: 10px;
+            outline: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Focus effect */
+        .otp-input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+            background-color: #f1f1f1;
+        }
+
+        /* Valid input styling */
+        .otp-input:valid {
+            background-color: #e6f7ff;
+            border-color: #66ccff;
+        }
+
+        /* Invalid input styling */
+        .otp-input:invalid {
+            background-color: #ffe6e6;
+            border-color: #f44336;
+        }
+
+        /* Smooth hover effect for the input fields */
+        .otp-input:hover {
+            border-color: #007bff;
+            cursor: pointer;
+        }
+
+        .pnext2 {
+            margin-top: 15px;
+            width: 60%;
+            display: block;
+            background-color: #CECFD8;
+            padding: 13px 10px;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            color: white;
+        }
+    
+        .uname{
+            margin-left: auto;
+            color: white;
+            font-size: 28px;
+            margin-right: 28px;
+            font-family: sans-serif;
+             
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div id="logoo" onclick="homee()" class="logo"></div>
+        <div id="logoo1" class="company-name"> </div>
+    </header>
+
+    <div id="login" class="login hidd">
+
+
+
+        <div id="mobile" class="mobile">
+            <h1>Log in to perticipate in The exam</h1>
+
+            <span>মোবাইল নম্বর *</span>
+            <div class="mobile-input">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAUCAYAAAB8gkaAAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAF6SURBVHgBvZW/S8NAFMe/SVvb+qMtKmKhYEHq1EVwdXJy6R+ggzhaRRFciosuBTc33Z1dXDq4qzj5A9RBMJaALtJYsSbXJvFlEMTa3CWafoZww937HO9e3pOwVFiAhF0AKQSFDYW+WxKKhQdaZBE8mtwlkUMqLLoz2bIx/9xE/t1CyAZqdPKEjh8NC4eA0M5llaGkMKRI+J0VtYnHmIy5fByX/TI3DnfHJkl27o020RdjuoXKRQMzNZMXyl3mpK2kGOCRoIvs3+odLyQk26gyiJJmFooq8yebfDORa1jwwuxLC75ko8w9Jb8x/uEzjQOmd1mEk4iOsiuBUv7JTZ8EX7K73hDOEt6Ex4MR+JI57GV6IEqVfu6D9B9khyMRlLN8YT0sYXUiSt3EPY3cdlXORmHSDFp8YsgY7UVzTW+7lovhPBnihYIzYoTKzmlL05qJqbqJOFXdK12zMhTGKUl0WRIJIS77D5w309ANaFrLsOx1WioIFg22vf0JElZ0M8k3ifYAAAAASUVORK5CYII="
+                    alt="BD Flag">
+                <span>+88</span>
+                <!-- <input type="tel" placeholder="Enter your mobile number"> -->
+
+                <input inputmode="numeric" name="phone" id="phone" aria-describedby="phone" pattern="\d*"
+                    autocomplete="off" type="tel" maxlength="11" placeholder="মোবাইল নম্বর দিন" value="">
+            </div>
+
+            <span onclick="get_otp()" id="pnext" class="pnext">Next</span>
+
+        </div>
+
+        <div id="otp" class="otp hidd">
+            <h2>Enter OTP</h2>
+            <div class="otp-fields">
+                <input type="tel" inputmode="numeric" autocomplete="off" maxlength="1" class="otp-input" id="otp1"
+                    oninput="moveFocus(this, 'otp2')" />
+                <input type="tel" inputmode="numeric" autocomplete="off" maxlength="1" class="otp-input" id="otp2"
+                    oninput="moveFocus(this, 'otp3')" />
+                <input type="tel" inputmode="numeric" autocomplete="off" maxlength="1" class="otp-input" id="otp3"
+                    oninput="moveFocus(this, 'otp4')" />
+                <input type="tel" inputmode="numeric" autocomplete="off" maxlength="1" class="otp-input" id="otp4"
+                    oninput="moveFocus(this, '')" />
+            </div>
+
+            <span onclick="verify_otp()" id="pnext2" class="pnext2">Next</span>
+        </div>
+    </div>
+
+    <div id="restt">
+
+   
+    <div id="a"></div>
+
+    <div class="title0">
+        <p id="testt"> </p>
+    </div>
+
+    <div id="parent" class="parent">
+
+
+    </div>
+
+</div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Acs Exam Portal. All rights reserved.</p>
+    </footer>
+
+    <!-- login 2 scripts below -->
+    <script>
+
+
+
+        document.getElementById('phone').addEventListener('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            let pnext = document.getElementById("pnext")
+
+            console.log(this.value.length);
+            if (this.value.length == 11) {
+
+                pnext.style.backgroundColor = "#5468FF"
+            } else {
+                pnext.style.backgroundColor = "#CECFD8"
+
+            }
+
+        });
+
+
+        function moveFocus(currentInput, nextInputId) {
+
+if (currentInput.value.length === 1 && nextInputId) {
+    document.getElementById(nextInputId).focus();
+}
+let allLengthOne = true;
+
+let clss = document.getElementsByClassName("otp-input")
+for (let el of clss) {
+    console.log(el.value.length);
+    if (el.value.length != 1) {
+        allLengthOne = false;
+    }
+}
+let pnext = document.getElementById("pnext2")
+console.log();
+
+if (allLengthOne) {
+
+    pnext.style.backgroundColor = "#5468FF"
+
+
+} else {
+
+
+    pnext.style.backgroundColor = "#CECFD8"
+
+}
+
+
+
+
+
+
+}
+
+// Enable back navigation with deletion
+const inputs = document.querySelectorAll('.otp-input');
+inputs.forEach(input => {
+input.addEventListener('keydown', function (event) {
+    if (event.key === 'Backspace' && !input.value) {
+        const previousInput = getPreviousNonEmptyInput(input);
+        if (previousInput) {
+            previousInput.focus();
+            previousInput.value = '';  // Clear the previous non-empty input
+        }
+    }
+});
+});
+
+function getPreviousNonEmptyInput(input) {
+let prev = input.previousElementSibling;
+while (prev && !prev.classList.contains('otp-input')) {
+    prev = prev.previousElementSibling;
+}
+while (prev && prev.value === '') {
+    prev = prev.previousElementSibling;
+}
+return prev && prev.value !== '' ? prev : null;
+}
+    </script>
+
+<script>
+    window.getCookie = function (name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    window.restt_post = async function (uri, obj) {
+        try {
+
+
+            const res = await fetch(uri, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(obj),
+            });
+            if (res.status === 200) {
+                let ress = await res.json()
+                return ress;
+
+
+            }
+            else {
+                alert('Error. status !200');
+                return false;
+            }
+
+
+        } catch (err) {
+            console.error('Error:', err);
+            alert('Error. in Post Request' + err);
+            return false;
+        }
+
+
+    }
+
+    if (getCookie("boi_uuid") == undefined) {
+        document.getElementById("login").classList.remove("hidd")
+        document.getElementById("restt").classList.add("hidd")
+    }else{
+        
+        document.getElementById("logoo1").innerHTML=getCookie("boi_uname")
+      
+    }
+
+    window.get_otp = async function () {
+        let val = document.getElementById('phone').value;
+        let len = val.length
+        if (len == 11) {
+
+            if (document.getElementById('phone').value.startsWith("01")) {
+
+                let res = await restt_post("http://192.168.0.103:3000/gen_otp", { num: val })
+                if (res != false) {
+                    console.log(res);
+                    document.cookie = `boi_unum=${val}; max-age=15552000; path=/`;
+                    document.getElementById('mobile').classList.add("hidd")
+                    document.getElementById('otp').classList.remove("hidd")
+
+                }
+
+
+
+            } else {
+                alert("Bangladeshi Number Plz");
+
+            }
+
+
+        } else {
+            alert("Number is Not Valid,Plz Cheak The Number You Enterd.");
+
+        }
+
+    }
+
+
+    window.verify_otp = async function () {
+        let otp = '';
+
+
+
+
+
+        let allLengthOne = true;
+
+        let clss = document.getElementsByClassName("otp-input")
+        for (let el of clss) {
+
+            if (el.value.length != 1) {
+                allLengthOne = false;
+            }
+        }
+
+        if (!allLengthOne) { return false; }
+
+        console.log("verifying...");
+        document.querySelectorAll('.otp-input').forEach(input => {
+            otp += input.value; // Concatenate all values
+        });
+        let unum = getCookie("boi_unum")
+
+       
+
+        try {
+
+
+            const res = await fetch("http://192.168.0.103:3000/verify_otp", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({num: unum, otp: otp}),
+            });
+            if (res.status == 200) {
+                let ress = await res.json()
+               
+                let doc = ress.doc;
+            console.log(doc);
+            document.cookie = `boi_uuid=${doc["_id"]}; max-age=15552000; path=/`;
+            document.cookie = `boi_uname=${doc["uname"]}; max-age=15552000; path=/`;
+            document.cookie = `boi_unum=${doc["unum"]}; max-age=15552000; path=/`;
+
+            window.location.reload()
+
+
+
+            }
+            else {
+                alert('Wrong otp');
+               
+            }
+
+
+        } catch (err) {
+            console.error('Error:', err);
+            alert('Error. in Post Request' + err);
+            
+        }
+
+
+
+
+
+
+
+
+  
+
+
+    }
+
+
+</script>
+
+    <script>
+
+
+        window.getCookie = function (name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        window.loadd = async function () {
+            try {
+
+                const url = new URL(window.location.href);
+                const params = new URLSearchParams(url.search);
+
+                const nValue = params.get('n');
+                const idValue = params.get('id');
+
+                console.log('n:', nValue);
+                console.log('id:', idValue);
+
+                window.cnamee = nValue;
+
+
+
+
+
+
+                let urll = "http://192.168.0.103:3000/view_result"
+                const res = await fetch(urll, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ "uname": "zayn", "cname": nValue, "id": idValue }),
+                });
+                if (res.status === 200) {
+                    let resss = await res.json()
+                    let ress = resss.ans.data
+                    console.log(resss);
+                    document.getElementById("testt").innerHTML = `${resss.ans.titlee} solve`
+                    document.getElementById("logoo").innerHTML = nValue
+                    if(getCookie("boi_uname") != undefined){
+                        document.getElementById("logoo1").innerHTML = getCookie("boi_uname");
+                    }
+        
+
+                    let shuffledArray = ress;
+
+
+
+                    for (let iri = 0; iri < shuffledArray.length; iri++) {
+                        const element = shuffledArray[iri];
+
+                        // await new Promise((resolve0) => {
+                        //     setTimeout(() => {
+                        //         console.log(`Doing async work for item: ${item}`);
+                        //         resolve0();
+                        //     }, 1000);
+                        // });
+                        await new Promise(async (resolve0) => {
+
+
+
+
+                            console.log(element);
+                            let order = `order_${element.order}`
+                            // let doc=resss.doc["submitedd"][order]
+                            let doc = resss.doc
+
+
+
+
+
+
+                            let classs_a = 'yomcubd';
+                            let classs_b = 'yomcubd';
+                            let classs_c = 'yomcubd';
+                            let classs_d = 'yomcubd';
+
+                            let aa = 'a)';
+                            let bb = 'b)';
+                            let cc = 'c)';
+                            let dd = 'd)';
+                            if (element.ans == 0) {
+                                aa = `
+                                <svg width="3.3848648mm" height="2.8857117mm" viewBox="0 0 3.3848648 2.8857117" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2yu" /> <g id="layer1" transform="translate(-103.67948,-139.56686)"> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="104.13364" y="141.8338" id="text63"><tspan id="tspan61" style="stroke-width:0.264583" x="104.13364" y="141.8338">a)</tspan></text> </g> <g id="layer2" transform="translate(-103.67948,-139.56686)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="96.69558" y="152.24422" id="text130" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128" style="fill:#228b22;stroke-width:0.437221" x="96.69558" y="152.24422">✔</tspan></text> </g> </svg>
+                                `
+                            } else if (element.ans == 1) {
+                                bb = `
+                              <svg width="3.3848648mm" height="2.916748mm" viewBox="0 0 3.3848648 2.916748" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2j" /> <g id="layer2" transform="translate(-75.09263,-145.91418)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="69.866943" y="159.04059" id="text130-3" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128-6" style="fill:#228b22;stroke-width:0.437221" x="69.866943" y="159.04059">✔</tspan></text> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="75.580551" y="148.32719" id="text2197"><tspan id="tspan2195" style="stroke-width:0.264583" x="75.580551" y="148.32719">b)</tspan></text> </g> </svg>
+                            `
+                            } else if (element.ans == 2) {
+                                cc = `
+                            <svg width="3.3848648mm" height="2.7957001mm" viewBox="0 0 3.3848648 2.7957001" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2" /> <g id="layer2" transform="translate(-64.115602,-140.52894)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="59.565052" y="153.17343" id="text130-35" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128-62" style="fill:#228b22;stroke-width:0.437221" x="59.565052" y="153.17343">✔</tspan></text> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="64.460152" y="142.79588" id="text2201"><tspan id="tspan2199" style="stroke-width:0.264583" x="64.460152" y="142.79588">c)</tspan></text> </g> </svg>
+                            
+                            `
+
+                            } else if (element.ans == 3) {
+                                dd = `
+                            <svg width="3.3848648mm" height="2.9454651mm" viewBox="0 0 3.3848648 2.9454651" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2" /> <g id="layer1" transform="translate(-65.524248,-146.21946)"> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="65.764465" y="148.63246" id="text2205"><tspan id="tspan2203" style="stroke-width:0.264583" x="65.764465" y="148.63246">d)</tspan></text> </g> <g id="layer2" transform="translate(-65.524248,-146.21946)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="60.887066" y="159.39647" id="text130-7" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128-5" style="fill:#228b22;stroke-width:0.437221" x="60.887066" y="159.39647">✔</tspan></text> </g> </svg>
+                            `
+                            }
+
+
+
+                            if (element.ans == 0) {
+                                classs_a = "donee"
+                            }
+
+                            if (element.ans == 1) {
+                                classs_b = "donee"
+                            }
+
+                            if (element.ans == 2) {
+                                classs_c = "donee"
+                            }
+
+
+                            if (element.ans == 3) {
+                                classs_d = "donee"
+                            }
+
+
+
+
+
+ 
+                            document.getElementById("parent").insertAdjacentHTML("beforeend", `
+        <div class="item">
+
+
+
+    <div class="qpart">
+
+        <svg width="28px" viewBox="0 0 24 24" fill="#C00000" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M15.75 5H8.25C7.55964 5 7 5.58763 7 6.3125V19L12 15.5L17 19V6.3125C17 5.58763 16.4404 5 15.75 5Z"
+                stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+
+        <span id="id-${iri + 1}" class="static1"></span>
+
+
+
+
+    </div>
+
+
+
+    <div id="abcdpart" class="abcdpart">
+        <div class="container_abcd">
+            <div class="roww1">
+                <div id="abcd_a" class="item_abcd"><span class="txt_cen">${aa}</span> <span class="abcd_span"
+                        id="abcd_span_a${iri}"></span> </div>
+                <div id="abcd_b" class="item_abcd"><span class="txt_cen">${bb}</span> <span class="abcd_span"
+                        id="abcd_span_b${iri}"></span></div>
+            </div>
+            <br>
+            <div class="roww2">
+                <div id="abcd_c" class="item_abcd"><span class="txt_cen">${cc}</span> <span class="abcd_span"
+                        id="abcd_span_c${iri}"></span></div>
+                <div id="abcd_d" class="item_abcd"><span class="txt_cen">${dd}</span> <span class="abcd_span"
+                        id="abcd_span_d${iri}"></span></div>
+            </div>
+        </div>
+
+    </div>
+
+    <span class="q_no">Q No. ${iri + 1}</span>
+
+
+
+    <div order_db="${element.order}"  class="choose"   >
+        <div optnn="a" class="choose_abcd ${classs_a} " >
+a
+        </div>
+        <div optnn="b" class="choose_abcd ${classs_b} " >
+            b
+        </div>
+        <div optnn="c" class="choose_abcd ${classs_c} " >
+            c
+        </div>
+        <div optnn="d" class="choose_abcd  ${classs_d} " >
+            d
+        </div>
+
+
+    </div>
+
+
+</div>
+        `)
+
+
+
+                            const arr = [];
+                            let i = 0;
+                            let input = element.question
+
+
+                            for (let i = 0; i < input.length; i++) {
+                                await new Promise((resolve1) => {
+
+
+
+                                    let startIndex = i;
+                                    while (i < input.length && input[i] !== '\\') {
+                                        i++;
+                                    }
+                                    if (i > startIndex) {
+                                        arr.push(input.slice(startIndex, i));
+                                    }
+
+                                    if (i < input.length && input[i] === '\\') {
+                                        startIndex = i;
+                                        i++;
+                                        while (i < input.length && input[i] !== ' ' && input[i] !== '\\') {
+                                            i++;
+                                        }
+                                        arr.push(input.slice(startIndex, i));
+                                    }
+
+                                    while (i < input.length && input[i] === ' ') {
+                                        i++;
+                                    }
+                                    console.log(`Doing async work for item: ${i}`);
+                                    resolve1();
+
+                                });
+                            }
+
+
+
+                            // console.warn(arr);
+
+                            for (let i = 0; i < arr.length; i++) {
+                                await new Promise((resolve2) => {
+                                    let itemm = arr[i]
+
+
+                                    if (itemm != "\\") {
+
+                                        if (itemm[0] != "\\") {
+                                            document.getElementById(`id-${iri + 1}`).insertAdjacentHTML("beforeend", " " + arr[i] + " ");
+                                        }
+                                        else {
+                                            document.getElementById(`id-${iri + 1}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr[i]} </span>`);
+                                        }
+
+                                    }
+                                    resolve2();
+                                });
+                            };
+
+
+
+                            abcd_add(element, iri)
+
+
+
+
+
+                            resolve0();
+
+                        });
+
+
+                    };
+
+                    var elements = document.getElementsByClassName('mathh');
+                    for (var ddx of elements) {
+                        MQ.StaticMath(ddx);
+                    }
+
+
+
+
+
+
+
+                } else {
+                    //alert('Failed to load');
+                }
+
+            } catch (err) {
+                console.error('Error:', err);
+                //  alert('Failed to load');
+            }
+
+        }; loadd()
+        window.homee = async function () {
+            window.open(`./${window.cnamee}.html`,"_self")
+        
+        }
+
+        window.abcd_add = async function (element, iri0) {
+
+
+
+            for (let iri = 0; iri < 4; iri++) {
+                await new Promise(async (resolvee) => {
+
+                    const arr = [];
+                    let i = 0;
+                    let input;
+                    let idd;
+                    if (iri == 0) {
+                        input = element.a;
+                        idd = "abcd_span_a";
+                    } else if (iri == 1) {
+                        input = element.b;
+                        idd = "abcd_span_b";
+                    } else if (iri == 2) {
+                        input = element.c;
+                        idd = "abcd_span_c";
+                    } else if (iri == 3) {
+                        input = element.d;
+                        idd = "abcd_span_d";
+                    } else { }
+
+
+
+                    for (let i = 0; i < input.length; i++) {
+                        await new Promise((resolve1) => {
+
+
+                            let startIndex = i;
+                            while (i < input.length && input[i] !== '\\') {
+                                i++;
+                            }
+                            if (i > startIndex) {
+                                arr.push(input.slice(startIndex, i));
+                            }
+
+                            if (i < input.length && input[i] === '\\') {
+                                startIndex = i;
+                                i++;
+                                while (i < input.length && input[i] !== ' ' && input[i] !== '\\') {
+                                    i++;
+                                }
+                                arr.push(input.slice(startIndex, i));
+                            }
+
+                            while (i < input.length && input[i] === ' ') {
+                                i++;
+                            }
+                            console.log(`Doing async work for item: ${i}`);
+                            resolve1();
+
+                        });
+                    }
+
+
+
+                    // console.warn(arr);
+
+                    for (let i = 0; i < arr.length; i++) {
+                        await new Promise((resolve2) => {
+                            let itemm = arr[i]
+
+
+                            if (itemm != "\\") {
+
+                                if (itemm[0] != "\\") {
+                                    document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", " " + arr[i] + " ");
+                                }
+                                else {
+                                    document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr[i]} </span>`);
+                                }
+
+                            }
+                            resolve2();
+                        });
+                    };
+
+
+
+                    resolvee();
+                });
+            }
+
+
+
+
+
+
+
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

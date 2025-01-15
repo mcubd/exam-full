@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.js"></script>
+
+
+    <script>
+        var MQ = MathQuill.getInterface(2);                
+    </script>
+    <title>q</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+
+        }
+
+        @media (min-width: 768px) {
+
+            .parent {
+                width: 66.666667%;
+
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        }
+
+
+
+        @media (min-width: 768px) {
+            .parent {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        .item {
+
+            padding: 1.25rem;
+
+
+            margin-top: .75rem;
+            margin-bottom: .75rem;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #D1D5DB;
+
+
+
+
+
+
+
+
+
+            --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1);
+            --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+
+
+        }
+    </style>
+
+
+
+    <style>
+        .qpart {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+
+
+
+
+        #static1 {
+            width: 75%;
+
+
+            margin-left: 12px;
+            word-wrap: break-word;
+            margin-top: 2px;
+
+        }
+
+
+
+
+
+
+
+
+
+        button {
+            outline: none;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+
+        .container_abcd {
+            width: 100%;
+            margin-top: 30px;
+            margin-left: 10px;
+
+
+        }
+
+        .item_abcd {
+            display: flex;
+            flex-direction: row;
+            /* margin-top: 20px; */
+            width: 30%;
+
+
+
+
+        }
+
+
+
+
+
+
+
+        .roww1,
+        .roww2 {
+            display: flex;
+            flex-direction: row;
+            height: 40px;
+            /* background-color: #28a745; */
+            align-items: center;
+            text-align: center;
+        }
+
+        .abcd_span {
+            margin-left: 10px;
+        }
+
+        .txt_cen {
+
+            text-align: center;
+        }
+
+
+        .hidd {
+            display: none;
+        }
+    </style>
+
+
+    <style>
+        *,
+        :before,
+        :after {
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+
+
+        }
+
+        .q_no {
+            height: 2rem;
+            /* Fixed height */
+            padding-left: .75rem;
+            padding-right: .75rem;
+            font-size: .875rem;
+            padding-top: 0;
+            padding-bottom: 0;
+            border-radius: 8px;
+
+            background-color: hsl(219 14% 28% / 1);
+            color: white;
+            text-align: center;
+            display: inline-flex;
+            /* Use inline-flex for proper centering */
+            align-items: center;
+            /* Vertical centering */
+            justify-content: center;
+            /* Horizontal centering */
+            line-height: 1;
+            /* Remove potential spacing issues */
+
+
+        }
+
+        .choose {
+            margin-top: 12px;
+        }
+
+
+        .choose_abcd {
+            padding: .75rem;
+            border-width: 2px;
+            border-radius: .25rem;
+            margin-top: .75rem;
+            margin-bottom: .75rem;
+            border-color: #e5e7eb;
+            border-style: solid;
+            font-size: 1.125rem;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+
+            /* transition-timing-function: cubic-bezier(.4, 0, .2, 1); */
+
+            transition: transform 0.15s cubic-bezier(.4, 0, .2, 1);
+
+
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+
+
+
+
+
+
+
+
+        .choose_abcd_hover:hover {
+            --tw-scale-x: 1.05;
+            --tw-scale-y: 1.05;
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            font-weight: 600
+        }
+
+        .donee {
+
+            --tw-border-opacity: 1;
+            border-color: rgb(34 197 94 / var(--tw-border-opacity));
+
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div id="a"></div>
+
+    <div id="parent" class="parent">
+        <!-- <div class="item">
+
+
+
+    <div class="qpart">
+
+        <svg width="28px" viewBox="0 0 24 24" fill="#C00000" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M15.75 5H8.25C7.55964 5 7 5.58763 7 6.3125V19L12 15.5L17 19V6.3125C17 5.58763 16.4404 5 15.75 5Z"
+                stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+
+        <span id="static1">fgfdgfdgcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccdgg </span>
+
+
+
+
+    </div>
+
+
+
+    <div id="abcdpart" class="abcdpart">
+        <div class="container_abcd">
+            <div class="roww1">
+                <div id="abcd_a" class="item_abcd"><span class="txt_cen">a)</span> <span class="abcd_span"
+                        id="abcd_span1"></span> </div>
+                <div id="abcd_b" class="item_abcd"><span class="txt_cen">b)</span> <span class="abcd_span"
+                        id="abcd_span2"></span></div>
+            </div>
+            <br>
+            <div class="roww2">
+                <div id="abcd_c" class="item_abcd"><span class="txt_cen">c)</span> <span class="abcd_span"
+                        id="abcd_span3"></span></div>
+                <div id="abcd_d" class="item_abcd"><span class="txt_cen">d)</span> <span class="abcd_span"
+                        id="abcd_span4"></span></div>
+            </div>
+        </div>
+
+    </div>
+
+    <span class="q_no">Q No. 1</span>
+
+
+
+    <div class="choose" onclick="choosed(event)">
+        <div class="choose_abcd  choose_abcd_hover" >
+a
+        </div>
+        <div class="choose_abcd  choose_abcd_hover" >
+            b
+        </div>
+        <div class="choose_abcd  choose_abcd_hover" >
+            c
+        </div>
+        <div class="choose_abcd   choose_abcd_hover" >
+            d
+        </div>
+
+
+    </div>
+
+
+</div> -->
+
+    </div>
+
+
+    <script>
+
+
+
+
+        window.loadd = async function () {
+            try {
+
+
+
+                let urll = "http://192.168.0.103:3000/q_get"
+                const res = await fetch(urll, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ "Q": "jj" }),
+                });
+                if (res.status === 200) {
+                    let ress = await res.json()
+
+
+                    let shuffledArray = await random_arr(ress);
+
+
+                    for (let iri = 0; iri < shuffledArray.length; iri++) {
+                        const element = shuffledArray[iri];
+
+                        // await new Promise((resolve0) => {
+                        //     setTimeout(() => {
+                        //         console.log(`Doing async work for item: ${item}`);
+                        //         resolve0();
+                        //     }, 1000);
+                        // });
+                        await new Promise(async (resolve0) => {
+
+
+
+
+                            console.log(element);
+                            document.getElementById("parent").insertAdjacentHTML("beforeend", `
+        <div class="item">
+
+
+
+    <div class="qpart">
+
+        <svg width="28px" viewBox="0 0 24 24" fill="#C00000" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M15.75 5H8.25C7.55964 5 7 5.58763 7 6.3125V19L12 15.5L17 19V6.3125C17 5.58763 16.4404 5 15.75 5Z"
+                stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+
+        <span id="id-${iri + 1}" class="static1"></span>
+
+
+
+
+    </div>
+
+
+
+    <div id="abcdpart" class="abcdpart">
+        <div class="container_abcd">
+            <div class="roww1">
+                <div id="abcd_a" class="item_abcd"><span class="txt_cen">a)</span> <span class="abcd_span"
+                        id="abcd_span_a${iri}"></span> </div>
+                <div id="abcd_b" class="item_abcd"><span class="txt_cen">b)</span> <span class="abcd_span"
+                        id="abcd_span_b${iri}"></span></div>
+            </div>
+            <br>
+            <div class="roww2">
+                <div id="abcd_c" class="item_abcd"><span class="txt_cen">c)</span> <span class="abcd_span"
+                        id="abcd_span_c${iri}"></span></div>
+                <div id="abcd_d" class="item_abcd"><span class="txt_cen">d)</span> <span class="abcd_span"
+                        id="abcd_span_d${iri}"></span></div>
+            </div>
+        </div>
+
+    </div>
+
+    <span class="q_no">Q No. ${iri + 1}</span>
+
+
+
+    <div class="choose" onclick="choosed(event)">
+        <div class="choose_abcd  choose_abcd_hover" >
+a
+        </div>
+        <div class="choose_abcd  choose_abcd_hover" >
+            b
+        </div>
+        <div class="choose_abcd  choose_abcd_hover" >
+            c
+        </div>
+        <div class="choose_abcd   choose_abcd_hover" >
+            d
+        </div>
+
+
+    </div>
+
+
+</div>
+        `)
+
+
+
+                            const arr = [];
+                            let i = 0;
+                            let input = element.question
+
+
+                            for (let i = 0; i < input.length; i++) {
+                                await new Promise((resolve1) => {
+
+
+
+                                    let startIndex = i;
+                                    while (i < input.length && input[i] !== '\\') {
+                                        i++;
+                                    }
+                                    if (i > startIndex) {
+                                        arr.push(input.slice(startIndex, i));
+                                    }
+
+                                    if (i < input.length && input[i] === '\\') {
+                                        startIndex = i;
+                                        i++;
+                                        while (i < input.length && input[i] !== ' ' && input[i] !== '\\') {
+                                            i++;
+                                        }
+                                        arr.push(input.slice(startIndex, i));
+                                    }
+
+                                    while (i < input.length && input[i] === ' ') {
+                                        i++;
+                                    }
+                                    console.log(`Doing async work for item: ${i}`);
+                                    resolve1();
+
+                                });
+                            }
+
+
+
+                            // console.warn(arr);
+
+                            for (let i = 0; i < arr.length; i++) {
+                                await new Promise((resolve2) => {
+                                    let itemm = arr[i]
+
+
+                                    if (itemm != "\\") {
+
+                                        if (itemm[0] != "\\") {
+                                            document.getElementById(`id-${iri + 1}`).insertAdjacentHTML("beforeend", " " + arr[i] + " ");
+                                        }
+                                        else {
+                                            document.getElementById(`id-${iri + 1}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr[i]} </span>`);
+                                        }
+
+                                    }
+                                    resolve2();
+                                });
+                            };
+
+
+
+                            abcd_add(element, iri)
+
+
+
+
+
+                            resolve0();
+
+                        });
+
+
+                    };
+
+                    var elements = document.getElementsByClassName('mathh');
+                    for (var ddx of elements) {
+                        MQ.StaticMath(ddx);
+                    }
+
+
+
+
+
+
+
+
+                } else {
+                    //alert('Failed to load');
+                }
+
+            } catch (err) {
+                console.error('Error:', err);
+                //  alert('Failed to load');
+            }
+
+        }; loadd()
+
+
+        window.abcd_add = async function (element, iri0) {
+
+
+
+            for (let iri = 0; iri < 4; iri++) {
+                await new Promise(async (resolvee) => {
+
+                    const arr = [];
+                    let i = 0;
+                    let input;
+                    let idd;
+                    if (iri == 0) {
+                        input = element.a;
+                        idd = "abcd_span_a";
+                    } else if (iri == 1) {
+                        input = element.b;
+                        idd = "abcd_span_b";
+                    } else if (iri == 2) {
+                        input = element.c;
+                        idd = "abcd_span_c";
+                    } else if (iri == 3) {
+                        input = element.d;
+                        idd = "abcd_span_d";
+                    } else { }
+
+
+
+                    for (let i = 0; i < input.length; i++) {
+                        await new Promise((resolve1) => {
+
+
+                            let startIndex = i;
+                            while (i < input.length && input[i] !== '\\') {
+                                i++;
+                            }
+                            if (i > startIndex) {
+                                arr.push(input.slice(startIndex, i));
+                            }
+
+                            if (i < input.length && input[i] === '\\') {
+                                startIndex = i;
+                                i++;
+                                while (i < input.length && input[i] !== ' ' && input[i] !== '\\') {
+                                    i++;
+                                }
+                                arr.push(input.slice(startIndex, i));
+                            }
+
+                            while (i < input.length && input[i] === ' ') {
+                                i++;
+                            }
+                            console.log(`Doing async work for item: ${i}`);
+                            resolve1();
+
+                        });
+                    }
+
+
+
+                    // console.warn(arr);
+
+                    for (let i = 0; i < arr.length; i++) {
+                        await new Promise((resolve2) => {
+                            let itemm = arr[i]
+
+
+                            if (itemm != "\\") {
+
+                                if (itemm[0] != "\\") {
+                                    document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", " " + arr[i] + " ");
+                                }
+                                else {
+                                    document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr[i]} </span>`);
+                                }
+
+                            }
+                            resolve2();
+                        });
+                    };
+
+
+
+                    resolvee();
+                });
+            }
+
+
+
+
+
+
+
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        window.random_arr = async function (arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1)); // Get random index
+                [arr[i], arr[j]] = [arr[j], arr[i]]; // Swap elements
+            }
+            return arr;
+
+        };
+
+        window.choosed = async function (e) {
+            let ele = e.target.closest(".choose_abcd")
+            let parent = e.target.closest(".choose")
+
+
+
+
+
+
+            const elements = parent.querySelectorAll('.choose_abcd');
+
+
+            elements.forEach(element => {
+                element.classList.remove('choose_abcd_hover');
+
+            });
+
+            const donee = parent.querySelectorAll('.donee');
+
+            if (ele != undefined && donee.length == 0) {
+                ele.classList.add("donee")
+            }
+
+        };
+    </script>
+
+</body>
+
+</html>

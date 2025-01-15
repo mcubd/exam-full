@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+   
+
+        .mobile-input {
+            display: flex;
+            align-items: center;
+            border: 2px solid #dddddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f9f9f9;
+            margin-bottom: 20px;
+            padding: 10px 10px;
+            width: 50%;
+        }
+
+
+        .pnext {
+            width: 50%;
+            display: block;
+            background-color: #CECFD8;
+            padding: 13px 10px;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .mobile-input img {
+            height: 24px;
+            width: 36px;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+
+        .mobile-input span {
+            font-weight: bold;
+            color: #555555;
+            margin-right: 10px;
+        }
+
+        .mobile-input input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 16px;
+            padding: 5px;
+            background: none;
+        }
+
+        .mobile-input input::placeholder {
+            color: #bbbbbb;
+        }
+
+        .login {
+            width: 40%;
+
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .hidd {
+            display: none;
+        }
+    </style>
+    <style>
+        .otp-input {
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            text-align: center;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            margin: 10px;
+            outline: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Focus effect */
+        .otp-input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+            background-color: #f1f1f1;
+        }
+
+        /* Valid input styling */
+        .otp-input:valid {
+            background-color: #e6f7ff;
+            border-color: #66ccff;
+        }
+
+        /* Invalid input styling */
+        .otp-input:invalid {
+            background-color: #ffe6e6;
+            border-color: #f44336;
+        }
+
+        /* Smooth hover effect for the input fields */
+        .otp-input:hover {
+            border-color: #007bff;
+            cursor: pointer;
+        }
+
+        .pnext2 {
+            margin-top: 15px;
+            width: 60%;
+            display: block;
+            background-color: #CECFD8;
+            padding: 13px 10px;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            color: white;
+        }
+        .header{
+            width: 100%;
+            height: 70px;
+            background-color: #007bff;
+            position: fixed;
+            top: 0;
+            text-align: center;
+            display: none;
+             align-items: center;
+ 
+        }
+        .uname{
+            margin-left: auto;
+            color: white;
+            font-size: 28px;
+            margin-right: 28px;
+            font-family: sans-serif;
+             
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div id="login" class="login hidd">
+
+
+
+        <div id="mobile" class="mobile">
+            <h1>Log in to perticipate in The exam</h1>
+
+            <span>মোবাইল নম্বর *</span>
+            <div class="mobile-input">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAUCAYAAAB8gkaAAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAF6SURBVHgBvZW/S8NAFMe/SVvb+qMtKmKhYEHq1EVwdXJy6R+ggzhaRRFciosuBTc33Z1dXDq4qzj5A9RBMJaALtJYsSbXJvFlEMTa3CWafoZww937HO9e3pOwVFiAhF0AKQSFDYW+WxKKhQdaZBE8mtwlkUMqLLoz2bIx/9xE/t1CyAZqdPKEjh8NC4eA0M5llaGkMKRI+J0VtYnHmIy5fByX/TI3DnfHJkl27o020RdjuoXKRQMzNZMXyl3mpK2kGOCRoIvs3+odLyQk26gyiJJmFooq8yebfDORa1jwwuxLC75ko8w9Jb8x/uEzjQOmd1mEk4iOsiuBUv7JTZ8EX7K73hDOEt6Ex4MR+JI57GV6IEqVfu6D9B9khyMRlLN8YT0sYXUiSt3EPY3cdlXORmHSDFp8YsgY7UVzTW+7lovhPBnihYIzYoTKzmlL05qJqbqJOFXdK12zMhTGKUl0WRIJIS77D5w309ANaFrLsOx1WioIFg22vf0JElZ0M8k3ifYAAAAASUVORK5CYII="
+                    alt="BD Flag">
+                <span>+88</span>
+                <!-- <input type="tel" placeholder="Enter your mobile number"> -->
+
+                <input inputmode="numeric" name="phone" id="phone" aria-describedby="phone" pattern="\d*"
+                    autocomplete="off" type="tel" maxlength="11" placeholder="মোবাইল নম্বর দিন" value="">
+            </div>
+
+            <span onclick="get_otp()" id="pnext" class="pnext">Next</span>
+
+        </div>
+
+        <div id="otp" class="otp hidd">
+            <h2>Enter OTP</h2>
+            <div class="otp-fields">
+                <input type="tel" inputmode="numeric" autocomplete="off" maxlength="1" class="otp-input" id="otp1"
+                    oninput="moveFocus(this, 'otp2')" />
+                <input type="tel" inputmode="numeric" autocomplete="off" maxlength="1" class="otp-input" id="otp2"
+                    oninput="moveFocus(this, 'otp3')" />
+                <input type="tel" inputmode="numeric" autocomplete="off" maxlength="1" class="otp-input" id="otp3"
+                    oninput="moveFocus(this, 'otp4')" />
+                <input type="tel" inputmode="numeric" autocomplete="off" maxlength="1" class="otp-input" id="otp4"
+                    oninput="moveFocus(this, '')" />
+            </div>
+
+            <span onclick="verify_otp()" id="pnext2" class="pnext2">Next</span>
+        </div>
+    </div>
+
+    <div id="header" class="header hidd">
+
+        <span id="uname" class="uname"></span>
+
+    </div>
+
+    
+
+
+    <script>
+
+
+
+        document.getElementById('phone').addEventListener('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            let pnext = document.getElementById("pnext")
+
+            console.log(this.value.length);
+            if (this.value.length == 11) {
+
+                pnext.style.backgroundColor = "#5468FF"
+            } else {
+                pnext.style.backgroundColor = "#CECFD8"
+
+            }
+
+        });
+
+
+        function moveFocus(currentInput, nextInputId) {
+
+if (currentInput.value.length === 1 && nextInputId) {
+    document.getElementById(nextInputId).focus();
+}
+let allLengthOne = true;
+
+let clss = document.getElementsByClassName("otp-input")
+for (let el of clss) {
+    console.log(el.value.length);
+    if (el.value.length != 1) {
+        allLengthOne = false;
+    }
+}
+let pnext = document.getElementById("pnext2")
+console.log();
+
+if (allLengthOne) {
+
+    pnext.style.backgroundColor = "#5468FF"
+
+
+} else {
+
+
+    pnext.style.backgroundColor = "#CECFD8"
+
+}
+
+
+
+
+
+
+}
+
+// Enable back navigation with deletion
+const inputs = document.querySelectorAll('.otp-input');
+inputs.forEach(input => {
+input.addEventListener('keydown', function (event) {
+    if (event.key === 'Backspace' && !input.value) {
+        const previousInput = getPreviousNonEmptyInput(input);
+        if (previousInput) {
+            previousInput.focus();
+            previousInput.value = '';  // Clear the previous non-empty input
+        }
+    }
+});
+});
+
+function getPreviousNonEmptyInput(input) {
+let prev = input.previousElementSibling;
+while (prev && !prev.classList.contains('otp-input')) {
+    prev = prev.previousElementSibling;
+}
+while (prev && prev.value === '') {
+    prev = prev.previousElementSibling;
+}
+return prev && prev.value !== '' ? prev : null;
+}
+    </script>
+
+ 
+
+
+    <script>
+        window.getCookie = function (name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        window.restt_post = async function (uri, obj) {
+            try {
+
+
+                const res = await fetch(uri, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(obj),
+                });
+                if (res.status === 200) {
+                    let ress = await res.json()
+                    return ress;
+
+
+                }
+                else {
+                    alert('Error. status !200');
+                    return false;
+                }
+
+
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Error. in Post Request' + err);
+                return false;
+            }
+
+
+        }
+
+        if (getCookie("boi_uuid") == undefined) {
+            document.getElementById("login").classList.remove("hidd")
+
+        }else{
+            document.getElementById("header").style.display="flex"
+            document.getElementById("uname").innerHTML=getCookie("boi_uname")
+          
+        }
+
+        window.get_otp = async function () {
+            let val = document.getElementById('phone').value;
+            let len = val.length
+            if (len == 11) {
+
+                if (document.getElementById('phone').value.startsWith("01")) {
+
+                    let res = await restt_post("http://192.168.0.103:3000/gen_otp", { num: val })
+                    if (res != false) {
+                        console.log(res);
+                        document.cookie = `boi_unum=${val}; max-age=15552000; path=/`;
+                        document.getElementById('mobile').classList.add("hidd")
+                        document.getElementById('otp').classList.remove("hidd")
+
+                    }
+
+
+
+                } else {
+                    alert("Bangladeshi Number Plz");
+
+                }
+
+
+            } else {
+                alert("Number is Not Valid,Plz Cheak The Number You Enterd.");
+
+            }
+
+        }
+
+
+        window.verify_otp = async function () {
+            let otp = '';
+
+
+
+
+
+            let allLengthOne = true;
+
+            let clss = document.getElementsByClassName("otp-input")
+            for (let el of clss) {
+
+                if (el.value.length != 1) {
+                    allLengthOne = false;
+                }
+            }
+
+            if (!allLengthOne) { return false; }
+
+            console.log("verifying...");
+            document.querySelectorAll('.otp-input').forEach(input => {
+                otp += input.value; // Concatenate all values
+            });
+            let unum = getCookie("boi_unum")
+
+           
+
+            try {
+
+
+                const res = await fetch("http://192.168.0.103:3000/verify_otp", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({num: unum, otp: otp}),
+                });
+                if (res.status == 200) {
+                    let ress = await res.json()
+                   
+                    let doc = ress.doc;
+                console.log(doc);
+                document.cookie = `boi_uuid=${doc["_id"]}; max-age=15552000; path=/`;
+                document.cookie = `boi_uname=${doc["uname"]}; max-age=15552000; path=/`;
+                document.cookie = `boi_unum=${doc["unum"]}; max-age=15552000; path=/`;
+
+                window.location.reload()
+
+
+
+                }
+                else {
+                    alert('Wrong otp');
+                   
+                }
+
+
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Error. in Post Request' + err);
+                
+            }
+
+
+
+
+
+
+
+
+      
+
+
+        }
+
+
+    </script>
+
+
+
+</body>
+
+</html>

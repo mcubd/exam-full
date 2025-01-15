@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ecf0f1;
+        }
+
+        .header .company-name {
+            font-size: 1.5rem;
+            color: #ecf0f1;
+            text-transform: uppercase;
+        }
+
+        /* Main Content */
+        .main-content {
+  
+           
+ 
+        
+        }
+
+        .exam-list h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #34495e;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .exams-container {
+  
+            margin-left: auto;
+            margin-right: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 80px;
+        }
+
+        /* Exam Boxes */
+        .exam-box {
+ 
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 380px;
+        }
+
+        .exam-box:hover {
+            /* transform: translateY(-8px); */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .exam-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-align: center;
+            text-transform: capitalize;
+        }
+
+        .exam-box p {
+        
+            font-size: 1rem;
+            color: #7f8c8d;
+            margin: 0.5rem 0;
+        }
+
+        .exam-buttons {
+ 
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: auto; 
+        }
+ 
+        .exam-buttons button {
+  
+
+            background-color: #2980b9;
+            border: none;
+            color: white;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            
+        }
+
+        .exam-buttons button:hover {
+            background-color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        .exam-buttons-top {
+     
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .exam-buttons-top button {
+            width: 100%;
+        }
+
+        .exam-buttons-bottom {
+         
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .exam-buttons-bottom button {
+            width: 100%;
+        }
+
+ 
+        .footer {
+            background-color: #34495e;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer p {
+            font-size: 1rem;
+        }
+    </style>
+
+    <!-- login style 2 style tag below -->
+    <style>
+   
+
+        .mobile-input {
+            display: flex;
+            align-items: center;
+            border: 2px solid #dddddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f9f9f9;
+            margin-bottom: 20px;
+            padding: 10px 10px;
+            width: 50%;
+        }
+
+
+        .pnext {
+            width: 50%;
+            display: block;
+            background-color: #CECFD8;
+            padding: 13px 10px;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .mobile-input img {
+            height: 24px;
+            width: 36px;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+
+        .mobile-input span {
+            font-weight: bold;
+            color: #555555;
+            margin-right: 10px;
+        }
+
+        .mobile-input input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 16px;
+            padding: 5px;
+            background: none;
+        }
+
+        .mobile-input input::placeholder {
+            color: #bbbbbb;
+        }
+
+        .login {
+            width: 40%;
+
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .hidd {
+            display: none;
+        }
+    </style>
+    <style>
+        .otp-input {
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            text-align: center;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            margin: 10px;
+            outline: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Focus effect */
+        .otp-input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+            background-color: #f1f1f1;
+        }
+
+        /* Valid input styling */
+        .otp-input:valid {
+            background-color: #e6f7ff;
+            border-color: #66ccff;
+        }
+
+        /* Invalid input styling */
+        .otp-input:invalid {
+            background-color: #ffe6e6;
+            border-color: #f44336;
+        }
+
+        /* Smooth hover effect for the input fields */
+        .otp-input:hover {
+            border-color: #007bff;
+            cursor: pointer;
+        }
+
+        .pnext2 {
+            margin-top: 15px;
+            width: 60%;
+            display: block;
+            background-color: #CECFD8;
+            padding: 13px 10px;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            color: white;
+        }
+    
+        .uname{
+            margin-left: auto;
+            color: white;
+            font-size: 28px;
+            margin-right: 28px;
+            font-family: sans-serif;
+             
+        }
+    </style>
+
+</head>
+
+<body>
+    <header class="header">
+        <div id="logoo" class="logo"></div>
+        <div id="logoo1" class="company-name"> </div>
+    </header>
+
+
+    <main id="main-content" class="main-content">
+        <section class="exam-list">
+            <h2>Available Exams</h2>
+            <div id="exams-container" class="exams-container">
+
+ 
+            </div>
+        </section>
+    </main>
+
+    <div id="login" class="login hidd">
+
+
+
+        <div id="mobile" class="mobile">
+            <h1>Log in to perticipate in The exam</h1>
+
+            <span>মোবাইল নম্বর *</span>
+            <div class="mobile-input">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAUCAYAAAB8gkaAAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAF6SURBVHgBvZW/S8NAFMe/SVvb+qMtKmKhYEHq1EVwdXJy6R+ggzhaRRFciosuBTc33Z1dXDq4qzj5A9RBMJaALtJYsSbXJvFlEMTa3CWafoZww937HO9e3pOwVFiAhF0AKQSFDYW+WxKKhQdaZBE8mtwlkUMqLLoz2bIx/9xE/t1CyAZqdPKEjh8NC4eA0M5llaGkMKRI+J0VtYnHmIy5fByX/TI3DnfHJkl27o020RdjuoXKRQMzNZMXyl3mpK2kGOCRoIvs3+odLyQk26gyiJJmFooq8yebfDORa1jwwuxLC75ko8w9Jb8x/uEzjQOmd1mEk4iOsiuBUv7JTZ8EX7K73hDOEt6Ex4MR+JI57GV6IEqVfu6D9B9khyMRlLN8YT0sYXUiSt3EPY3cdlXORmHSDFp8YsgY7UVzTW+7lovhPBnihYIzYoTKzmlL05qJqbqJOFXdK12zMhTGKUl0WRIJIS77D5w309ANaFrLsOx1WioIFg22vf0JElZ0M8k3ifYAAAAASUVORK5CYII="
+                    alt="BD Flag">
+                <span>+88</span>
+                <!-- <input type="tel" placeholder="Enter your mobile number"> -->
+
+                <input inputmode="numeric" name="phone" id="phone" aria-describedby="phone" pattern="\d*"
+                    autocomplete="off" type="tel" maxlength="11" placeholder="মোবাইল নম্বর দিন" value="">
+            </div>
+
+            <span onclick="get_otp()" id="pnext" class="pnext">Next</span>
+
+        </div>
+
+        <div id="otp" class="otp hidd">
+            <h2>Enter OTP</h2>
+            <div class="otp-fields">
+                <input type="tel" inputmode="numeric" autocomplete="off" maxlength="1" class="otp-input" id="otp1"
+                    oninput="moveFocus(this, 'otp2')" />
+                <input type="tel" inputmode="numeric" autocomplete="off" maxlength="1" class="otp-input" id="otp2"
+                    oninput="moveFocus(this, 'otp3')" />
+                <input type="tel" inputmode="numeric" autocomplete="off" maxlength="1" class="otp-input" id="otp3"
+                    oninput="moveFocus(this, 'otp4')" />
+                <input type="tel" inputmode="numeric" autocomplete="off" maxlength="1" class="otp-input" id="otp4"
+                    oninput="moveFocus(this, '')" />
+            </div>
+
+            <span onclick="verify_otp()" id="pnext2" class="pnext2">Next</span>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Acs Exam Portal. All rights reserved.</p>
+    </footer>
+
+    <!-- login 2 scripts below -->
+    <script>
+
+
+
+        document.getElementById('phone').addEventListener('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            let pnext = document.getElementById("pnext")
+
+            console.log(this.value.length);
+            if (this.value.length == 11) {
+
+                pnext.style.backgroundColor = "#5468FF"
+            } else {
+                pnext.style.backgroundColor = "#CECFD8"
+
+            }
+
+        });
+
+
+        function moveFocus(currentInput, nextInputId) {
+
+if (currentInput.value.length === 1 && nextInputId) {
+    document.getElementById(nextInputId).focus();
+}
+let allLengthOne = true;
+
+let clss = document.getElementsByClassName("otp-input")
+for (let el of clss) {
+    console.log(el.value.length);
+    if (el.value.length != 1) {
+        allLengthOne = false;
+    }
+}
+let pnext = document.getElementById("pnext2")
+console.log();
+
+if (allLengthOne) {
+
+    pnext.style.backgroundColor = "#5468FF"
+
+
+} else {
+
+
+    pnext.style.backgroundColor = "#CECFD8"
+
+}
+
+
+
+
+
+
+}
+
+// Enable back navigation with deletion
+const inputs = document.querySelectorAll('.otp-input');
+inputs.forEach(input => {
+input.addEventListener('keydown', function (event) {
+    if (event.key === 'Backspace' && !input.value) {
+        const previousInput = getPreviousNonEmptyInput(input);
+        if (previousInput) {
+            previousInput.focus();
+            previousInput.value = '';  // Clear the previous non-empty input
+        }
+    }
+});
+});
+
+function getPreviousNonEmptyInput(input) {
+let prev = input.previousElementSibling;
+while (prev && !prev.classList.contains('otp-input')) {
+    prev = prev.previousElementSibling;
+}
+while (prev && prev.value === '') {
+    prev = prev.previousElementSibling;
+}
+return prev && prev.value !== '' ? prev : null;
+}
+    </script>
+
+<script>
+    window.getCookie = function (name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    window.restt_post = async function (uri, obj) {
+        try {
+
+
+            const res = await fetch(uri, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(obj),
+            });
+            if (res.status === 200) {
+                let ress = await res.json()
+                return ress;
+
+
+            }
+            else {
+                alert('Error. status !200');
+                return false;
+            }
+
+
+        } catch (err) {
+            console.error('Error:', err);
+            alert('Error. in Post Request' + err);
+            return false;
+        }
+
+
+    }
+
+    if (getCookie("boi_uuid") == undefined) {
+        document.getElementById("login").classList.remove("hidd")
+        document.getElementById("main-content").classList.add("hidd")
+    }else{
+        
+        document.getElementById("logoo1").innerHTML=getCookie("boi_uname")
+      
+    }
+
+    window.get_otp = async function () {
+        let val = document.getElementById('phone').value;
+        let len = val.length
+        if (len == 11) {
+
+            if (document.getElementById('phone').value.startsWith("01")) {
+
+                let res = await restt_post("http://192.168.0.103:3000/gen_otp", { num: val })
+                if (res != false) {
+                    console.log(res);
+                    document.cookie = `boi_unum=${val}; max-age=15552000; path=/`;
+                    document.getElementById('mobile').classList.add("hidd")
+                    document.getElementById('otp').classList.remove("hidd")
+
+                }
+
+
+
+            } else {
+                alert("Bangladeshi Number Plz");
+
+            }
+
+
+        } else {
+            alert("Number is Not Valid,Plz Cheak The Number You Enterd.");
+
+        }
+
+    }
+
+
+    window.verify_otp = async function () {
+        let otp = '';
+
+
+
+
+
+        let allLengthOne = true;
+
+        let clss = document.getElementsByClassName("otp-input")
+        for (let el of clss) {
+
+            if (el.value.length != 1) {
+                allLengthOne = false;
+            }
+        }
+
+        if (!allLengthOne) { return false; }
+
+        console.log("verifying...");
+        document.querySelectorAll('.otp-input').forEach(input => {
+            otp += input.value; // Concatenate all values
+        });
+        let unum = getCookie("boi_unum")
+
+       
+
+        try {
+
+
+            const res = await fetch("http://192.168.0.103:3000/verify_otp", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({num: unum, otp: otp}),
+            });
+            if (res.status == 200) {
+                let ress = await res.json()
+               
+                let doc = ress.doc;
+            console.log(doc);
+            document.cookie = `boi_uuid=${doc["_id"]}; max-age=15552000; path=/`;
+            document.cookie = `boi_uname=${doc["uname"]}; max-age=15552000; path=/`;
+            document.cookie = `boi_unum=${doc["unum"]}; max-age=15552000; path=/`;
+
+            window.location.reload()
+
+
+
+            }
+            else {
+                alert('Wrong otp');
+               
+            }
+
+
+        } catch (err) {
+            console.error('Error:', err);
+            alert('Error. in Post Request' + err);
+            
+        }
+
+
+
+
+
+
+
+
+  
+
+
+    }
+
+
+</script>
+
+ 
+
+    <script>
+
+window.getCookie = function (name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        if (getCookie("boi_uuid") != undefined) {
+            document.getElementById("logoo1").innerHTML=getCookie("boi_uname");
+          
+        }
+        // Get the full path after the main URL
+        const path = window.location.pathname; // Example: "/front/hhh.html"
+        const firstSegment = path.split('/')[1]; // Splits by "/" and gets the first segment
+        console.log(firstSegment); // Outputs: "front"
+        let cname = "hhh"
+       
+     
+
+
+        window.loadd = async function () {
+            try {
+
+
+                const res = await fetch("http://192.168.0.103:3000/ac_public_get_all", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ cname: cname }),
+                });
+                if (res.status === 200) {
+                    let ress = await res.json()
+                    console.log(ress);
+                    document.getElementById("logoo").innerHTML=cname;
+
+                    let reversedArr = [...ress.docs].reverse();
+                   
+ 
+
+                    for (let i = 0; i < reversedArr.length; i++) {
+                        await new Promise((resolvet2) => {
+
+
+                            let itemm = reversedArr[i]
+
+
+
+          
+
+
+
+                       
+ 
+ 
+
+
+
+                            document.getElementById(`exams-container`).insertAdjacentHTML("beforeend", `
+
+                <div class="exam-box">
+                    <h3 class="exam-title">${itemm.titlee}</h3>
+                    <p><strong>Start Time:</strong> ${itemm.start}</p>
+                    <p><strong>End Time:</strong> ${itemm.end}</p>
+                    <p><strong>Total Questions:</strong> ${itemm.data.length}</p>
+                    <p><strong>Marks Per Question:</strong>${itemm.per_mark} </p>
+                    <p><strong>Duration:</strong>${itemm.duration} Minite</p>
+                    <div class="exam-buttons">
+                        <div class="exam-buttons-top">
+                            <button onclick="clickk('./test.html?n=${cname}&id=${itemm["_id"]}')">Join Exam</button>
+                            <button onclick="clickk('./result.html?n=${cname}&id=${itemm["_id"]}')">View Result</button>
+                        </div>
+                        <div class="exam-buttons-bottom">
+                            <button onclick="clickk('./solve.html?n=${cname}&id=${itemm["_id"]}')">Solve</button>
+                            <button onclick="clickk('./lead.html?n=${cname}&id=${itemm["_id"]}')">Leaderboard</button>
+                        </div>
+                    </div>
+                </div>
+
+                            `);
+
+
+ 
+
+                            resolvet2();
+                        });
+
+                    }
+
+
+
+
+
+                }
+                else {
+                    alert('Error. status !200');
+
+                }
+
+
+            } catch (err) {
+                console.error( err);
+                alert('Error. in Post Request' + err);
+
+            }
+
+
+        }; loadd()
+
+         window.clickk = async function (uri) {
+            console.log(uri);
+            window.open(uri, '_blank');
+
+        
+        }
+
+    </script>
+</body>
+
+</html>
