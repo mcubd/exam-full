@@ -84,7 +84,7 @@
             border: 1px solid #ddd;
             padding: 1.5rem;
             transition: transform 0.3s, box-shadow 0.3s;
-            height: 380px;
+            /* height: 380px; */
         }
 
         .exam-box:hover {
@@ -653,10 +653,18 @@ window.getCookie = function (name) {
 
 
 
-                       
+                       let markk="1"
+                       let negg="0"
+                       const result3 = /^[\d.]+$/.test(itemm.per_mark);
+                        if (result3) {
+                            markk=itemm.per_mark
+                        }
  
- 
-
+                        const result = /^[\d.]+$/.test(itemm.neg_mark);
+                        if (result) {
+                            negg=itemm.neg_mark
+                        }
+                        const count = itemm.data.filter(obj => obj.dlt !== "yes").length;
 
 
                             document.getElementById(`exams-container`).insertAdjacentHTML("beforeend", `
@@ -665,9 +673,10 @@ window.getCookie = function (name) {
                     <h3 class="exam-title">${itemm.titlee}</h3>
                     <p><strong>Start Time:</strong> ${itemm.start}</p>
                     <p><strong>End Time:</strong> ${itemm.end}</p>
-                    <p><strong>Total Questions:</strong> ${itemm.data.length}</p>
-                    <p><strong>Marks Per Question:</strong>${itemm.per_mark} </p>
-                    <p><strong>Duration:</strong>${itemm.duration} Minite</p>
+                    <p><strong>Total Questions:</strong> ${count}</p>
+                    <p><strong>Marks Per Question:</strong> ${markk} </p>
+                    <p><strong>Negetive Marking:</strong> ${negg} </p>
+                    <p><strong>Duration:</strong> ${itemm.duration} minute</p>
                     <div class="exam-buttons">
                         <div class="exam-buttons-top">
                             <button onclick="clickk('./test.html?n=${cname}&id=${itemm["_id"]}')">Join Exam</button>

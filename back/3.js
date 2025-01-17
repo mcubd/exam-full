@@ -22,19 +22,32 @@ import moment from 'moment-timezone';
     //     console.log("false");
         
     //   }  
-    const users = {
-      user_5064: { right: 0, wrong: 2, time_took: 4 },
-      user_5063: { right: 2, wrong: 0, time_took: 28 },
-       
-    };
-    for (let item of [3,4,5,6,7,0,1,2]) {
-      await new Promise(resolve => {
-        console.log(item);
-        
 
-           
-          
-          
-          setTimeout(resolve, 1000); // Simulate async task
-      });
-  }
+
+
+    const letterToIndex = letter => letter.charCodeAt(0) - 97;
+
+    const result = ans.data.data.reduce(
+      (acc, question) => {
+        const submittedAnswer = orders[`order_${question.order}`];
+        const submittedIndex = submittedAnswer ? letterToIndex(submittedAnswer) : -1;
+    
+        if (submittedIndex === question.ans) acc.correct++;
+        else if (submittedIndex !== -1) acc.wrong++;
+    
+        return acc;
+      },
+      { correct: 0, wrong: 0 } // Initial counts
+    );
+    
+    console.log(`Correct answers: ${result.correct}`);
+    console.log(`Wrong answers: ${result.wrong}`);
+
+    obj1[userKey]={"right":result.correct,"wrong":result.wrong,"time_took":orders.time_took}
+
+
+
+
+
+
+    

@@ -815,6 +815,7 @@ return prev && prev.value !== '' ? prev : null;
                         //         resolve0();
                         //     }, 1000);
                         // });
+                        if (element.dlt != undefined) { if (element.dlt == "yes") { continue; } }
                         await new Promise(async (resolve0) => {
 
 
@@ -1025,6 +1026,13 @@ a
 
                     };
 
+
+                    const elementss = document.querySelectorAll('.q_no');
+                    elementss.forEach((elemenst, i) => {
+                        elemenst.innerHTML = `Q No.${i + 1}`
+
+                    })
+                    
                     var elements = document.getElementsByClassName('mathh');
                     for (var ddx of elements) {
                         MQ.StaticMath(ddx);

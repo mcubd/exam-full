@@ -37,13 +37,14 @@
             background-color: aqua;
             text-align: center;
         }
-        #cnamee{
-           
-           margin-top: 14px;
-        
-           float: right;
-           margin-right: 45px;
-       }
+
+        #cnamee {
+
+            margin-top: 14px;
+
+            float: right;
+            margin-right: 45px;
+        }
 
         .headerr img {
             height: 40px;
@@ -231,6 +232,7 @@
             margin-bottom: 20px;
             /* background: rgb(250, 247, 247); */
             background: lightblue;
+            border-radius: 8px;
 
             box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
                 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
@@ -316,7 +318,7 @@
     <div id="headerr" class="headerr">
         <img id="logo" src="" alt="">
         <span id="cnamee"> </span>
-       
+
 
     </div>
 
@@ -413,14 +415,16 @@
         window.aas = async function (ress) {
 
 
-            document.getElementById("cnamee").innerHTML=ress.cname
-            window.cnamee=ress.cname
- 
- 
-console.log(ress);
-// document.getElementById("testt").innerHTML = `Test ${ress.count + 1}`
-let reversedArr = [...ress.docs].reverse();
-console.log(reversedArr[0]);
+            document.getElementById("cnamee").innerHTML = ress.cname
+            document.cookie = `boi_edtech=${ress.cname}; max-age=15552000; path=/`;
+            window.cnamee = ress.cname
+
+
+            console.log(ress);
+            // document.getElementById("testt").innerHTML = `Test ${ress.count + 1}`
+            if (ress.docs.length > 0) { document.getElementById("noo").innerHTML = "All Exam Lists" }
+            let reversedArr = [...ress.docs].reverse();
+            console.log(reversedArr[0]);
 
 
 
@@ -429,68 +433,88 @@ console.log(reversedArr[0]);
 
 
 
-for (let i = 0; i < reversedArr.length; i++) {
-    await new Promise((resolvet2) => {
+            for (let i = 0; i < reversedArr.length; i++) {
+                await new Promise((resolvet2) => {
 
 
-        let itemm = reversedArr[i]
-
-
-
-        let htmll = ""
-        let htmll2 = ""
-
-        let per_mark = ""
-        let duration = ""
-        let neg_mark = ""
+                    let itemm = reversedArr[i]
 
 
 
-        if (itemm.per_mark != undefined) {
-            const result3 = /^[\d.]+$/.test(itemm.per_mark);
-            if (result3) {
-                per_mark = `<p   class="timee">Mark per Question : ${itemm.per_mark}</p>`;
-            }
-        }
+                    let htmll = ""
+                    let htmll2 = ""
 
-        if (itemm.duration != undefined) {
-            console.log(itemm.duration);
-
-            const result3 = /^[\d.]+$/.test(itemm.duration);
-            if (result3) {
-                duration = `<p   class="timee">Duration : ${itemm.duration} Minite</p>`;
-            }
-        }
-
-
-        if (itemm.neg_mark != undefined) {
-            const result3 = /^[\d.]+$/.test(itemm.neg_mark);
-            if (result3) {
-                neg_mark = `<p   class="timee">Negetive Mark : ${itemm.neg_mark} </p>`;
-            }
-        }
+                    let per_mark = ""
+                    let duration = ""
+                    let neg_mark = ""
 
 
 
+                    if (itemm.per_mark != undefined) {
+                        const result3 = /^[\d.]+$/.test(itemm.per_mark);
+                        if (result3) {
+                            per_mark = `<p   class="timee">Mark per Question : ${itemm.per_mark}</p>`;
+                        } else {
+                            per_mark = `<p   class="timee">Mark per Question : 1</p>`;
 
-        if (itemm.published != undefined) {
-            if (itemm.published == "yes") {
-                htmll = `<span iddd="${itemm._id}" onclick="copy_url(event)" class="q_no copyy">Copy Exam Url</span>`
+                        }
+                    }
 
-                htmll2 = ` <p   class="q_totals">Total Question ${itemm.data.length}</p> 
+                    if (itemm.duration != undefined) {
+                        console.log(itemm.duration);
+
+                        const result3 = /^[\d.]+$/.test(itemm.duration);
+                        if (result3) {
+                            duration = `<p   class="timee">Duration : ${itemm.duration} Minite</p>`;
+                        }
+                    }
+
+
+                    if (itemm.neg_mark != undefined) {
+                        const result3 = /^[\d.]+$/.test(itemm.neg_mark);
+                        if (result3) {
+                            neg_mark = `<p   class="timee">Negetive Mark : ${itemm.neg_mark} </p>`;
+                        } else {
+                            neg_mark = `<p   class="timee">Negetive Mark : 0.00 </p>`;
+
+                        }
+                    }
+
+                    let strt66=""
+                    let endd66=""
+                    if (itemm.start != undefined) {
+                        if(itemm.start.length>4){
+                            strt66= ` <span   class="timee">Start- ${itemm.start}</span>`
+                        }
+
+                    }
+                    if (itemm.end != undefined) {
+                        if(itemm.end.length>4){
+                            endd66=`<p   class="timee">End- ${itemm.end}</p> `
+                        }
+
+                    }
+
+                    if (itemm.published != undefined) {
+                        if (itemm.published == "yes") {
+                            htmll = `<span iddd="${itemm._id}" onclick="copy_url(event)" class="q_no copyy">Copy Exam Url</span>`
+                        }
+
+                    }
+
+                    const count = itemm.data.filter(obj => obj.dlt !== "yes").length;
+                    htmll2 = ` <p   class="q_totals">Total Question ${count}</p> 
   
-      ${duration}    ${per_mark}  ${neg_mark}
-
-                <span   class="timee">Start- ${itemm.start}</span>
-                <p   class="timee">End- ${itemm.end}</p> `
-
-            }
-
-        }
+                             ${duration}    ${per_mark}  ${neg_mark}
+${strt66}${endd66}
+                            
+                             `
 
 
 
-        document.getElementById(`boxy0`).insertAdjacentHTML("beforeend", `
+
+
+                    document.getElementById(`boxy0`).insertAdjacentHTML("beforeend", `
                     <div i class="boxy">
 <div class="topp">
 <p>${itemm.titlee}</p>
@@ -508,12 +532,10 @@ ${htmll}
         
         `);
 
-        resolvet2();
-    });
+                    resolvet2();
+                });
 
-}
-
-
+            }
 
 
 
@@ -525,13 +547,18 @@ ${htmll}
 
 
 
-};
+
+
+        };
 
 
 
 
-        if (getCookie("boiPic") != undefined) {
-            document.getElementById("logo").src = getCookie("boiPic")
+        // if (getCookie("boiPic") != undefined) {
+        //     document.getElementById("logo").src = getCookie("boiPic")
+        if (getCookie("boi_cpic") != undefined) {
+            document.getElementById("logo").src = getCookie("boi_cpic")
+            //boi_update
             document.getElementById("log_box").style.display = "none"
 
 
@@ -547,29 +574,29 @@ ${htmll}
         if (getCookie("boi_cuid") != undefined) {
 
             try {
-                    const res = await fetch("http://192.168.0.103:3000/ac_get_all", {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ cuid: getCookie("boi_cuid")  }),
-                    });
-                    if (res.status === 200) {
-                        let ress = await res.json()
-                        // let ress = await res.json()
-                        aas(ress)
-                    }
-                    else {
-                        alert('Error. !200');
-                    }
-
-                } catch (err) {
-                    console.error('Error:', err);
-                    alert('Error. ');
+                const res = await fetch("http://192.168.0.103:3000/ac_get_all", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ cuid: getCookie("boi_cuid") }),
+                });
+                if (res.status === 200) {
+                    let ress = await res.json()
+                    // let ress = await res.json()
+                    aas(ress)
                 }
+                else {
+
+                }
+
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Error. ');
+            }
 
 
         }
 
- 
+
 
 
         window.loginn = async function () {
@@ -589,16 +616,21 @@ ${htmll}
 
 
                     // Define the cookie values
-                    document.cookie = `boiUser=${user.displayName}; max-age=15552000; path=/`;
-                    document.cookie = `boiEmail=${user.email}; max-age=15552000; path=/`;
-                    document.cookie = `boiPic=${user.photoURL}; max-age=15552000; path=/`;
-                    document.cookie = `boi_cuid=${user.uid}; max-age=15552000; path=/`;
+                    // document.cookie = `boiUser=${user.displayName}; max-age=15552000; path=/`;
+                    // document.cookie = `boiEmail=${user.email}; max-age=15552000; path=/`;
+                    // document.cookie = `boiPic=${user.photoURL}; max-age=15552000; path=/`;
+                    // document.cookie = `boi_cuid=${user.uid}; max-age=15552000; path=/`;
 
+                    document.cookie = `boi_cname=${user.displayName}; max-age=15552000; path=/`;
+                    document.cookie = `boi_cmail=${user.email}; max-age=15552000; path=/`;
+                    document.cookie = `boi_cpic=${user.photoURL}; max-age=15552000; path=/`;
+                    document.cookie = `boi_cuid=${user.uid}; max-age=15552000; path=/`;
+                    //boi_update
 
                     // addus(user.email,user.photoURL,user.displayName)
 
 
-                    
+
 
                     window.location.reload()
 
@@ -621,7 +653,7 @@ ${htmll}
 
 
         window.addd = async function () {
-            if (getCookie("boiTitle") != undefined) {
+            if (getCookie("boi_edtech") != undefined) {
                 window.location.href = './2.html';
 
             } else {
@@ -639,19 +671,25 @@ ${htmll}
 
 
 
-            let gname = getCookie("boiUser")
-            let gmail = getCookie("boiEmail")
-            let gpic = getCookie("boiPic")
+            // let gname = getCookie("boiUser")
+            // let gmail = getCookie("boiEmail")
+            // let gpic = getCookie("boiPic")
 
+            let gname = getCookie("boi_cname")
+            let gmail = getCookie("boi_cmail")
+            let gpic = getCookie("boi_cpic")
+            //boi_update
 
 
 
             let inp = document.getElementById("input").value.trim() === ''
-            let val = document.getElementById("input").value.trim();
+            let val = document.getElementById("input").value.trim().replace(/\s+/g, ' ').replace(/\s/g, '_');
 
+ 
 
-
-
+        
+            
+ 
 
             if (btn != undefined && !inp) {
 
@@ -663,20 +701,20 @@ ${htmll}
                     const res = await fetch("http://192.168.0.103:3000/ac_create", {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ "name": val, "cycel": cycel, "gname": gname, "gmail": gmail, "gpic": gpic,cuid: getCookie("boi_cuid")  }),
+                        body: JSON.stringify({ "name": val, "cycel": cycel, "gname": gname, "gmail": gmail, "gpic": gpic, cuid: getCookie("boi_cuid") }),
                     });
                     if (res.status === 200) {
-                        document.cookie = `boiTitle=${val}; max-age=15552000; path=/`;
-                        document.cookie = `boiCycel=${cycel}; max-age=15552000; path=/`;
+                        document.cookie = `boi_edtech=${val}; max-age=15552000; path=/`;
+                        document.cookie = `boi_cycel=${cycel}; max-age=15552000; path=/`;
 
                         // let ress = await res.json()
                         setTimeout(() => {
-                        window.location.href = './2.html';
-                            
+                            window.location.href = './2.html';
+
                         }, 200);
-                    }else if(res.status == 409){
+                    } else if (res.status == 409) {
                         alert("This Name Is Not Availabel");
-                        
+
 
                     }
                     else {
@@ -721,8 +759,9 @@ ${htmll}
         window.copy_url = async function (e) {
             let ele = e.target.closest(".copyy")
             const idValue = ele.getAttribute('iddd');
-            let title = getCookie("boiTitle");
-
+            // let title = getCookie("boiTitle");
+            // boi_update
+            let title = getCookie("boi_edtech");
 
             let urii = `?n=${title}&id=${idValue}`
             const domainUrl = window.location.origin;

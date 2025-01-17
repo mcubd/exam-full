@@ -828,6 +828,8 @@
                         //         resolve0();
                         //     }, 1000);
                         // });
+                        if (element.dlt != undefined) { if (element.dlt == "yes") { continue; } }
+
                         await new Promise(async (resolve0) => {
 
 
@@ -875,7 +877,7 @@
 
     </div>
 
-    <span class="q_no">Q No. ${iri + 1}</span>
+    <span class="q_no">Q No. </span>
 
 
 
@@ -976,6 +978,12 @@ a
 
                     };
 
+                    const elementss = document.querySelectorAll('.q_no');
+                    elementss.forEach((elemenst, i) => {
+                        elemenst.innerHTML = `Q No.${i + 1}`
+
+                    })
+
                     var elements = document.getElementsByClassName('mathh');
                     for (var ddx of elements) {
                         MQ.StaticMath(ddx);
@@ -983,14 +991,14 @@ a
 
 
 
- 
+
 
 
                     setTimeout(() => {
-                        if (window.cnamee  != undefined) {
-                            let user = window.cnamee ;
+                        if (window.cnamee != undefined) {
+                            let user = window.cnamee;
                             let exam = resss.doc.titlee
-                            let uuid=getCookie("boi_uname");
+                            let uuid = getCookie("boi_uname");
                             try {
                                 window.aaia = async function () {
 
@@ -999,7 +1007,7 @@ a
                                     const res = await fetch("http://192.168.0.103:3000/test_create", {
                                         method: 'POST',
                                         headers: { 'Content-Type': 'application/json' },
-                                        body: JSON.stringify({"uuid":uuid, "cname": user, "uname": "zayn", "id": idValue }),
+                                        body: JSON.stringify({ "uuid": uuid, "cname": user, "uname": "zayn", "id": idValue }),
                                     });
                                     if (res.status === 200) {
 
@@ -1024,8 +1032,8 @@ a
 
                         }
 
-                         
-                        
+
+
                     }, 200);
 
 
@@ -1083,8 +1091,8 @@ a
                     submit0()
                 }
             }, 1000);
-          
-            
+
+
 
         }
 

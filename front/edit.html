@@ -534,6 +534,7 @@
             flex-direction: row;
             /* margin-top: 20px; */
             width: 30%;
+            align-items: center;
 
 
 
@@ -890,6 +891,17 @@
             margin: 0;
         }
     </style>
+
+    <style>
+        .uppd {
+            display: block;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+            margin-top: 18px;
+        }
+    </style>
 </head>
 
 <body>
@@ -1020,17 +1032,17 @@
 
             <div id="abcdpart" class="abcdpart">
                 <div class="container_abcd">
-                    <div class="roww1">
-                        <div id="abcd_a" class="item_abcd"><span class="txt_cen">a)</span> <span class="abcd_span"
+                    <div class="roww1_23">
+                        <div id="abcd_a" class="item_abcd_23"><span class="txt_cen">a)</span> <span class="abcd_span"
                                 id="abcd_span1"></span> </div>
-                        <div id="abcd_b" class="item_abcd"><span class="txt_cen">b)</span> <span class="abcd_span"
+                        <div id="abcd_b" class="item_abcd_23"><span class="txt_cen">b)</span> <span class="abcd_span"
                                 id="abcd_span2"></span></div>
                     </div>
                     <br>
-                    <div class="roww2">
-                        <div id="abcd_c" class="item_abcd"><span class="txt_cen">c)</span> <span class="abcd_span"
+                    <div class="roww2_23">
+                        <div id="abcd_c" class="item_abcd_23"><span class="txt_cen">c)</span> <span class="abcd_span"
                                 id="abcd_span3"></span></div>
-                        <div id="abcd_d" class="item_abcd"><span class="txt_cen">d)</span> <span class="abcd_span"
+                        <div id="abcd_d" class="item_abcd_23"><span class="txt_cen">d)</span> <span class="abcd_span"
                                 id="abcd_span4"></span></div>
                     </div>
                 </div>
@@ -1101,7 +1113,7 @@
     <div class="popup " id="popup2">
         <h2>Select Start Time</h2>
         <div class="boxx">
-            <h4>Exam Url Below</h4>
+
             <h3 id="url_exam"></h3>
         </div>
         <input type="text" id="datetimePicker" placeholder="Select date and time">
@@ -1109,7 +1121,7 @@
         <input type="text" id="datetimePicker2" placeholder="Select date and time">
 
 
-        <span onclick="update_time(event)" id="time_save">Save</span>
+        <span class="uppd" onclick="update_time(event)" id="time_save">Save</span>
 
 
 
@@ -1175,7 +1187,7 @@
         const params = new URLSearchParams(url.search);
 
         const nValue = params.get('n');
- 
+
 
 
         window.cnamee = nValue;
@@ -1248,7 +1260,7 @@
                             while (i < input.length && input[i] === ' ') {
                                 i++;
                             }
-                            console.log(`Doing async work for item: ${i}`);
+
                             resolve1();
 
                         });
@@ -1264,8 +1276,8 @@
 
 
                             if (itemm != "\\") {
-                                console.warn(`${idd}${iri0}`);
-                                console.log(document.getElementById(`${idd}${iri0}`));
+
+
 
                                 if (itemm[0] != "\\") {
 
@@ -1308,6 +1320,9 @@
 
                 for (let iri = 0; iri < arr.length; iri++) {
                     const element = arr[iri];
+                    console.log(element);
+                    if (element.dlt != undefined) { if (element.dlt == "yes") { continue; } }
+
 
                     // await new Promise((resolve0) => {
                     //     setTimeout(() => {
@@ -1320,10 +1335,36 @@
 
 
 
-                        console.log(element);
 
 
 
+
+
+
+
+                        let aa = 'a)';
+                        let bb = 'b)';
+                        let cc = 'c)';
+                        let dd = 'd)';
+                        if (element.ans == 0) {
+                            aa = `
+                                <svg width="3.3848648mm" height="2.8857117mm" viewBox="0 0 3.3848648 2.8857117" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2yu" /> <g id="layer1" transform="translate(-103.67948,-139.56686)"> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="104.13364" y="141.8338" id="text63"><tspan id="tspan61" style="stroke-width:0.264583" x="104.13364" y="141.8338">a)</tspan></text> </g> <g id="layer2" transform="translate(-103.67948,-139.56686)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="96.69558" y="152.24422" id="text130" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128" style="fill:#228b22;stroke-width:0.437221" x="96.69558" y="152.24422">✔</tspan></text> </g> </svg>
+                                `
+                        } else if (element.ans == 1) {
+                            bb = `
+                              <svg width="3.3848648mm" height="2.916748mm" viewBox="0 0 3.3848648 2.916748" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2j" /> <g id="layer2" transform="translate(-75.09263,-145.91418)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="69.866943" y="159.04059" id="text130-3" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128-6" style="fill:#228b22;stroke-width:0.437221" x="69.866943" y="159.04059">✔</tspan></text> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="75.580551" y="148.32719" id="text2197"><tspan id="tspan2195" style="stroke-width:0.264583" x="75.580551" y="148.32719">b)</tspan></text> </g> </svg>
+                            `
+                        } else if (element.ans == 2) {
+                            cc = `
+                            <svg width="3.3848648mm" height="2.7957001mm" viewBox="0 0 3.3848648 2.7957001" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2" /> <g id="layer2" transform="translate(-64.115602,-140.52894)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="59.565052" y="153.17343" id="text130-35" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128-62" style="fill:#228b22;stroke-width:0.437221" x="59.565052" y="153.17343">✔</tspan></text> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="64.460152" y="142.79588" id="text2201"><tspan id="tspan2199" style="stroke-width:0.264583" x="64.460152" y="142.79588">c)</tspan></text> </g> </svg>
+                            
+                            `
+
+                        } else if (element.ans == 3) {
+                            dd = `
+                            <svg width="3.3848648mm" height="2.9454651mm" viewBox="0 0 3.3848648 2.9454651" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2" /> <g id="layer1" transform="translate(-65.524248,-146.21946)"> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="65.764465" y="148.63246" id="text2205"><tspan id="tspan2203" style="stroke-width:0.264583" x="65.764465" y="148.63246">d)</tspan></text> </g> <g id="layer2" transform="translate(-65.524248,-146.21946)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="60.887066" y="159.39647" id="text130-7" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128-5" style="fill:#228b22;stroke-width:0.437221" x="60.887066" y="159.39647">✔</tspan></text> </g> </svg>
+                            `
+                        }
 
 
 
@@ -1360,7 +1401,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 </svg>
 
 <span id="id-${iri + 1}"  class="stati1">
-    ${element.question}
+  
 </span>
 
 
@@ -1377,23 +1418,23 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 <div id="abcdpart_23" class="abcdpart_23">
 <div class="container_abcd_23">
 <div class="roww1_23">
-<div id="abcd_a${element.order}" class="item_abcd_23"><span class="txt_cen">a)</span> <span
-    class="abcd_span_23" >${element.a}</span> </div>
-<div id="abcd_b${element.order}" class="item_abcd_23"><span class="txt_cen">b)</span> <span
-    class="abcd_span_23" >${element.b}</span></div>
+<div id="abcd_a${element.order}" class="item_abcd_23"><span class="txt_cen">${aa}</span> <span
+    class="abcd_span_23" ></span> </div>
+<div id="abcd_b${element.order}" class="item_abcd_23"><span class="txt_cen">${bb}</span> <span
+    class="abcd_span_23" ></span></div>
 </div>
 <br>
 <div class="roww2_23">
-<div id="abcd_c${element.order}" class="item_abcd_23"><span class="txt_cen">c)</span> <span
-    class="abcd_span_23" >${element.c}</span></div>
-<div id="abcd_d${element.order}" class="item_abcd_23"><span class="txt_cen">d)</span> <span
-    class="abcd_span_23" >${element.d}</span></div>
+<div id="abcd_c${element.order}" class="item_abcd_23"><span class="txt_cen">${cc}</span> <span
+    class="abcd_span_23" ></span></div>
+<div id="abcd_d${element.order}" class="item_abcd_23"><span class="txt_cen">${dd}</span> <span
+    class="abcd_span_23" ></span></div>
 </div>
 </div>
 
 </div>
 
-<span class="q_no">Q No.  ${Number(iri) + 1}</span>
+<span class="q_no">Q No.   </span>
 
 
 
@@ -1443,7 +1484,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
 
-                        console.warn(arr);
+
 
                         for (let i = 0; i < arr.length; i++) {
                             await new Promise((resolve2) => {
@@ -1487,6 +1528,12 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
                 };
 
+
+                const elementss = document.querySelectorAll('.q_no');
+                elementss.forEach((elemenst, i) => {
+                    elemenst.innerHTML = `Q No.${i + 1}`
+
+                })
                 var elements = document.getElementsByClassName('mathh');
                 for (var ddx of elements) {
                     MQ.StaticMath(ddx);
@@ -1553,7 +1600,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
         } else {
             alert(44);
-            
+
 
             //window.location.href = './index.html';
 
@@ -1631,7 +1678,11 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             document.getElementById("static1").innerHTML = ``;
             document.getElementById("temp1").style.display = "flex"
             document.getElementById("static1").style.display = "none"
-
+            document.getElementById("abcd_span1").innerHTML = ``;
+            document.getElementById("abcd_span2").innerHTML = ``;
+            document.getElementById("abcd_span3").innerHTML = ``;
+            document.getElementById("abcd_span4").innerHTML = ``;
+    document.getElementById("abcdpart").style.display = "none"
             mathField.latex(``);
 
 
@@ -1729,15 +1780,65 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
         window.next2 = async function () {
 
 
-            const elements = document.querySelectorAll('.abcd_span');
+            // const elements = document.querySelectorAll('.abcd_span');
             let isEmptyFound = false;
 
-            elements.forEach(element => {
-                if (element.innerHTML.trim() === '') {
+            // elements.forEach(element => {
+            //     if (element.innerHTML.trim() === '') {
+            //         alert('Please fill All Feilds');
+            //         isEmptyFound = true;
+            //     }
+            // });
+            // if (Object.values(window.abcd_json).every(value => value.trim() == '')) {
+            //     alert('Please fill All Feilds');
+            //     isEmptyFound = true;
+            // }
+            if(window.abcd_json.a !=undefined){
+                if(window.abcd_json.a==""){
                     alert('Please fill All Feilds');
                     isEmptyFound = true;
+                    return false;
                 }
-            });
+            }else{
+                alert('Please fill All Feilds');
+                isEmptyFound = true;
+                return false;
+            }
+
+            if(window.abcd_json.b !=undefined){
+                if(window.abcd_json.b==""){
+                    alert('Please fill All Feilds');
+                    isEmptyFound = true;
+                    return false;
+                }
+            }else{
+                alert('Please fill All Feilds');
+                isEmptyFound = true;
+                return false;
+            }
+            if(window.abcd_json.c !=undefined){
+                if(window.abcd_json.c==""){
+                    alert('Please fill All Feilds');
+                    isEmptyFound = true;
+                    return false;
+                }
+            }else{
+                alert('Please fill All Feilds');
+                isEmptyFound = true;
+                return false;
+            }
+            if(window.abcd_json.d !=undefined){
+                if(window.abcd_json.d==""){
+                    alert('Please fill All Feilds');
+                    isEmptyFound = true;
+                    return false;
+                }
+            }else{
+                alert('Please fill All Feilds');
+                isEmptyFound = true;
+                return false;
+            }
+
             if (!isEmptyFound) {
 
 
@@ -1764,22 +1865,23 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
         window.next3 = async function (posi) {
 
+ 
 
 
 
             let urll = "http://192.168.0.103:3000/q_add"
-
+ 
 
 
 
 
             const fullLatex = mathField.latex().replace(/\\/g, '\\\\');
 
-            if (getCookie("boiTitle") == undefined) {
+            if (getCookie("boi_edtech") == undefined) {
                 return false;
 
             }
-            let title = getCookie("boiTitle");
+            let title = getCookie("boi_edtech");
 
 
             try {
@@ -1821,7 +1923,29 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
 
+                    let aa = 'a)';
+                    let bb = 'b)';
+                    let cc = 'c)';
+                    let dd = 'd)';
+                    if (ress.received.ans == 0) {
+                        aa = `
+                                <svg width="3.3848648mm" height="2.8857117mm" viewBox="0 0 3.3848648 2.8857117" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2yu" /> <g id="layer1" transform="translate(-103.67948,-139.56686)"> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="104.13364" y="141.8338" id="text63"><tspan id="tspan61" style="stroke-width:0.264583" x="104.13364" y="141.8338">a)</tspan></text> </g> <g id="layer2" transform="translate(-103.67948,-139.56686)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="96.69558" y="152.24422" id="text130" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128" style="fill:#228b22;stroke-width:0.437221" x="96.69558" y="152.24422">✔</tspan></text> </g> </svg>
+                                `
+                    } else if (ress.received.ans == 1) {
+                        bb = `
+                              <svg width="3.3848648mm" height="2.916748mm" viewBox="0 0 3.3848648 2.916748" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2j" /> <g id="layer2" transform="translate(-75.09263,-145.91418)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="69.866943" y="159.04059" id="text130-3" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128-6" style="fill:#228b22;stroke-width:0.437221" x="69.866943" y="159.04059">✔</tspan></text> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="75.580551" y="148.32719" id="text2197"><tspan id="tspan2195" style="stroke-width:0.264583" x="75.580551" y="148.32719">b)</tspan></text> </g> </svg>
+                            `
+                    } else if (ress.received.ans == 2) {
+                        cc = `
+                            <svg width="3.3848648mm" height="2.7957001mm" viewBox="0 0 3.3848648 2.7957001" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2" /> <g id="layer2" transform="translate(-64.115602,-140.52894)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="59.565052" y="153.17343" id="text130-35" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128-62" style="fill:#228b22;stroke-width:0.437221" x="59.565052" y="153.17343">✔</tspan></text> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="64.460152" y="142.79588" id="text2201"><tspan id="tspan2199" style="stroke-width:0.264583" x="64.460152" y="142.79588">c)</tspan></text> </g> </svg>
+                            
+                            `
 
+                    } else if (ress.received.ans == 3) {
+                        dd = `
+                            <svg width="3.3848648mm" height="2.9454651mm" viewBox="0 0 3.3848648 2.9454651" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2" /> <g id="layer1" transform="translate(-65.524248,-146.21946)"> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="65.764465" y="148.63246" id="text2205"><tspan id="tspan2203" style="stroke-width:0.264583" x="65.764465" y="148.63246">d)</tspan></text> </g> <g id="layer2" transform="translate(-65.524248,-146.21946)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="60.887066" y="159.39647" id="text130-7" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128-5" style="fill:#228b22;stroke-width:0.437221" x="60.887066" y="159.39647">✔</tspan></text> </g> </svg>
+                            `
+                    }
 
 
                     targetElement.insertAdjacentHTML("beforebegin", `
@@ -1872,16 +1996,16 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 <div id="abcdpart_23" class="abcdpart_23">
 <div class="container_abcd_23">
 <div class="roww1_23">
-<div id="abcd_a_23" class="item_abcd_23"><span class="txt_cen">a)</span> <span
+<div id="abcd_a_23" class="item_abcd_23"><span class="txt_cen">${aa}</span> <span
     class="abcd_span_23" >${ress.received.a}</span> </div>
-<div id="abcd_b_23" class="item_abcd_23"><span class="txt_cen">b)</span> <span
+<div id="abcd_b_23" class="item_abcd_23"><span class="txt_cen">${bb}</span> <span
     class="abcd_span_23" >${ress.received.b}</span></div>
 </div>
 <br>
 <div class="roww2_23">
-<div id="abcd_c_23" class="item_abcd_23"><span class="txt_cen">c)</span> <span
+<div id="abcd_c_23" class="item_abcd_23"><span class="txt_cen">${cc}</span> <span
     class="abcd_span_23" >${ress.received.c}</span></div>
-<div id="abcd_d_23" class="item_abcd_23"><span class="txt_cen">d)</span> <span
+<div id="abcd_d_23" class="item_abcd_23"><span class="txt_cen">${dd}</span> <span
     class="abcd_span_23" >${ress.received.d}</span></div>
 </div>
 </div>
@@ -1904,6 +2028,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                         top: document.documentElement.scrollHeight,
                         behavior: 'smooth'
                     });
+                    window.abcd_json = { a: "", b: "", c: "", d: "" }
 
 
                 } else {
@@ -2039,18 +2164,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
         const btnContainer = document.querySelector(".container55");
 
         function slideBg(n) {
-            const fullLatex2 = mathField2.latex().replace(/\\/g, '\\\\');
 
-            if (activee == 0) {
-                abcd_json.a = fullLatex2
-
-            } else if (activee == 1) {
-                abcd_json.b = fullLatex2
-            } else if (activee == 2) {
-                abcd_json.c = fullLatex2
-            } else if (activee == 3) {
-                abcd_json.d = fullLatex2
-            } else { }
             activee = n;
 
             const bgOffset = WIDTH * n;
@@ -2060,20 +2174,27 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
         }
 
         window.update_abcd = async function () {
+
             const fullLatex2 = mathField2.latex().replace(/\\/g, '\\\\');
+
 
             console.log(fullLatex2);
 
             if (activee == 0) {
                 calc(fullLatex2, "abcd_span1")
-
+                abcd_json.a = fullLatex2
             } else if (activee == 1) {
                 calc(fullLatex2, "abcd_span2")
+                abcd_json.b = fullLatex2
             } else if (activee == 2) {
                 calc(fullLatex2, "abcd_span3")
+                abcd_json.c = fullLatex2
             } else if (activee == 3) {
                 calc(fullLatex2, "abcd_span4")
+                abcd_json.d = fullLatex2
             } else { }
+
+
 
 
         };
@@ -2082,201 +2203,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
     <script>
-        window.autoo = async function () {
 
-
-
-            try {
-
-
-
-                let urll = "http://192.168.0.103:3000/q_get"
-                const res = await fetch(urll, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ "Q": "jj" }),
-                });
-                if (res.status === 200) {
-                    let ress = await res.json()
-                    console.log(ress.data);
-
-
-                    for (let iiu = 0; iiu < ress.length; iiu++) {
-                        await new Promise(async (resolve23) => {
-                            let element = ress[iiu]
-
-
-
-                            const targetElement = document.querySelector('#parent .item_static');
-
-
-                            targetElement.insertAdjacentHTML("beforebegin", `
-                            
-                                    <div class="item" orderr="${element.order}">
-
-            <div class="svgg">
-
-                <svg onclick="editt(event)" class="editt" xmlns="http://www.w3.org/2000/svg" width="35"
-                    fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z" />
-                </svg>
-
-
-                <svg onclick="dltt(event)" xmlns="http://www.w3.org/2000/svg" width="36" fill="currentColor"
-                    class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
-                </svg>
-            </div>
-
-
-
-            <div class="qpart">
-
-                <svg width="28px" viewBox="0 0 24 24" fill="#C00000" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M15.75 5H8.25C7.55964 5 7 5.58763 7 6.3125V19L12 15.5L17 19V6.3125C17 5.58763 16.4404 5 15.75 5Z"
-                        stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-
-                <span id="id-${iiu + 1}" class="stati1">
-                </span>
-
-
-
-
-
-
-
-
-            </div>
-
-
-
-            <div id="abcdpart_23" class="abcdpart_23">
-                <div class="container_abcd_23">
-                    <div class="roww1_23">
-                        <div id="abcd_a_23" class="item_abcd_23"><span class="txt_cen">a)</span> <span
-                                class="abcd_span_23" id="abcd_span_a${iiu}"></span> </div>
-                        <div id="abcd_b_23" class="item_abcd_23"><span class="txt_cen">b)</span> <span
-                                class="abcd_span_23" id="abcd_span_b${iiu}"></span></div>
-                    </div>
-                    <br>
-                    <div class="roww2_23">
-                        <div id="abcd_c_23" class="item_abcd_23"><span class="txt_cen">c)</span> <span
-                                class="abcd_span_23" id="abcd_span_c${iiu}"></span></div>
-                        <div id="abcd_d_23" class="item_abcd_23"><span class="txt_cen">d)</span> <span
-                                class="abcd_span_23" id="abcd_span_d${iiu}"></span></div>
-                    </div>
-                </div>
-
-            </div>
-
-            <span class="q_no">Q No. ${iiu + 1}</span>
-
-
-
-
-
-
-        </div>
-                            
-                            `);
-
-
-
-
-
-
-                            const arr = [];
-                            let i = 0;
-                            let input = element.question
-
-
-                            for (let i = 0; i < input.length; i++) {
-                                await new Promise((resolve1) => {
-
-
-
-                                    let startIndex = i;
-                                    while (i < input.length && input[i] !== '\\') {
-                                        i++;
-                                    }
-                                    if (i > startIndex) {
-                                        arr.push(input.slice(startIndex, i));
-                                    }
-
-                                    if (i < input.length && input[i] === '\\') {
-                                        startIndex = i;
-                                        i++;
-                                        while (i < input.length && input[i] !== ' ' && input[i] !== '\\') {
-                                            i++;
-                                        }
-                                        arr.push(input.slice(startIndex, i));
-                                    }
-
-                                    while (i < input.length && input[i] === ' ') {
-                                        i++;
-                                    }
-                                    console.log(`Doing async work for item: ${i}`);
-                                    resolve1();
-
-                                });
-                            }
-
-
-
-                            // console.warn(arr);
-
-                            for (let i = 0; i < arr.length; i++) {
-                                await new Promise((resolve2) => {
-                                    let itemm = arr[i]
-
-
-                                    if (itemm != "\\") {
-
-                                        if (itemm[0] != "\\") {
-                                            document.getElementById(`id-${iiu + 1}`).insertAdjacentHTML("beforeend", " " + arr[i] + " ");
-                                        }
-                                        else {
-                                            document.getElementById(`id-${iiu + 1}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr[i]} </span>`);
-                                        }
-
-                                    }
-                                    resolve2();
-                                });
-                            };
-
-                            abcd_add(element, iiu)
-
-
-
-                            resolve23();
-                        });
-                    };
-
-                    let elements = document.getElementsByClassName('mathh');
-                    for (var ddx of elements) {
-                        MQ.StaticMath(ddx);
-                    }
-
-
-
-
-
-
-
-                } else {
-                    //alert('Failed to load');
-                }
-
-            } catch (err) {
-                console.error('Error:', err);
-                //  alert('Failed to load');
-            }
-        };
-        // autoo()
 
 
 
@@ -2378,13 +2305,14 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
         window.dltt = async function (e) {
+            e.target.closest("svg").style.pointerEvents = 'none';
             let ee = e.target.closest(".item")
             const strr = ee.id;
 
             let result = strr.replace(/itemm-/g, "");
             console.log(result);
 
-            let title = getCookie("boiTitle");
+            let title = getCookie("boi_edtech");
 
 
 
@@ -2429,6 +2357,10 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             } catch (err) {
                 console.error('Error:', err);
                 alert('Error. Couldn`t Delete');
+            } finally {
+
+                e.target.closest("svg").style.pointerEvents = 'auto';
+
             }
 
 
@@ -2472,17 +2404,16 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
         window.edit_duration = async function (e) {
 
-
             let htmll0 = `
      <label for="minutes" class="label">Select Minutes:</label>
     <input type="number" id="minutess" class="minute-input" min="0" max="300" oninput="inpChange(event)" placeholder="00">
         <p>Selected Duration <span id="min_txt"></span></p>
-        <p onclick="update_duration()" class="duration_submit">Update</p>
+        <p onclick="update_duration(event)" class="duration_submit uppd">Update</p>
     `
             popupHtml(htmll0)
 
             try {
-                let title = getCookie("boiTitle");
+                let title = getCookie("boi_edtech");
                 const res = await fetch("http://192.168.0.103:3000/ac_find_by_id", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2496,6 +2427,8 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
                     let ress = await res.json()
                     console.log(ress.doc.duration);
+                    const result = /^\d+$/.test(ress.doc.duration);
+                    if (!result) { return 5 }
                     document.getElementById("minutess").value = ress.doc.duration;
 
                     const hours = Math.floor(ress.doc.duration / 60);
@@ -2533,15 +2466,15 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
             let htmll0 = `
-  <label for="minutes" class="label">Mark Per Q.</label>
- <input type="number" id="minutess2" class="minute-input" min="0" max="300" oninput="inpChange2('minutess2','min_txt2')" placeholder="00">
+  <label for="minutes" class="label">Mark Per Q. (Default 1)</label>
+ <input type="number" id="minutess2" class="minute-input" min="1" max="300" oninput="inpChange2('minutess2','min_txt2')" placeholder="00">
      <p>Selected Mark <span id="min_txt2"></span></p>
-     <p onclick="update_mark()" class="duration_submit">Update</p>
+     <p onclick="update_mark(event)" class="duration_submit uppd">Update</p>
  `
             popupHtml(htmll0)
 
             try {
-                let title = getCookie("boiTitle");
+                let title = getCookie("boi_edtech");
                 const res = await fetch("http://192.168.0.103:3000/ac_find_by_id", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2562,6 +2495,9 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                         document.getElementById("min_txt2").innerHTML = `${ress.doc.per_mark}`
 
 
+                    } else {
+                        document.getElementById("minutess2").value = "1";
+                        document.getElementById("min_txt2").innerHTML = `1`
                     }
 
 
@@ -2583,15 +2519,15 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
             let htmll0 = `
-<label for="minutes" class="label">Negetive Marking</label>
+<label for="minutes" class="label">Negetive Marking (Default 0)</label>
 <input type="number" id="minutess3" class="minute-input" min="0" max="300" oninput="inpChange2('minutess3','min_txt3')" placeholder="00">
 <p>Selected Negetive Mark <span id="min_txt3"></span></p>
-<p onclick="update_neg()" class="duration_submit">Update</p>
+<p onclick="update_neg(event)" class="duration_submit uppd">Update</p>
 `
             popupHtml(htmll0)
 
             try {
-                let title = getCookie("boiTitle");
+                let title = getCookie("boi_edtech");
                 const res = await fetch("http://192.168.0.103:3000/ac_find_by_id", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2612,6 +2548,11 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                         document.getElementById("min_txt3").innerHTML = `${ress.doc.neg_mark}`
 
 
+
+
+                    } else {
+                        document.getElementById("minutess3").value = "0.00";
+                        document.getElementById("min_txt3").innerHTML = `0`
                     }
 
 
@@ -2655,7 +2596,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             time_openPopup()
 
             try {
-                let title = getCookie("boiTitle");
+                let title = getCookie("boi_edtech");
                 const res = await fetch("http://192.168.0.103:3000/ac_find_by_id", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2675,30 +2616,29 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     let s_b = ress.doc["start_obj"];
                     let e_b = ress.doc["end_obj"];
 
-
-                    window.startt_year = s_b["year"];
-                    window.startt_month = s_b["month"];
-                    window.startt_day = s_b["day"];
-                    window.startt_hours = s_b["hour"];
-                    window.startt_minutes = s_b["min"];
-
-
-                    window.endd_year = e_b["year"];
-                    window.endd_month = e_b["month"];
-                    window.endd_day = e_b["day"];
-                    window.endd_hours = e_b["hour"];
-                    window.endd_minutes = e_b["min"];
+                    if (s_b != undefined) {
 
 
 
+                        window.startt_year = s_b["year"];
+                        window.startt_month = s_b["month"];
+                        window.startt_day = s_b["day"];
+                        window.startt_hours = s_b["hour"];
+                        window.startt_minutes = s_b["min"];
+
+                        fp.setDate(new Date(s_b["year"], Number(s_b["month"]) - 1, s_b["day"], s_b["hour"], s_b["min"]));
+                    }
+                    if (e_b != undefined) {
 
 
+                        window.endd_year = e_b["year"];
+                        window.endd_month = e_b["month"];
+                        window.endd_day = e_b["day"];
+                        window.endd_hours = e_b["hour"];
+                        window.endd_minutes = e_b["min"];
 
-
-
-                    fp.setDate(new Date(s_b["year"], Number(s_b["month"]) - 1, s_b["day"], s_b["hour"], s_b["min"]));
-                    fp2.setDate(new Date(e_b["year"], Number(e_b["month"]) - 1, e_b["day"], e_b["hour"], e_b["min"]));
-
+                        fp2.setDate(new Date(e_b["year"], Number(e_b["month"]) - 1, e_b["day"], e_b["hour"], e_b["min"]));
+                    }
 
 
 
@@ -2708,21 +2648,22 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
                 }
                 else {
-                    alert('Error Couldn`t Delete');
+                    alert('Error status !200 ');
                 }
 
             } catch (err) {
                 console.error('Error:', err);
-                alert('Error. Couldn`t Delete');
+                alert(err);
             }
 
         }
 
-        window.update_duration = async function () {
+        window.update_duration = async function (e) {
+            e.target.closest(".uppd").style.pointerEvents = 'none';
 
 
             try {
-                let title = getCookie("boiTitle");
+                let title = getCookie("boi_edtech");
                 let min = document.getElementById("minutess").value
 
                 const result = /^\d+$/.test(min);
@@ -2752,7 +2693,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     let ress = await res.json()
                     console.log(ress);
                     console.log("Duration Updated");
-
+                    alert("Duration Updated");
 
 
                 }
@@ -2763,16 +2704,20 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             } catch (err) {
                 console.error('Error:', err);
                 alert('Error. Couldn`t Delete');
+            } finally {
+
+                e.target.closest(".uppd").style.pointerEvents = 'auto';
+
             }
 
 
         }
 
-        window.update_mark = async function () {
-
+        window.update_mark = async function (e) {
+            e.target.closest(".uppd").style.pointerEvents = 'none';
 
             try {
-                let title = getCookie("boiTitle");
+                let title = getCookie("boi_edtech");
                 let min = document.getElementById("minutess2").value
 
                 const result = /^\d+$/.test(min);
@@ -2802,7 +2747,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     let ress = await res.json()
                     console.log(ress);
                     console.log("per mark Updated");
-
+                    alert("  Updated");
 
 
                 }
@@ -2813,17 +2758,21 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             } catch (err) {
                 console.error('Error:', err);
                 alert('Error. Couldn`t Delete');
+            } finally {
+
+                e.target.closest(".uppd").style.pointerEvents = 'auto';
+
             }
 
 
         }
 
 
-        window.update_neg = async function () {
-
+        window.update_neg = async function (e) {
+            e.target.closest(".uppd").style.pointerEvents = 'none';
 
             try {
-                let title = getCookie("boiTitle");
+                let title = getCookie("boi_edtech");
                 let min = document.getElementById("minutess3").value
 
                 const result = /^[\d.]+$/.test(min);
@@ -2853,7 +2802,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     let ress = await res.json()
                     console.log(ress);
                     console.log("neg mark Updated");
-
+                    alert("  Updated");
 
 
                 }
@@ -2864,16 +2813,20 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             } catch (err) {
                 console.error('Error:', err);
                 alert('Error. Couldn`t Delete');
+            } finally {
+
+                e.target.closest(".uppd").style.pointerEvents = 'auto';
+
             }
 
 
         }
 
 
-        window.update_time = async function () {
+        window.update_time = async function (e) {
 
 
-
+            e.target.closest(".uppd").style.pointerEvents = 'none';
 
 
 
@@ -2883,7 +2836,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
             try {
-                let title = getCookie("boiTitle");
+                let title = getCookie("boi_edtech");
                 const res = await fetch("http://192.168.0.103:3000/q_update_time", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2918,7 +2871,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     let ress = await res.json()
                     console.log(ress);
                     console.log("Time Updated");
-
+                    alert("  Updated");
 
 
                 }
@@ -2929,6 +2882,10 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             } catch (err) {
                 console.error('Error:', err);
                 alert('Error. Couldn`t Delete');
+            } finally {
+
+                e.target.closest(".uppd").style.pointerEvents = 'auto';
+
             }
 
 
@@ -2936,40 +2893,114 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
         }
 
         window.publish = async function () {
+            document.getElementById("publishh").style.pointerEvents = 'none';
+
             let docid = window.docidd;
-            let title = getCookie("boiTitle");
+            let title = getCookie("boi_edtech");
             let uri = `?n=${title}&id=${docid}`
             console.log(uri);
             const domainUrl = window.location.origin;
 
 
-
             try {
-                const res = await fetch("http://192.168.0.103:3000/ac_publish", {
+                let title = getCookie("boi_edtech");
+                const res = await fetch("http://192.168.0.103:3000/ac_find_by_id", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ "name": getCookie("boiTitle"), "id": docid, "public": "yes" }),
+                    body: JSON.stringify({
+
+                        "id": window.docidd, "name": title,
+
+                    }),
                 });
                 if (res.status === 200) {
-                    document.getElementById("url_exam").innerHTML = ``
-                    document.getElementById("url_exam").innerHTML = `${domainUrl}/test.html${uri}`
 
                     let ress = await res.json()
-                    console.log(ress);
-                    openPopup()
+
+
+
+
+                    let txx = "Set";
+                    if (ress.doc.duration != undefined) {
+                        const result = /^\d+$/.test(ress.doc.duration);
+                        if (!result) {
+                            txx = txx + " Duration"
+
+                        }
+                    }
+
+
+                    if (ress.doc.start_obj == undefined && ress.doc.end_obj == undefined) {
+                        txx = txx + ", Exam Date"
+                    }
+
+
+                    if (txx != "Set") {
+                        alert(txx + " Before Publishing");
+
+                    } else {
+
+                        try {
+                            const res = await fetch("http://192.168.0.103:3000/ac_publish", {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ "name": getCookie("boi_edtech"), "id": docid, "public": "yes" }),
+                            });
+                            if (res.status === 200) {
+                                document.getElementById("url_exam").innerHTML = ``
+                                document.getElementById("url_exam").innerHTML = `${domainUrl}/test.html${uri}`
+
+                                let ress = await res.json()
+                                console.log(ress);
+                                openPopup()
+
+                            }
+                            else {
+                                // alert('Error. Couldn`t Submit');
+                            }
+
+                        } catch (err) {
+                            console.error('Error:', err);
+                            // alert('Error. Couldn`t Submit');
+                        } finally {
+
+                            document.getElementById("publishh").style.pointerEvents = 'auto';
+
+                        }
+
+
+                    }
+
+
+
+
 
                 }
                 else {
-                    // alert('Error. Couldn`t Submit');
+                    alert('Error Couldn`t Delete');
                 }
 
             } catch (err) {
                 console.error('Error:', err);
-                // alert('Error. Couldn`t Submit');
+                alert('Err');
+            } finally {
+
+                document.getElementById("publishh").style.pointerEvents = 'auto';
+
             }
+
+
+
+
 
         };
 
+
+        window.editt = async function (e) {
+            alert("code not ready yet");
+
+
+        }
     </script>
 </body>
 

@@ -10,6 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.js"></script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script>
         var MQ = MathQuill.getInterface(2);
@@ -809,6 +811,93 @@
             display: none;
         }
     </style>
+
+
+
+
+
+
+
+
+
+
+    <style>
+        .popup {}
+
+
+        .popup h3 {
+            margin: 0 0 20px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            color: #4a90e2;
+            text-align: left;
+
+        }
+
+        #form-content {
+            text-align: left;
+        }
+
+        .popup input {
+            width: 80%;
+            margin: 10px 0 20px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        label {
+            display: block;
+
+        }
+
+        .popup input:focus {
+            border-color: #4a90e2;
+        }
+
+        .popup button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #4a90e2;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+
+        }
+
+        .popup button:hover {
+            background: #357ab8;
+        }
+
+        .popup .error {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: -15px;
+            margin-bottom: 15px;
+        }
+    </style>
+
+    <style>
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+            /* For Firefox */
+        }
+    </style>
+
 </head>
 
 <body>
@@ -986,7 +1075,7 @@
 
     </div>
 
-    <span onclick="publish(event)" class="publish">Publish It</span>
+    <span onclick="openPopup()" class="publish">Publish It</span>
 
 
 
@@ -995,12 +1084,46 @@
 
 
     <div class="popup " id="popup">
-        <h2>Exam Published</h2>
+        <!-- <h2>Exam Published</h2>
         <div class="boxx">
             <h4>Exam Url Below</h4>
             <h3 id="url_exam"></h3>
-        </div>
+        </div> -->
+        <h3>Input Data</h3>
+        <div id="form-content">
+            <div id="aad">
 
+
+                <label for="duration">Duration:</label>
+                <input type="number" min="0" max="300" autocomplete="off" autocorrect="off" autocapitalize="none"
+                    spellcheck="false" id="duration" placeholder="Enter duration">
+                <div class="error" id="duration-error"></div>
+                <button onclick="nextStep()">Next</button>
+            </div>
+            <div id="aae" class="hidd">
+
+
+
+
+
+                <label for="start-time">Start Time:</label>
+                <input type="time" id="datetimePicker">
+                <label for="end-time">End Time:</label>
+                <input type="time" id="datetimePicker2">
+                <button onclick="nextQuestionStep()">Next</button>
+            </div>
+
+            <div id="aaf" class="hidd">
+                <label for="per-question">Per Question Mark (Default 1):</label>
+                <input type="number" id="per-question" value="1" step="0.01">
+                <div class="error" id="mark_err"></div>
+                <label for="negative-marking">Negative Marking (Default 0.00):</label>
+                <input type="number" id="negative-marking" value=".0" step="0.01">
+                <div class="error" id="neg_err"></div>
+            </div>
+
+        </div>
+        <button id="publish66" onclick="publishData()" style="display: none;">Publish</button>
 
     </div>
 
@@ -1068,7 +1191,7 @@
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
 
-        if (getCookie("boiTitle") != undefined) {
+        if (getCookie("boi_edtech") != undefined) {
 
             window.aa = async function () {
 
@@ -1078,7 +1201,7 @@
                     const res = await fetch("http://192.168.0.103:3000/ac_verify", {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ "name": getCookie("boiTitle") }),
+                        body: JSON.stringify({ "name": getCookie("boi_edtech") }),
                     });
                     if (res.status === 200) {
 
@@ -1257,11 +1380,11 @@
 
             const fullLatex = mathField.latex().replace(/\\/g, '\\\\');
 
-            if (getCookie("boiTitle") == undefined) {
+            if (getCookie("boi_edtech") == undefined) {
                 return false;
 
             }
-            let title = getCookie("boiTitle");
+            let title = getCookie("boi_edtech");
 
 
             try {
@@ -1479,20 +1602,6 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
                 arr.forEach(i => {
 
-                    // if (i != "\\") {
-                    //     if (i[0] != "\\") {
-                    //         console.log(i);
-                    //         document.getElementById("preview").insertAdjacentHTML("beforeend", " " + i);
-
-                    //     }
-                    //     else {
-
-                    //         document.getElementById("preview").insertAdjacentHTML("beforeend", `<span class="mathh">${i} </span>`);
-
-                    //     }
-
-
-                    // }
 
 
 
@@ -1574,201 +1683,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
     <script>
-        window.autoo = async function () {
 
-
-
-            try {
-
-
-
-                let urll = "http://192.168.0.103:3000/q_get"
-                const res = await fetch(urll, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ "Q": "jj" }),
-                });
-                if (res.status === 200) {
-                    let ress = await res.json()
-                    console.log(ress.data);
-
-
-                    for (let iiu = 0; iiu < ress.length; iiu++) {
-                        await new Promise(async (resolve23) => {
-                            let element = ress[iiu]
-
-
-
-                            const targetElement = document.querySelector('#parent .item_static');
-
-
-                            targetElement.insertAdjacentHTML("beforebegin", `
-                            
-                                    <div class="item" orderr="${element.order}">
-
-            <div class="svgg">
-
-                <svg onclick="editt(event)" class="editt" xmlns="http://www.w3.org/2000/svg" width="35"
-                    fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z" />
-                </svg>
-
-
-                <svg onclick="dltt(event)" xmlns="http://www.w3.org/2000/svg" width="36" fill="currentColor"
-                    class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
-                </svg>
-            </div>
-
-
-
-            <div class="qpart">
-
-                <svg width="28px" viewBox="0 0 24 24" fill="#C00000" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M15.75 5H8.25C7.55964 5 7 5.58763 7 6.3125V19L12 15.5L17 19V6.3125C17 5.58763 16.4404 5 15.75 5Z"
-                        stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-
-                <span id="id-${iiu + 1}" class="stati1">
-                </span>
-
-
-
-
-
-
-
-
-            </div>
-
-
-
-            <div id="abcdpart_23" class="abcdpart_23">
-                <div class="container_abcd_23">
-                    <div class="roww1_23">
-                        <div id="abcd_a_23" class="item_abcd_23"><span class="txt_cen">a)</span> <span
-                                class="abcd_span_23" id="abcd_span_a${iiu}"></span> </div>
-                        <div id="abcd_b_23" class="item_abcd_23"><span class="txt_cen">b)</span> <span
-                                class="abcd_span_23" id="abcd_span_b${iiu}"></span></div>
-                    </div>
-                    <br>
-                    <div class="roww2_23">
-                        <div id="abcd_c_23" class="item_abcd_23"><span class="txt_cen">c)</span> <span
-                                class="abcd_span_23" id="abcd_span_c${iiu}"></span></div>
-                        <div id="abcd_d_23" class="item_abcd_23"><span class="txt_cen">d)</span> <span
-                                class="abcd_span_23" id="abcd_span_d${iiu}"></span></div>
-                    </div>
-                </div>
-
-            </div>
-
-            <span class="q_no">Q No. ${iiu + 1}</span>
-
-
-
-
-
-
-        </div>
-                            
-                            `);
-
-
-
-
-
-
-                            const arr = [];
-                            let i = 0;
-                            let input = element.question
-
-
-                            for (let i = 0; i < input.length; i++) {
-                                await new Promise((resolve1) => {
-
-
-
-                                    let startIndex = i;
-                                    while (i < input.length && input[i] !== '\\') {
-                                        i++;
-                                    }
-                                    if (i > startIndex) {
-                                        arr.push(input.slice(startIndex, i));
-                                    }
-
-                                    if (i < input.length && input[i] === '\\') {
-                                        startIndex = i;
-                                        i++;
-                                        while (i < input.length && input[i] !== ' ' && input[i] !== '\\') {
-                                            i++;
-                                        }
-                                        arr.push(input.slice(startIndex, i));
-                                    }
-
-                                    while (i < input.length && input[i] === ' ') {
-                                        i++;
-                                    }
-                                    console.log(`Doing async work for item: ${i}`);
-                                    resolve1();
-
-                                });
-                            }
-
-
-
-                            // console.warn(arr);
-
-                            for (let i = 0; i < arr.length; i++) {
-                                await new Promise((resolve2) => {
-                                    let itemm = arr[i]
-
-
-                                    if (itemm != "\\") {
-
-                                        if (itemm[0] != "\\") {
-                                            document.getElementById(`id-${iiu + 1}`).insertAdjacentHTML("beforeend", " " + arr[i] + " ");
-                                        }
-                                        else {
-                                            document.getElementById(`id-${iiu + 1}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr[i]} </span>`);
-                                        }
-
-                                    }
-                                    resolve2();
-                                });
-                            };
-
-                            abcd_add(element, iiu)
-
-
-
-                            resolve23();
-                        });
-                    };
-
-                    let elements = document.getElementsByClassName('mathh');
-                    for (var ddx of elements) {
-                        MQ.StaticMath(ddx);
-                    }
-
-
-
-
-
-
-
-                } else {
-                    //alert('Failed to load');
-                }
-
-            } catch (err) {
-                console.error('Error:', err);
-                //  alert('Failed to load');
-            }
-        };
-        // autoo()
 
 
 
@@ -1876,7 +1791,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             let result = strr.replace(/itemm-/g, "");
             console.log(result);
 
-            let title = getCookie("boiTitle");
+            let title = getCookie("boi_edtech");
 
 
 
@@ -1936,6 +1851,15 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
         function openPopup() {
             overlay.classList.add('active');
             popup.classList.add('active');
+
+
+
+
+            document.getElementById("aad").style.display = "block"
+            document.getElementById("aae").style.display = "none"
+            document.getElementById("aaf").style.display = "none"
+
+            document.getElementById("publish66").style.display = "none";
         }
 
         function closePopup() {
@@ -1947,8 +1871,10 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
         window.publish = async function () {
+
+            return 5
             let docid = window.docidd;
-            let title = getCookie("boiTitle");
+            let title = getCookie("boi_edtech");
             let uri = `?n=${title}&id=${docid}`
             console.log(uri);
             const domainUrl = window.location.origin;
@@ -1959,7 +1885,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                 const res = await fetch("http://192.168.0.103:3000/ac_publish", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ "name": getCookie("boiTitle"), "id": docid, "public": "yes" }),
+                    body: JSON.stringify({ "name": getCookie("boi_edtech"), "id": docid, "public": "yes" }),
                 });
                 if (res.status === 200) {
                     document.getElementById("url_exam").innerHTML = ``
@@ -1985,7 +1911,191 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
 
-    <div class="keyboard-container">
+
+
+
+
+
+
+
+
+
+
+    <script>
+        let formData = {};
+
+
+        const fp = flatpickr("#datetimePicker", {
+            enableTime: true,
+            dateFormat: "h:i K   d-m-Y ",
+
+
+            time_24hr: false,
+
+            onChange: function (selectedDates, dateStr, instance) {
+                if (selectedDates.length > 0) {
+                    const selectedDate = selectedDates[0];
+                    const hours = selectedDate.getHours();
+                    const minutes = selectedDate.getMinutes();
+
+                    const day = selectedDate.getDate();
+                    const month = selectedDate.getMonth() + 1;
+                    const year = selectedDate.getFullYear();
+
+
+
+                    window.startt_year = year;
+                    window.startt_month = month;
+                    window.startt_day = day;
+                    window.startt_hours = hours;
+                    window.startt_minutes = minutes;
+
+
+
+
+
+                }
+
+            }
+        });
+        const fp2 = flatpickr("#datetimePicker2", {
+            enableTime: true,
+            dateFormat: "h:i K   d-m-Y ",
+            time_24hr: false,
+
+            onChange: function (selectedDates, dateStr, instance) {
+                if (selectedDates.length > 0) {
+                    const selectedDate = selectedDates[0];
+                    const hours = selectedDate.getHours();
+                    const minutes = selectedDate.getMinutes();
+
+                    const day = selectedDate.getDate();
+                    const month = selectedDate.getMonth() + 1;
+                    const year = selectedDate.getFullYear();
+
+
+                    window.endd_year = year;
+                    window.endd_month = month;
+                    window.endd_day = day;
+                    window.endd_hours = hours;
+                    window.endd_minutes = minutes;
+
+
+                }
+
+            }
+        });
+
+
+
+        window.nextStep = async function () {
+            const durationInput = document.getElementById("duration");
+            const durationError = document.getElementById("duration-error");
+            const formContent = document.getElementById("form-content");
+
+            const durationValue = durationInput.value.trim();
+            if (durationValue.length == 0) { durationError.textContent = "Empty Feild!"; return; }
+            if (!/^\d+$/.test(durationValue)) {
+                durationError.textContent = "Full Number only!";
+                return;
+            }
+
+            durationError.textContent = "";
+            formData.duration = parseInt(durationValue);
+
+
+
+
+
+
+
+            document.getElementById("aad").style.display = "none"
+            document.getElementById("aae").style.display = "block"
+            document.getElementById("aaf").style.display = "none"
+
+
+
+
+
+
+
+
+        }
+
+        window.nextQuestionStep = async function () {
+
+            const startTime = document.getElementById("datetimePicker").value;
+            const endTime = document.getElementById("datetimePicker2").value;
+
+            if (!startTime || !endTime) {
+                alert("Please fill in both start time and end time!");
+                return;
+            }
+
+
+
+            document.getElementById("aad").style.display = "none"
+            document.getElementById("aae").style.display = "none"
+            document.getElementById("aaf").style.display = "block"
+
+            document.getElementById("publish66").style.display = "block";
+        }
+
+        window.publishData = async function () {
+
+            const perQuestion = document.getElementById("per-question").value;
+            const negativeMarking = document.getElementById("negative-marking").value;
+
+            formData.perQuestion = parseFloat(perQuestion);
+            formData.negativeMarking = parseFloat(negativeMarking);
+
+            console.log("Collected Data:", formData);
+
+            const result = /^\d+$/.test(perQuestion);
+            if (!result) {
+                document.getElementById("mark_err").innerHTML = "Full Number Only!"
+                return 6
+            } else { document.getElementById("mark_err").innerHTML = "" }
+
+            const result2 = /^[\d.]+$/.test(negativeMarking);
+            if (!result2) {
+                document.getElementById("neg_err").innerHTML = " Numbers Only!"
+                return false
+            }
+
+            let objj = {
+                "mark": parseInt(perQuestion), "neg": parseFloat(negativeMarking), "duration": parseInt(formData.duration),
+
+
+                "start_obj": {
+
+
+
+                    "year": window.startt_year,
+                    "month": window.startt_month,
+                    "day": window.startt_day,
+                    "hour": window.startt_hours,
+                    "min": window.startt_minutes
+                },
+
+                "end_obj": {
+
+
+                    "year": window.endd_year,
+                    "month": window.endd_month,
+                    "day": window.endd_day,
+                    "hour": window.endd_hours,
+                    "min": window.endd_minutes
+                }
+
+            }
+            console.log(objj);
+
+        }
+    </script>
+
+
+    <!-- <div class="keyboard-container">
         <button id="keyboard-toggle" class="toggle-btn ">⌨️</button>
         <div id="keyboard" class="keyboard visible">
             <div id="key_roww_1" class="row">
@@ -2081,7 +2191,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
     </script>
-    <script src="./key.js"></script>
+    <script src="./key.js"></script> -->
 </body>
 
 </html>

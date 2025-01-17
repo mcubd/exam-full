@@ -479,17 +479,28 @@ app.post('/lead', async (req, res) => {
 
 
       }
-      
-      console.log("-----------------");
-      console.log(obj1);
 
 
+
+      let per_markk=1;
+      let neg_markk=0;
+
+
+      const result = /^\d+$/.test(ans.data.per_mark);
+      if (!result) {  
+        per_markk=ans.data.per_mark
+       }
+
+      const result1 = /^[\d.]+$/.test(ans.data.neg_mark);
+      if (result1) {
+        neg_markk= ans.data.neg_mark
+      }
 
 
     const leaderboard = Object.entries(obj1)
     .map(([userId, { right, wrong, time_took }]) => ({
       userId,
-      score: right * 10 - wrong * 0.25,
+      score: right * Number(per_markk) - wrong * Number(neg_markk),
       timeTook: time_took
     }))
     .filter(user => user.score > 0) // Filter out users with score <= 0
@@ -777,7 +788,7 @@ app.post('/test_submit', async (req, res) => {
       const time2 = moment({ year: document.exam_end_on_obj.year, month: Number(document.exam_end_on_obj.month) - 1, day: document.exam_end_on_obj.day, hour: document.exam_end_on_obj.hour, }).add(Number(document.exam_end_on_obj.min) + 1, 'minutes'); // January 9, 2025, 18:00
 
 
-
+ 
 
       const result = /^[\d.]+$/.test(document.duration);
       if (!result) {
@@ -1329,7 +1340,7 @@ app.post('/q_add', async (req, res) => {
 
   if (data.idd == undefined) {
 
-
+ 
 
     let a = [
       {
@@ -1445,7 +1456,7 @@ app.post('/q_dlt', async (req, res) => {
 
 
 
-
+ 
 
 
 
@@ -1458,9 +1469,10 @@ app.post('/q_dlt', async (req, res) => {
 
   console.log('Updated document:', updatedDocument);
   res.status(200).json({ count_updated: updatedDocument.data.length, message: 'obj removed from arr successfully', received: data });
+ 
 
 
-
+ 
 
 
 
