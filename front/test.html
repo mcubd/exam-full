@@ -9,6 +9,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.js"></script>
 
 
+    <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.all.min.js
+"></script>
+<link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
+" rel="stylesheet">
+
+
     <script>
         var MQ = MathQuill.getInterface(2);                
     </script>
@@ -518,7 +526,7 @@
         </div>
 
 
-        <div class="submit" onclick="submit0()">
+        <div class="submit" id="submitt0" onclick="submit0()">
             Submit
         </div>
 
@@ -1226,6 +1234,8 @@ a
 
 
         window.submit0 = async function () {
+
+            document.getElementById("submitt0").style.pointerEvents = 'none';
             console.log(window.full_submit);
             let fulll = window.full_submit;
 
@@ -1246,12 +1256,31 @@ a
                 const res = await fetch("http://192.168.0.103:3000/test_submit", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ cname: nValue, exam_paper: window.id66, order: "1", abcd: "a", full_submit: fulll }),
+                    body: JSON.stringify({ cname: nValue, exam_paper: window.id66, order: "1", abcd: "a", full_submit: fulll,q_id:idValue }),
                 });
                 if (res.status === 200) {
 
                     let ress = await res.json()
                     console.log(ress)
+
+                    const elementss = document.querySelectorAll('.q_no');
+const total = elementss.length;
+let not_ans=Number(total)-Number(ress.data.correct)+Number(ress.data.wrong)
+
+Swal.fire({
+                icon: 'success',
+                title: 'Congratulations!',
+                text: `You scored ${ress.data.score}, correct ${ress.data.correct}, Wrong ${ress.data.wrong}, not answerd ${not_ans}`,
+                confirmButtonText: 'OK' ,
+                allowOutsideClick: true
+            }).then((result) => {
+                // Redirect on confirm button click
+                if (result.isConfirmed || result.isDismissed) {
+                    let currentUrl = window.location.href;
+                    let newUrl = currentUrl.replace('test', 'lead');
+                    window.location.href = newUrl; // Replace with your URL
+                }
+            })
 
                     // window.location.href = './2.html';
 
@@ -1264,7 +1293,11 @@ a
             } catch (err) {
                 console.error('Error:', err);
                 // alert('Error. Couldn`t Submit');
-            }
+            }finally {
+
+                document.getElementById("submitt0").style.pointerEvents = 'auto';
+
+}
 
 
 

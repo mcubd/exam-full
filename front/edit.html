@@ -1682,7 +1682,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             document.getElementById("abcd_span2").innerHTML = ``;
             document.getElementById("abcd_span3").innerHTML = ``;
             document.getElementById("abcd_span4").innerHTML = ``;
-    document.getElementById("abcdpart").style.display = "none"
+            document.getElementById("abcdpart").style.display = "none"
             mathField.latex(``);
 
 
@@ -1793,47 +1793,47 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             //     alert('Please fill All Feilds');
             //     isEmptyFound = true;
             // }
-            if(window.abcd_json.a !=undefined){
-                if(window.abcd_json.a==""){
+            if (window.abcd_json.a != undefined) {
+                if (window.abcd_json.a == "") {
                     alert('Please fill All Feilds');
                     isEmptyFound = true;
                     return false;
                 }
-            }else{
+            } else {
                 alert('Please fill All Feilds');
                 isEmptyFound = true;
                 return false;
             }
 
-            if(window.abcd_json.b !=undefined){
-                if(window.abcd_json.b==""){
+            if (window.abcd_json.b != undefined) {
+                if (window.abcd_json.b == "") {
                     alert('Please fill All Feilds');
                     isEmptyFound = true;
                     return false;
                 }
-            }else{
+            } else {
                 alert('Please fill All Feilds');
                 isEmptyFound = true;
                 return false;
             }
-            if(window.abcd_json.c !=undefined){
-                if(window.abcd_json.c==""){
+            if (window.abcd_json.c != undefined) {
+                if (window.abcd_json.c == "") {
                     alert('Please fill All Feilds');
                     isEmptyFound = true;
                     return false;
                 }
-            }else{
+            } else {
                 alert('Please fill All Feilds');
                 isEmptyFound = true;
                 return false;
             }
-            if(window.abcd_json.d !=undefined){
-                if(window.abcd_json.d==""){
+            if (window.abcd_json.d != undefined) {
+                if (window.abcd_json.d == "") {
                     alert('Please fill All Feilds');
                     isEmptyFound = true;
                     return false;
                 }
-            }else{
+            } else {
                 alert('Please fill All Feilds');
                 isEmptyFound = true;
                 return false;
@@ -1865,12 +1865,12 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
         window.next3 = async function (posi) {
 
- 
+
 
 
 
             let urll = "http://192.168.0.103:3000/q_add"
- 
+
 
 
 
@@ -2830,7 +2830,18 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
 
+            console.log(window.startt_year)
 
+            for (let variable of [window.startt_year, window.startt_month, window.startt_day, window.startt_hours, window.startt_minutes, window.endd_year, window.endd_month, window.endd_day, window.endd_hours, window.endd_minutes]) {
+                if (variable === undefined) {
+                    console.log("At least one variable is undefined.");
+                    alert("Select Both Times Plz");
+                    e.target.closest(".uppd").style.pointerEvents = 'auto';
+                    return;
+                }
+            }
+
+ 
 
 
 

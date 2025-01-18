@@ -421,6 +421,15 @@ app.post('/lead', async (req, res) => {
      
       
       console.log(arr0);
+      console.log("66666");
+      console.log(ans.data.data);
+
+      console.log("66666");
+
+      
+      
+      
+      
 
       
       let obj1={};
@@ -436,8 +445,10 @@ app.post('/lead', async (req, res) => {
 
 
 
+          console.log(77777777);
 
-
+          console.log(orders);
+          console.log(77777777);
 
 
 
@@ -487,7 +498,7 @@ app.post('/lead', async (req, res) => {
 
 
       const result = /^\d+$/.test(ans.data.per_mark);
-      if (!result) {  
+      if (result) {  
         per_markk=ans.data.per_mark
        }
 
@@ -749,6 +760,35 @@ app.post('/test_create', async (req, res) => {
 });
 
 
+ let scoree = async function (ans_arr,selected_options) {
+
+
+  const letterToIndex = letter => letter.charCodeAt(0) - 97;
+
+  const result = ans_arr.reduce(
+    (acc, question) => {
+      const submittedAnswer = selected_options[`order_${question.order}`];
+      const submittedIndex = submittedAnswer ? letterToIndex(submittedAnswer) : -1;
+  
+      if (submittedIndex === question.ans) acc.correct++;
+      else if (submittedIndex !== -1) acc.wrong++;
+  
+      return acc;
+    },
+    { correct: 0, wrong: 0 } // Initial counts
+  );
+  
+  console.log(`Correct answers: ${result.correct}`);
+  console.log(`Wrong answers: ${result.wrong}`);
+
+  return result;
+
+  // obj1[userKey]={"right":result.correct,"wrong":result.wrong,"time_took":orders.time_took}
+
+
+
+}
+
 app.post('/test_submit', async (req, res) => {
   const data = req.body;
 
@@ -887,6 +927,42 @@ app.post('/test_submit', async (req, res) => {
               },
               { new: true }
             );
+            console.log(22222222222222222);
+            console.log(document);
+            
+            
+
+      let docc = await get_doc_byid(`${data.cname}__tests`, data.q_id)
+      if(docc.found == "yes"){ 
+       let a=await  scoree(docc.data.data,result.submitedd);
+ 
+      let per_markk=1;
+      let neg_markk=0;
+
+
+      const result44 = /^\d+$/.test(docc.data.per_mark);
+      if (result44) {  
+        per_markk=docc.data.per_mark
+       }
+
+      const result144 = /^[\d.]+$/.test(docc.data.neg_mark);
+      if (result144) {
+        neg_markk= docc.data.neg_mark
+      }
+ 
+
+       let scored= a.correct * Number(per_markk) - a.wrong * Number(neg_markk)
+  
+ 
+
+       
+
+       return res.status(200).json({ score:await scored,data:{correct:a.correct,wrong:a.wrong,score:await scored} });
+       }
+     
+
+       
+            
 
           }
 
@@ -918,7 +994,6 @@ app.post('/test_submit', async (req, res) => {
 
 
         }
-
 
 
 
@@ -1047,6 +1122,113 @@ app.post('/test_submit', async (req, res) => {
 
 });
 
+app.post('/q_update_time_and_rest', async (req, res) => {
+  const data = req.body;
+  console.log('Received data:', data);
+
+
+
+ 
+
+
+  let startt_datee = moment.tz({
+    year: data.start_obj.year,
+    month: Number(data.start_obj.month) - 1,
+    day: data.start_obj.day,
+    hour: data.start_obj.hour,
+    minute: data.start_obj.min
+  }, 'Asia/Dhaka');
+
+  let formattedDate_start = startt_datee.format('h:mm a, DD/MM/YY');
+
+  let endd_datee = moment.tz({
+    year: data.end_obj.year,
+    month: Number(data.end_obj.month) - 1,
+    day: data.end_obj.day,
+    hour: data.end_obj.hour,
+    minute: data.end_obj.min
+  }, 'Asia/Dhaka');
+
+  let formattedDate_end = endd_datee.format('h:mm a, DD/MM/YY');
+
+  let obj0={};
+  const result = /^\d+$/.test(data.mark);
+  if (result) {
+    obj0.per_mark=data.mark
+  }  
+  const result22 = /^\d+$/.test(data.duration);
+  if (result22) {
+    obj0.duration=data.duration
+    obj0.published='yes'
+  }  
+
+  const result2 = /^[\d.]+$/.test(data.neg);
+  if (result2) {
+    obj0.neg_mark=data.neg
+  }
+
+  let rtn = await verify_cname(data.cname);
+  if (rtn.found == "yes") {
+
+    let rtn2 = await update_doc_byid(`${data.cname}__tests`, data.id, {
+      ["start_obj"]: data["start_obj"],
+      ["end_obj"]: data["end_obj"],
+      ["start"]: formattedDate_start,
+      ["end"]: formattedDate_end,...obj0
+    });
+    if (rtn2.found == "yes") {
+
+      console.log(rtn2);
+      console.log("updated time");
+
+      console.log(formattedDate_start, formattedDate_end);
+
+      res.status(200).json({ data: data });
+
+
+
+    }
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+})
 app.post('/ac_get_all', async (req, res) => {
   const data = req.body;
   console.log('Received data:', data);

@@ -534,6 +534,7 @@
             flex-direction: row;
             /* margin-top: 20px; */
             width: 30%;
+            align-items: center;
 
 
 
@@ -1029,16 +1030,16 @@
             <div id="abcdpart" class="abcdpart">
                 <div class="container_abcd">
                     <div class="roww1">
-                        <div id="abcd_a" class="item_abcd"><span class="txt_cen">a)</span> <span class="abcd_span"
+                        <div id="abcd_a" class="item_abcd_23"><span class="txt_cen">a)</span> <span class="abcd_span"
                                 id="abcd_span1"></span> </div>
-                        <div id="abcd_b" class="item_abcd"><span class="txt_cen">b)</span> <span class="abcd_span"
+                        <div id="abcd_b" class="item_abcd_23"><span class="txt_cen">b)</span> <span class="abcd_span"
                                 id="abcd_span2"></span></div>
                     </div>
                     <br>
                     <div class="roww2">
-                        <div id="abcd_c" class="item_abcd"><span class="txt_cen">c)</span> <span class="abcd_span"
+                        <div id="abcd_c" class="item_abcd_23"><span class="txt_cen">c)</span> <span class="abcd_span"
                                 id="abcd_span3"></span></div>
-                        <div id="abcd_d" class="item_abcd"><span class="txt_cen">d)</span> <span class="abcd_span"
+                        <div id="abcd_d" class="item_abcd_23"><span class="txt_cen">d)</span> <span class="abcd_span"
                                 id="abcd_span4"></span></div>
                     </div>
                 </div>
@@ -1075,7 +1076,7 @@
 
     </div>
 
-    <span onclick="openPopup()" class="publish">Publish It</span>
+    <span onclick="openPopup()" id="pubb0" class="publish hidd">Publish It</span>
 
 
 
@@ -1410,6 +1411,7 @@
 
                     if (ress.doc_idd != undefined) {
                         window.docidd = ress.doc_idd
+                        document.getElementById("pubb0").style.display="block"
 
                     }
                     console.log(window.docidd);
@@ -1546,9 +1548,9 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             const arr = [];
             let i = 0;
 
-            const inputText = `\\int_v^v\\ vvcvc\\int_{vv}^{cc}ccc^{22}v^cdd\\sqrt{dd\\sqrt{dd}fddg}dd\\sqrt[d]{f}dvv\\frac{ds}{dx}\\lim_{xd\\to da}\\frac{d}{d}\\ \\ \\ cx.mathquil`;
+            const inputText = ``;
 
-            const pattern = /(\\[a-zA-Z]+(?:_[a-zA-Z]|\^[a-zA-Z0-9]|{[^}]+}|[a-zA-Z]+{.*?})*)|([^\\\s]+)/g;
+            const pattern = /(\\[a-zA-Z]+(?:_[a-zA-Z]|\^[a-zA-Z0-9]|{[^}]*}|[a-zA-Z]+{[^}]*}|\[[^\]]*\])*)|([^\\\s]+)/g;
 
             let match;
             while ((match = pattern.exec(input)) !== null) {
@@ -1562,11 +1564,46 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             }
 
             // Output
-            console.log("Result:", arr);
+            console.log(input);
+            
+            // console.log("Result:", arr);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            const latexString = input
+
+            
+ 
+
+
+
+
+
+
+
+
             if (ele_id != undefined) {
 
 
-                console.log(ele_id);
+              
                 document.getElementById(ele_id).innerHTML = ``
                 document.getElementById(ele_id).style.display = `block`
 
@@ -1608,7 +1645,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     if (i.startsWith("*!%)")) {
                         // Handle normal text: Remove the prefix and insert it as normal text
                         const normalText = i.substring(4); // Remove "*!%)" prefix
-                        console.log(normalText);
+                       
                         document.getElementById("preview").insertAdjacentHTML("beforeend", " " + normalText);
                     } else {
                         // Handle math text
@@ -2043,6 +2080,9 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
         window.publishData = async function () {
 
+            document.getElementById("publish66").style.pointerEvents = 'none';
+            
+
             const perQuestion = document.getElementById("per-question").value;
             const negativeMarking = document.getElementById("negative-marking").value;
 
@@ -2054,14 +2094,16 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             const result = /^\d+$/.test(perQuestion);
             if (!result) {
                 document.getElementById("mark_err").innerHTML = "Full Number Only!"
+                document.getElementById("publish66").style.pointerEvents =  'auto';
                 return 6
             } else { document.getElementById("mark_err").innerHTML = "" }
 
             const result2 = /^[\d.]+$/.test(negativeMarking);
             if (!result2) {
                 document.getElementById("neg_err").innerHTML = " Numbers Only!"
+                document.getElementById("publish66").style.pointerEvents =  'auto';
                 return false
-            }
+            }else { document.getElementById("neg_err").innerHTML = "" }
 
             let objj = {
                 "mark": parseInt(perQuestion), "neg": parseFloat(negativeMarking), "duration": parseInt(formData.duration),
@@ -2091,11 +2133,47 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             }
             console.log(objj);
 
+            try {
+                let title = getCookie("boi_edtech");
+                const res = await fetch("http://192.168.0.103:3000/q_update_time_and_rest", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+
+                        "id": window.docidd, "cname": title,...objj
+       
+
+                    }),
+                });
+                if (res.status === 200) {
+
+                    let ress = await res.json()
+                    console.log(ress);
+                    console.log(" Updated");
+                   document.getElementById("aaf").innerHTML=`<h3>Published Successfull</h3>`
+                   document.getElementById("publish66").style.display="none"
+ document.getElementById("pubb0").remove()
+
+                }
+                else {
+                    alert('Error Couldn`t Delete');
+                }
+
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Error. Couldn`t Delete');
+            } finally {
+
+           
+                document.getElementById("publish66").style.pointerEvents =  'auto';
+
+            }
+
         }
     </script>
 
 
-    <!-- <div class="keyboard-container">
+     <div class="keyboard-container">
         <button id="keyboard-toggle" class="toggle-btn ">⌨️</button>
         <div id="keyboard" class="keyboard visible">
             <div id="key_roww_1" class="row">
@@ -2191,7 +2269,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
     </script>
-    <script src="./key.js"></script> -->
+    <script src="./key.js"></script>  
 </body>
 
 </html>
