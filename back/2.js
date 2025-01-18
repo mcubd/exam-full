@@ -17,66 +17,128 @@ const arr = [
   '\\int_b^k',
   ' jj ',
   '\\int_{bf}^d',
-  'k8k v^{c^{2^2}}  kk t^3 vnj^ggf y^{uu} after.'
+  'k8k v^{c^{2^2}}    kk t^3 vnj^ggf y^{uu} after.'
 ];
 
 const processItem = (item) => {
-  if (!item.startsWith('\\')) { 
-    let arr66=[]
-    let result = '';
+  if (!item.startsWith('\\') && item.includes("^")) {
+    let arr66 = []
+
     let i = 0;
     while (i < item.length) {
       const caretIndex = item.indexOf('^', i);
+
       if (caretIndex === -1) {
-        result += item.slice(i);
+
         arr66.push(item.slice(i))
         break;
       }
 
-      result += item.slice(i, caretIndex); // Add the text before '^'
-      arr66.push(item.slice(i, caretIndex-1))
-      i = caretIndex + 1; // Move past the '^'
+
+      if (caretIndex > i) {
+
+
+        arr66.push(item.slice(i, caretIndex - 1))
+      }
+
+
+      i = caretIndex;
 
       // Check if there's a '{' after '^'
-      const nextChar = item[i];
+      const nextChar = item[i + 1];
       if (nextChar === '{') {
-        // Use balanced-match to find the closing brace
-        const bracketMatch = balanced('{', '}', item.slice(i));
-  
+
+
+
+        const bracketMatch = balanced('{', '}', item.slice(i + 1));
+        console.log(bracketMatch);
         if (bracketMatch) {
-          console.log(item.slice(caretIndex-1, caretIndex+1) + bracketMatch.body);
-          arr66.push(`${item.slice(caretIndex-1, caretIndex+1)}{${bracketMatch.body}}`)
+          i += 1;
+
+          arr66.push(`${item.slice(caretIndex - 1, caretIndex + 1)}{${bracketMatch.body}}`)
+
+
           const { start, end } = bracketMatch;
-          result += '^' + item.slice(i + start + 1, i + end) + '^';
+
           i += end + 1;
-        } else {
-          result += '^';
         }
       } else {
         // Just add the part after '^' if no '{' follows
         const nextCaretIndex = item.indexOf('^', i);
 
 
-        result += item.slice(i, nextCaretIndex);
+
         // console.log(item.slice(caretIndex-1, caretIndex+2));
-        arr66.push(item.slice(caretIndex-1, caretIndex+2))
+        arr66.push(item.slice(caretIndex - 1, caretIndex + 2))
 
         if (nextCaretIndex === -1) {
-          result += item.slice(i);
+
           arr66.push(item.slice(i))
           break;
         } else {
-         
-          
-          i = nextCaretIndex;
+
+
+          i = i + 2;
         }
       }
-    } 
+    }
     return arr66;
   }
-  return item; 
+  return item;
 };
 
 const processedArr = arr.map(processItem);
 
-console.log(processedArr);
+// console.log(processedArr);
+const newArr = arr.flatMap(item => {
+  if (!item.startsWith('\\') && item.includes("^")) {
+    let arr66 = []
+
+    let i = 0;
+    while (i < item.length) {
+      const caretIndex = item.indexOf('^', i);
+
+      if (caretIndex === -1) {
+        arr66.push(item.slice(i))
+        break;
+      }
+
+
+      if (caretIndex > i) {
+        arr66.push(item.slice(i, caretIndex - 1))
+      }
+
+
+      i = caretIndex;
+
+   
+      const nextChar = item[i + 1];
+
+      if (nextChar === '{') {
+        const bracketMatch = balanced('{', '}', item.slice(i + 1));
+    
+        if (bracketMatch) {
+          i += 1;
+          arr66.push(`${item.slice(caretIndex - 1, caretIndex + 1)}{${bracketMatch.body}}`)
+          const { start, end } = bracketMatch;
+          i += end + 1;
+        }
+      } else {
+        // Just add the part after '^' if no '{' follows
+        const nextCaretIndex = item.indexOf('^', i);
+        arr66.push(item.slice(caretIndex - 1, caretIndex + 2))
+
+        if (nextCaretIndex === -1) {
+          arr66.push(item.slice(i))
+          break;
+        } else {
+          i = i + 2;
+        }
+      }
+    }
+    return arr66;
+  }
+  return [item];
+});
+
+console.log(newArr);

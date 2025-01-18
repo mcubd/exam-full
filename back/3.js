@@ -18,14 +18,16 @@ function parseMathExpressions(input) {
     // Push the text before '\\'
     if (nextBackslash > pos) {
       result.push(input.slice(pos, nextBackslash));
+       
+      
     }
 
     pos = nextBackslash;
 
     // Check for '\\frac'  
-    if (input.startsWith("\\frac", pos)) {
+    if (input.startsWith("\\frac", pos)) {        
       let fraction = "\\frac";
-      pos += 5; // Skip "\\frac"
+      pos += 5; // Skip "\\frac" 
 
       // Process numerator and denominator using balanced match
       const numeratorMatch = balanced("{", "}", input.slice(pos));
@@ -36,6 +38,8 @@ function parseMathExpressions(input) {
       fraction += `{${denominatorMatch.body}}`;
       pos += denominatorMatch.end;
 
+     
+      pos +=1
       result.push(fraction);
     }
     // Check for '\\int_{ }^{ } or \\int_{ }^h'  
@@ -59,11 +63,14 @@ function parseMathExpressions(input) {
         const denominatorMatch = balanced("{", "}", input.slice(pos));
         fraction += `{${denominatorMatch.body}}`;
         pos += denominatorMatch.end;
+        pos +=1
       } else {
 
         fraction += `${input[pos + 1]}${input[pos + 2]}`
         pos += 3
+
       }
+      
       result.push(fraction);
     }
     // Check for '\\int_c^{crr} or \\int_c^h'
@@ -89,38 +96,10 @@ function parseMathExpressions(input) {
         pos += 3
 
       }
+      pos +=1
       result.push(sqrt);
     }
-    // Check for '3^6 or 3^{66}'
-    else if (input.startsWith("kk", pos)) {
-      let sqrt = "^";
-      pos += 5;
-
-      console.log(555555555);
-
-      let d = input[pos + 2]
-      console.log(d);
-
-
-      if (input[pos + 2] == "{") {
-
-
-        // Process the argument inside the curly braces
-        const sqrtMatch = balanced("{", "}", input.slice(pos));
-
-
-        console.log(sqrtMatch)
-        sqrt += `${sqrtMatch.pre}{${sqrtMatch.body}}`;
-        pos += sqrtMatch.end;
-        console.log(sqrt)
-      } else {
-        console.log(input[pos + 2]);
-        sqrt += `${input[pos]}${input[pos + 1]}${input[pos + 2]}`
-        pos += 3
-
-      }
-      result.push(sqrt);
-    }
+ 
        // Check for '\\sqrt[3]{2}
        else if (input.startsWith("\\sqrt[", pos)) {
         let sqrt = "\\sqrt[";
@@ -138,12 +117,7 @@ function parseMathExpressions(input) {
         sqrt += `{${denominatorMatch.body}}`;
         pos += denominatorMatch.end;
   
-  
-  
-        // // Process the argument inside the curly braces
-        // const sqrtMatch = balanced("{", "}", input.slice(pos));
-        // sqrt += `{${sqrtMatch.body}}`;
-        // pos += sqrtMatch.end;
+        pos +=1
   
         result.push(sqrt);
       }
@@ -156,7 +130,7 @@ function parseMathExpressions(input) {
       const sqrtMatch = balanced("{", "}", input.slice(pos));
       sqrt += `{${sqrtMatch.body}}`;
       pos += sqrtMatch.end;
-
+      pos +=1
       result.push(sqrt);
     }
  
@@ -169,7 +143,7 @@ function parseMathExpressions(input) {
       const sqrtMatch = balanced("{", "}", input.slice(pos));
       sqrt += `{${sqrtMatch.body}}`;
       pos += sqrtMatch.end;
-
+      pos +=1
       result.push(sqrt);
     }
     // Handle spaces after '\\'
@@ -190,30 +164,60 @@ const sentence = "Here is an example \\ of something \\frac{g}{\\frac{df}{ff}\\ 
 let aaa = parseMathExpressions(sentence);
 
 
+const newArr = aaa.flatMap(item => {
+  if (!item.startsWith('\\') && item.includes("^")) {
+    let arr66 = []
 
-const processedArr = aaa.map(item => {
+    let i = 0;
+    while (i < item.length) {
+      const caretIndex = item.indexOf('^', i);
 
-  if (!item.startsWith('\\') && item.includes('^')) {
+      if (caretIndex === -1) {
+        arr66.push(item.slice(i))
+        break;
+      }
 
 
-    const parts = item.split('^');
-    console.log(parts);
+      if (caretIndex > i) {
+        arr66.push(item.slice(i, caretIndex - 1))
+      }
 
 
-    // If there's a curly bracket after ^, process the contents
-    if (parts.length === 3 && parts[1].includes('{')) {
-      const bracketMatch = balanced('{', '}', parts[1]);
-      if (bracketMatch) {
-        const { start, end } = bracketMatch;
-        // Slice the part between ^ and matching braces
-        return parts[0] + '^' + parts[1].slice(0, start) + parts[1].slice(end + 1);
+      i = caretIndex;
+
+   
+      const nextChar = item[i + 1];
+
+      if (nextChar === '{') {
+        const bracketMatch = balanced('{', '}', item.slice(i + 1));
+    
+        if (bracketMatch) {
+          i += 1;
+          arr66.push(`${item.slice(caretIndex - 1, caretIndex + 1)}{${bracketMatch.body}}`)
+          const { start, end } = bracketMatch;
+          i += end + 1;
+        }
+      } else {
+        // Just add the part after '^' if no '{' follows
+        const nextCaretIndex = item.indexOf('^', i);
+        arr66.push(item.slice(caretIndex - 1, caretIndex + 2))
+
+        if (nextCaretIndex === -1) {
+          arr66.push(item.slice(i))
+          break;
+        } else {
+          i = i + 2;
+        }
       }
     }
-
-    // Regular slicing for ^ items
-    return parts[0] + '^' + parts[1] + '^' + parts[2];
+    return arr66;
   }
-  return item;
+  return [item];
 });
 
-console.log(processedArr);
+console.log(aaa);
+
+console.log(newArr);
+
+ 
+ 

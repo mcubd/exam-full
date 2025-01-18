@@ -1128,6 +1128,13 @@
 
     </div>
 
+    <script type="module">
+        import balanced from 'https://cdn.jsdelivr.net/npm/balanced-match@3.0.1/index.js';
+        window.balanced = balanced;
+    
+      </script>
+
+    <script src="./latex.js"></script>
 
 
     <script>
@@ -1411,7 +1418,7 @@
 
                     if (ress.doc_idd != undefined) {
                         window.docidd = ress.doc_idd
-                        document.getElementById("pubb0").style.display="block"
+                        document.getElementById("pubb0").style.display = "block"
 
                     }
                     console.log(window.docidd);
@@ -1545,6 +1552,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
         window.calc = async function (input, ele_id) {
 
 
+
             const arr = [];
             let i = 0;
 
@@ -1565,7 +1573,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
             // Output
             console.log(input);
-            
+
             // console.log("Result:", arr);
 
 
@@ -1573,6 +1581,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
 
+            console.log(await latex_arr(input));
 
 
 
@@ -1590,8 +1599,8 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
             const latexString = input
 
-            
- 
+
+
 
 
 
@@ -1603,7 +1612,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             if (ele_id != undefined) {
 
 
-              
+
                 document.getElementById(ele_id).innerHTML = ``
                 document.getElementById(ele_id).style.display = `block`
 
@@ -1645,7 +1654,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     if (i.startsWith("*!%)")) {
                         // Handle normal text: Remove the prefix and insert it as normal text
                         const normalText = i.substring(4); // Remove "*!%)" prefix
-                       
+
                         document.getElementById("preview").insertAdjacentHTML("beforeend", " " + normalText);
                     } else {
                         // Handle math text
@@ -2081,7 +2090,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
         window.publishData = async function () {
 
             document.getElementById("publish66").style.pointerEvents = 'none';
-            
+
 
             const perQuestion = document.getElementById("per-question").value;
             const negativeMarking = document.getElementById("negative-marking").value;
@@ -2094,16 +2103,16 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             const result = /^\d+$/.test(perQuestion);
             if (!result) {
                 document.getElementById("mark_err").innerHTML = "Full Number Only!"
-                document.getElementById("publish66").style.pointerEvents =  'auto';
+                document.getElementById("publish66").style.pointerEvents = 'auto';
                 return 6
             } else { document.getElementById("mark_err").innerHTML = "" }
 
             const result2 = /^[\d.]+$/.test(negativeMarking);
             if (!result2) {
                 document.getElementById("neg_err").innerHTML = " Numbers Only!"
-                document.getElementById("publish66").style.pointerEvents =  'auto';
+                document.getElementById("publish66").style.pointerEvents = 'auto';
                 return false
-            }else { document.getElementById("neg_err").innerHTML = "" }
+            } else { document.getElementById("neg_err").innerHTML = "" }
 
             let objj = {
                 "mark": parseInt(perQuestion), "neg": parseFloat(negativeMarking), "duration": parseInt(formData.duration),
@@ -2140,8 +2149,8 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
 
-                        "id": window.docidd, "cname": title,...objj
-       
+                        "id": window.docidd, "cname": title, ...objj
+
 
                     }),
                 });
@@ -2150,9 +2159,9 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     let ress = await res.json()
                     console.log(ress);
                     console.log(" Updated");
-                   document.getElementById("aaf").innerHTML=`<h3>Published Successfull</h3>`
-                   document.getElementById("publish66").style.display="none"
- document.getElementById("pubb0").remove()
+                    document.getElementById("aaf").innerHTML = `<h3>Published Successfull</h3>`
+                    document.getElementById("publish66").style.display = "none"
+                    document.getElementById("pubb0").remove()
 
                 }
                 else {
@@ -2164,8 +2173,8 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                 alert('Error. Couldn`t Delete');
             } finally {
 
-           
-                document.getElementById("publish66").style.pointerEvents =  'auto';
+
+                document.getElementById("publish66").style.pointerEvents = 'auto';
 
             }
 
@@ -2173,7 +2182,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
     </script>
 
 
-     <div class="keyboard-container">
+    <div class="keyboard-container">
         <button id="keyboard-toggle" class="toggle-btn ">⌨️</button>
         <div id="keyboard" class="keyboard visible">
             <div id="key_roww_1" class="row">
@@ -2269,7 +2278,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
     </script>
-    <script src="./key.js"></script>  
+    <script src="./key.js"></script>
 </body>
 
 </html>
