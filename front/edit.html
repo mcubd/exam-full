@@ -754,6 +754,7 @@
             transition: opacity 0.3s ease;
         }
 
+
         /* Popup Box */
         .popup {
             position: fixed;
@@ -902,9 +903,92 @@
             margin-top: 18px;
         }
     </style>
+
+     
+    <style>
+        .lds-ring {
+            display: inline-block;
+            position: fixed;
+            top: 50vh;
+            left: 50vw;
+            width: 1.875rem;
+            height: 1.875rem
+        }
+
+        .lds-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            border: .3rem solid #AEC6CF;
+            border-radius: 50%;
+            border-color: #AEC6CF transparent transparent;
+            width: 1.875rem;
+            height: 1.875rem;
+            animation: lds-ring 1.2s cubic-bezier(.5, 0, .5, 1) infinite
+        }
+
+        .lds-ring div:nth-child(1) {
+            animation-delay: -.45s
+        }
+
+        .lds-ring div:nth-child(2) {
+            animation-delay: -.3s
+        }
+
+        .lds-ring div:nth-child(3) {
+            animation-delay: -.15s
+        }
+
+        @keyframes lds-ring {
+            0% {
+                transform: rotate(0)
+            }
+
+            to {
+                transform: rotate(360deg)
+            }
+        }
+    </style>
+    <style>
+        .hidd {
+            display: none;
+        }
+
+        .overlay {
+            z-index: 2000;
+        }
+
+        .overlay2 {
+            z-index: 4000;
+        }
+
+        body {
+            padding-bottom: 180px;
+        }
+
+        .popup {
+            z-index: 3000;
+        }
+
+        .lds-ring {
+            z-index: 5000;
+        }
+    </style>
 </head>
 
 <body>
+
+    <div id="loadingg_slow_vercel">
+        <div class="overlay overlay2 active"></div>
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+
 
     <div class="title0">
         <p id="testt"></p>
@@ -1453,7 +1537,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                         let input = element.question
 
 
-                   
+
                         let arr66 = await latex_arr(input);
                         console.log(await latex_arr(element.a));
 
@@ -1560,6 +1644,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
                 try {
+                    document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
                     const res = await fetch("http://192.168.0.103:3000/ac_find_by_id", {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -1569,6 +1654,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
                         let ress = await res.json()
                         console.log(ress.doc);
+                        document.getElementById("loadingg_slow_vercel").classList.add("hidd");
                         loadd(ress.doc)
                         document.getElementById("testt").innerHTML = ` ${ress.doc.titlee}`
 
@@ -1888,6 +1974,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
                 }
                 console.log(window.docidd);
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
                 const res = await fetch(urll, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1896,7 +1983,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                 if (res.status === 200) {
 
                     let ress = await res.json()
-
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
                     if (ress.doc_idd != undefined) {
                         window.docidd = ress.doc_idd
 
@@ -2351,13 +2438,14 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
             try {
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
                 const res = await fetch("http://192.168.0.103:3000/q_dlt", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ "order": result, "id": window.docidd, "edtech_name": title }),
                 });
                 if (res.status === 200) {
-
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
                     let ress = await res.json()
                     console.log(ress);
 
@@ -2442,10 +2530,11 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
         <p>Selected Duration <span id="min_txt"></span></p>
         <p onclick="update_duration(event)" class="duration_submit uppd">Update</p>
     `
-            popupHtml(htmll0)
+
 
             try {
                 let title = getCookie("boi_edtech");
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
                 const res = await fetch("http://192.168.0.103:3000/ac_find_by_id", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2456,7 +2545,8 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     }),
                 });
                 if (res.status === 200) {
-
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+                    popupHtml(htmll0)
                     let ress = await res.json()
                     console.log(ress.doc.duration);
                     const result = /^\d+$/.test(ress.doc.duration);
@@ -2503,10 +2593,11 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
      <p>Selected Mark <span id="min_txt2"></span></p>
      <p onclick="update_mark(event)" class="duration_submit uppd">Update</p>
  `
-            popupHtml(htmll0)
+
 
             try {
                 let title = getCookie("boi_edtech");
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
                 const res = await fetch("http://192.168.0.103:3000/ac_find_by_id", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2517,9 +2608,9 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     }),
                 });
                 if (res.status === 200) {
-
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
                     let ress = await res.json()
-
+                    popupHtml(htmll0)
                     const result = /^\d+$/.test(ress.doc.per_mark);
                     if (result) {
 
@@ -2556,10 +2647,11 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 <p>Selected Negetive Mark <span id="min_txt3"></span></p>
 <p onclick="update_neg(event)" class="duration_submit uppd">Update</p>
 `
-            popupHtml(htmll0)
+
 
             try {
                 let title = getCookie("boi_edtech");
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
                 const res = await fetch("http://192.168.0.103:3000/ac_find_by_id", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2570,9 +2662,9 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     }),
                 });
                 if (res.status === 200) {
-
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
                     let ress = await res.json()
-
+                    popupHtml(htmll0)
                     const result = /^[\d.]+$/.test(ress.doc.neg_mark);
                     if (result) {
 
@@ -2625,10 +2717,11 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
         window.edit_time = async function (e) {
-            time_openPopup()
+
 
             try {
                 let title = getCookie("boi_edtech");
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
                 const res = await fetch("http://192.168.0.103:3000/ac_find_by_id", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2639,10 +2732,10 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     }),
                 });
                 if (res.status === 200) {
-
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
                     let ress = await res.json()
                     console.log(ress);
-
+                    time_openPopup()
 
 
                     let s_b = ress.doc["start_obj"];
@@ -2704,7 +2797,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
                     return false
                 }
-
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
 
                 const res = await fetch("http://192.168.0.103:3000/q_update_one_feild", {
                     method: 'POST',
@@ -2721,7 +2814,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     }),
                 });
                 if (res.status === 200) {
-
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
                     let ress = await res.json()
                     console.log(ress);
                     console.log("Duration Updated");
@@ -2759,7 +2852,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     return false
                 }
 
-
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
                 const res = await fetch("http://192.168.0.103:3000/q_update_one_feild", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2775,7 +2868,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     }),
                 });
                 if (res.status === 200) {
-
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
                     let ress = await res.json()
                     console.log(ress);
                     console.log("per mark Updated");
@@ -2814,7 +2907,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     return false
                 }
 
-
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
                 const res = await fetch("http://192.168.0.103:3000/q_update_one_feild", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2830,7 +2923,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     }),
                 });
                 if (res.status === 200) {
-
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
                     let ress = await res.json()
                     console.log(ress);
                     console.log("neg mark Updated");
@@ -2880,6 +2973,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
             try {
                 let title = getCookie("boi_edtech");
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
                 const res = await fetch("http://192.168.0.103:3000/q_update_time", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2910,7 +3004,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     }),
                 });
                 if (res.status === 200) {
-
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
                     let ress = await res.json()
                     console.log(ress);
                     console.log("Time Updated");
@@ -2947,6 +3041,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
             try {
                 let title = getCookie("boi_edtech");
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
                 const res = await fetch("http://192.168.0.103:3000/ac_find_by_id", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2957,7 +3052,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     }),
                 });
                 if (res.status === 200) {
-
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
                     let ress = await res.json()
 
 
@@ -2984,12 +3079,14 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     } else {
 
                         try {
+                            document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
                             const res = await fetch("http://192.168.0.103:3000/ac_publish", {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({ "name": getCookie("boi_edtech"), "id": docid, "public": "yes" }),
                             });
                             if (res.status === 200) {
+                                document.getElementById("loadingg_slow_vercel").classList.add("hidd");
                                 document.getElementById("url_exam").innerHTML = ``
                                 document.getElementById("url_exam").innerHTML = `${domainUrl}/test.html${uri}`
 

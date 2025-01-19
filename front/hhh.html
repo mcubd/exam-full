@@ -300,10 +300,98 @@
              
         }
     </style>
+  <style>
+    .lds-ring {
+        display: inline-block;
+        position: fixed;
+        top: 50vh;
+        left: 50vw;
+        width: 1.875rem;
+        height: 1.875rem
+    }
 
+    .lds-ring div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        border: .3rem solid #AEC6CF;
+        border-radius: 50%;
+        border-color: #AEC6CF transparent transparent;
+        width: 1.875rem;
+        height: 1.875rem;
+        animation: lds-ring 1.2s cubic-bezier(.5, 0, .5, 1) infinite
+    }
+
+    .lds-ring div:nth-child(1) {
+        animation-delay: -.45s
+    }
+
+    .lds-ring div:nth-child(2) {
+        animation-delay: -.3s
+    }
+
+    .lds-ring div:nth-child(3) {
+        animation-delay: -.15s
+    }
+
+    @keyframes lds-ring {
+        0% {
+            transform: rotate(0)
+        }
+
+        to {
+            transform: rotate(360deg)
+        }
+    }
+</style>
+<style>
+    .hidd {
+        display: none;
+    }
+
+    .overlay {
+        z-index: 2000;
+    }
+    .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+     
+            transition: opacity 0.3s ease;
+
+            opacity: 1;
+            visibility: visible;
+        }
+    .overlay2 {
+        z-index: 4000;
+    }
+    
+
+    .popup{
+        z-index: 3000;
+    }
+    .lds-ring{
+        z-index: 5000;
+    }
+</style>
 </head>
 
 <body>
+
+    <div class="hidd" id="loadingg_slow_vercel">
+        <div class="overlay overlay2 active"></div>
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+    </div>
+
     <header class="header">
         <div id="logoo" class="logo"></div>
         <div id="logoo1" class="company-name"> </div>
@@ -498,10 +586,13 @@ return prev && prev.value !== '' ? prev : null;
         if (len == 11) {
 
             if (document.getElementById('phone').value.startsWith("01")) {
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
 
                 let res = await restt_post("http://192.168.0.103:3000/gen_otp", { num: val })
                 if (res != false) {
                     console.log(res);
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+                    
                     document.cookie = `boi_unum=${val}; max-age=15552000; path=/`;
                     document.getElementById('mobile').classList.add("hidd")
                     document.getElementById('otp').classList.remove("hidd")
@@ -512,12 +603,15 @@ return prev && prev.value !== '' ? prev : null;
 
             } else {
                 alert("Bangladeshi Number Plz");
+                document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
 
             }
 
 
         } else {
             alert("Number is Not Valid,Plz Cheak The Number You Enterd.");
+            document.getElementById("loadingg_slow_vercel").classList.add("hidd");
 
         }
 
@@ -553,6 +647,7 @@ return prev && prev.value !== '' ? prev : null;
 
         try {
 
+            document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
 
             const res = await fetch("http://192.168.0.103:3000/verify_otp", {
                 method: 'POST',
@@ -561,6 +656,7 @@ return prev && prev.value !== '' ? prev : null;
             });
             if (res.status == 200) {
                 let ress = await res.json()
+                document.getElementById("loadingg_slow_vercel").classList.add("hidd");
                
                 let doc = ress.doc;
             console.log(doc);
@@ -574,12 +670,16 @@ return prev && prev.value !== '' ? prev : null;
 
             }
             else {
+                document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
                 alert('Wrong otp');
                
             }
 
 
         } catch (err) {
+            document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
             console.error('Error:', err);
             alert('Error. in Post Request' + err);
             
@@ -626,6 +726,7 @@ window.getCookie = function (name) {
         window.loadd = async function () {
             try {
 
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
 
                 const res = await fetch("http://192.168.0.103:3000/ac_public_get_all", {
                     method: 'POST',
@@ -633,6 +734,8 @@ window.getCookie = function (name) {
                     body: JSON.stringify({ cname: cname }),
                 });
                 if (res.status === 200) {
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
                     let ress = await res.json()
                     console.log(ress);
                     document.getElementById("logoo").innerHTML=cname;
@@ -705,12 +808,16 @@ window.getCookie = function (name) {
 
                 }
                 else {
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
                     alert('Error. status !200');
 
                 }
 
 
             } catch (err) {
+                document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
                 console.error( err);
                 alert('Error. in Post Request' + err);
 

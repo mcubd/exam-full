@@ -275,12 +275,73 @@
             font-size: 12px;
         }
     </style>
+      <style>
+        .lds-ring {
+            display: inline-block;
+            position: fixed;
+            top :50vh;
+            left: 50vw;
+            width: 1.875rem;
+            height: 1.875rem
+        }
+        
+        .lds-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            border: .3rem solid #AEC6CF;
+            border-radius: 50%;
+            border-color: #AEC6CF transparent transparent;
+            width: 1.875rem;
+            height: 1.875rem;
+            animation: lds-ring 1.2s cubic-bezier(.5,0,.5,1) infinite
+        }
+        
+        .lds-ring div:nth-child(1) {
+            animation-delay: -.45s
+        }
+        
+        .lds-ring div:nth-child(2) {
+            animation-delay: -.3s
+        }
+        
+        .lds-ring div:nth-child(3) {
+            animation-delay: -.15s
+        }
+        
+        @keyframes lds-ring {
+            0% {
+                transform: rotate(0)
+            }
+        
+            to {
+                transform: rotate(360deg)
+            }
+        }
+            
+          </style>
+    <style>
+ .hidd{
+    display: none;
+ }
+    </style>
 
 </head>
 
 <body>
 
 
+
+    <div   id="loadingg_slow_vercel">
+        <div class="overlay active"  ></div>
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+
+    </div>
 
     <div id="log_box" class="loginn">
         <span>Sign Up To Create A Exam </span>
@@ -574,6 +635,7 @@ ${htmll}
         if (getCookie("boi_cuid") != undefined) {
 
             try {
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
                 const res = await fetch("http://192.168.0.103:3000/ac_get_all", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -582,6 +644,7 @@ ${htmll}
                 if (res.status === 200) {
                     let ress = await res.json()
                     // let ress = await res.json()
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
                     aas(ress)
                 }
                 else {
@@ -591,6 +654,7 @@ ${htmll}
             } catch (err) {
                 console.error('Error:', err);
                 alert('Error. ');
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
             }
 
 
@@ -698,6 +762,7 @@ ${htmll}
 
 
                 try {
+                    document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
                     const res = await fetch("http://192.168.0.103:3000/ac_create", {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -706,7 +771,7 @@ ${htmll}
                     if (res.status === 200) {
                         document.cookie = `boi_edtech=${val}; max-age=15552000; path=/`;
                         document.cookie = `boi_cycel=${cycel}; max-age=15552000; path=/`;
-
+                        document.getElementById("loadingg_slow_vercel").classList.add("hidd");
                         // let ress = await res.json()
                         setTimeout(() => {
                             window.location.href = './2.html';
@@ -723,6 +788,7 @@ ${htmll}
 
                 } catch (err) {
                     console.error('Error:', err);
+                    document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
                     alert('Error. Couldn`t Submit');
                 }
 

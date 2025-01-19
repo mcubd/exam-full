@@ -1,211 +1,128 @@
+ 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Popup Form</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #74ebd5, #9face6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #333;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+.lds-ring {
+    display: inline-block;
+    position: fixed;
+    top :50vh;
+    left: 50vw;
+    width: 1.875rem;
+    height: 1.875rem
+}
 
-        .popup {
-            display: none;
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    border: .3rem solid #595959;
+    border-radius: 50%;
+    border-color: #595959 transparent transparent;
+    width: 1.875rem;
+    height: 1.875rem;
+    animation: lds-ring 1.2s cubic-bezier(.5,0,.5,1) infinite
+}
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -.45s
+}
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -.3s
+}
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -.15s
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0)
+    }
+
+    to {
+        transform: rotate(360deg)
+    }
+}
+.overlay.active 
+         {
+            opacity: 1;
+            visibility: visible;
+        }
+        .overlay {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -45%);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%);
-            }
-        }
-
-        .popup h3 {
-            margin: 0 0 20px;
-            font-size: 20px;
-            font-weight: bold;
-            text-align: center;
-            color: #4a90e2;
-        }
-
-        .popup input {
+            top: 0;
+            left: 0;
             width: 100%;
-            margin: 10px 0 20px;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.3s ease;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
         }
-
-        .popup input:focus {
-            border-color: #4a90e2;
+  </style>
+    <style>
+        .lds-ring {
+            display: inline-block;
+            position: fixed;
+            top :50vh;
+            left: 50vw;
+            width: 1.875rem;
+            height: 1.875rem
         }
-
-        .popup button {
+        
+        .lds-ring div {
+            box-sizing: border-box;
             display: block;
-            width: 100%;
-            padding: 12px;
-            background: #4a90e2;
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
-
-        .popup button:hover {
-            background: #357ab8;
-        }
-
-        .popup .error {
-            color: #e74c3c;
-            font-size: 12px;
-            margin-top: -15px;
-            margin-bottom: 15px;
-        }
-
-        #close-popup {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-            font-size: 18px;
-            font-weight: bold;
-            color: #666;
-            cursor: pointer;
-            transition: color 0.3s ease;
+            border: .3rem solid #595959;
+            border-radius: 50%;
+            border-color: #595959 transparent transparent;
+            width: 1.875rem;
+            height: 1.875rem;
+            animation: lds-ring 1.2s cubic-bezier(.5,0,.5,1) infinite
         }
-
-        #close-popup:hover {
-            color: #e74c3c;
+        
+        .lds-ring div:nth-child(1) {
+            animation-delay: -.45s
         }
-
-        button.open-popup {
-            padding: 10px 20px;
-            border: none;
-            background: #4a90e2;
-            color: white;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s ease;
+        
+        .lds-ring div:nth-child(2) {
+            animation-delay: -.3s
         }
-
-        button.open-popup:hover {
-            background: #357ab8;
+        
+        .lds-ring div:nth-child(3) {
+            animation-delay: -.15s
         }
-    </style>
+        
+        @keyframes lds-ring {
+            0% {
+                transform: rotate(0)
+            }
+        
+            to {
+                transform: rotate(360deg)
+            }
+        }
+            
+          </style>
 </head>
+
 <body>
-    <button class="open-popup" onclick="showPopup()">Open Popup</button>
+  
+    <div class="overlay active"   id="overlay"></div>
+  <div class="lds-ring">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 
-    <div class="popup" id="popup">
-        <button id="close-popup" onclick="closePopup()">×</button>
-        <h3>Input Form</h3>
-        <div id="form-content">
-            <label for="duration">Duration (Number Only):</label>
-            <input type="text" id="duration" placeholder="Enter duration">
-            <div class="error" id="duration-error"></div>
-            <button onclick="nextStep()">Next</button>
-        </div>
-        <button id="publish" onclick="publishData()" style="display: none;">Publish</button>
-    </div>
-
-    <script>
-        let formData = {};
-
-        function showPopup() {
-            document.getElementById("popup").style.display = "block";
-        }
-
-        function closePopup() {
-            document.getElementById("popup").style.display = "none";
-        }
-
-        function nextStep() {
-            const durationInput = document.getElementById("duration");
-            const durationError = document.getElementById("duration-error");
-            const formContent = document.getElementById("form-content");
-
-            const durationValue = durationInput.value.trim();
-            if (!/^\d+$/.test(durationValue)) {
-                durationError.textContent = "Number only!";
-                return;
-            }
-
-            durationError.textContent = "";
-            formData.duration = parseInt(durationValue);
-
-            formContent.innerHTML = `
-                <label for="start-time">Start Time:</label>
-                <input type="time" id="start-time">
-                <label for="end-time">End Time:</label>
-                <input type="time" id="end-time">
-                <button onclick="nextQuestionStep()">Next</button>
-            `;
-        }
-
-        function nextQuestionStep() {
-            const startTime = document.getElementById("start-time").value;
-            const endTime = document.getElementById("end-time").value;
-
-            if (!startTime || !endTime) {
-                alert("Please fill in both start time and end time!");
-                return;
-            }
-
-            formData.startTime = startTime;
-            formData.endTime = endTime;
-
-            document.getElementById("form-content").innerHTML = `
-                <label for="per-question">Per Question Mark (Default 1):</label>
-                <input type="number" id="per-question" value="1" step="0.01">
-                <label for="negative-marking">Negative Marking (Default 0.00):</label>
-                <input type="number" id="negative-marking" value="0.00" step="0.01">
-            `;
-
-            document.getElementById("publish").style.display = "block";
-        }
-
-        function publishData() {
-            const perQuestion = document.getElementById("per-question").value;
-            const negativeMarking = document.getElementById("negative-marking").value;
-
-            formData.perQuestion = parseFloat(perQuestion);
-            formData.negativeMarking = parseFloat(negativeMarking);
-
-            console.log("Collected Data:", formData);
-            alert("Check the console for logged data!");
-
-            closePopup();
-        }
-    </script>
 </body>
+
 </html>

@@ -462,9 +462,100 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
 
         }
     </style>
+<style>
+    .lds-ring {
+        display: inline-block;
+        position: fixed;
+        top: 50vh;
+        left: 50vw;
+        width: 1.875rem;
+        height: 1.875rem
+    }
+
+    .lds-ring div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        border: .3rem solid #AEC6CF;
+        border-radius: 50%;
+        border-color: #AEC6CF transparent transparent;
+        width: 1.875rem;
+        height: 1.875rem;
+        animation: lds-ring 1.2s cubic-bezier(.5, 0, .5, 1) infinite
+    }
+
+    .lds-ring div:nth-child(1) {
+        animation-delay: -.45s
+    }
+
+    .lds-ring div:nth-child(2) {
+        animation-delay: -.3s
+    }
+
+    .lds-ring div:nth-child(3) {
+        animation-delay: -.15s
+    }
+
+    @keyframes lds-ring {
+        0% {
+            transform: rotate(0)
+        }
+
+        to {
+            transform: rotate(360deg)
+        }
+    }
+</style>
+<style>
+    .hidd {
+        display: none;
+    }
+
+    .overlay {
+        z-index: 2000;
+    }
+
+    .overlay2 {
+        z-index: 4000;
+    }
+
+    .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+     
+            transition: opacity 0.3s ease;
+
+            opacity: 1;
+            visibility: visible;
+        }
+
+    .popup {
+        z-index: 3000;
+    }
+
+    .lds-ring {
+        z-index: 5000;
+    }
+</style>
+
 </head>
 
 <body>
+    <div class="hidd" id="loadingg_slow_vercel">
+        <div class="overlay overlay2 active"></div>
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+
 
     <header class="header">
         <div id="logoo" onclick="homee()" class="logo"></div>
@@ -672,9 +763,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
             if (len == 11) {
 
                 if (document.getElementById('phone').value.startsWith("01")) {
+                    document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
 
                     let res = await restt_post("http://192.168.0.103:3000/gen_otp", { num: val })
                     if (res != false) {
+                document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
                         console.log(res);
                         document.cookie = `boi_unum=${val}; max-age=15552000; path=/`;
                         document.getElementById('mobile').classList.add("hidd")
@@ -685,12 +779,16 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
 
 
                 } else {
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
                     alert("Bangladeshi Number Plz");
 
                 }
 
 
             } else {
+                document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
                 alert("Number is Not Valid,Plz Cheak The Number You Enterd.");
 
             }
@@ -727,6 +825,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
 
             try {
 
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
 
                 const res = await fetch("http://192.168.0.103:3000/verify_otp", {
                     method: 'POST',
@@ -735,6 +834,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
                 });
                 if (res.status == 200) {
                     let ress = await res.json()
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
 
                     let doc = ress.doc;
                     console.log(doc);
@@ -748,12 +848,16 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
 
                 }
                 else {
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
                     alert('Wrong otp');
 
                 }
 
 
             } catch (err) {
+                document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
                 console.error('Error:', err);
                 alert('Error. in Post Request' + err);
 
@@ -802,6 +906,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
 
 
 
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
 
                 let urll = "http://192.168.0.103:3000/ac_test"
                 const res = await fetch(urll, {
@@ -810,6 +915,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
                     body: JSON.stringify({ "name": nValue, "id": idValue }),
                 });
                 if (res.status === 200) {
+                document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
                     let resss = await res.json()
                     let ress = resss.doc.data
                     console.log(resss.doc);
@@ -1049,10 +1156,14 @@ a
 
 
                 } else {
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
                     //alert('Failed to load');
                 }
 
             } catch (err) {
+                document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
                 console.error('Error:', err);
                 //  alert('Failed to load');
             }
@@ -1252,6 +1363,7 @@ a
 
 
 
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
 
                 const res = await fetch("http://192.168.0.103:3000/test_submit", {
                     method: 'POST',
@@ -1259,6 +1371,7 @@ a
                     body: JSON.stringify({ cname: nValue, exam_paper: window.id66, order: "1", abcd: "a", full_submit: fulll,q_id:idValue }),
                 });
                 if (res.status === 200) {
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
 
                     let ress = await res.json()
                     console.log(ress)
@@ -1277,7 +1390,7 @@ Swal.fire({
                 // Redirect on confirm button click
                 if (result.isConfirmed || result.isDismissed) {
                     let currentUrl = window.location.href;
-                    let newUrl = currentUrl.replace('test', 'lead');
+                    let newUrl = currentUrl.replace('test', 'result');
                     window.location.href = newUrl; // Replace with your URL
                 }
             })
@@ -1286,11 +1399,15 @@ Swal.fire({
 
                 }
                 else {
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
                     // alert('Error. Couldn`t Submit');
                 }
 
 
             } catch (err) {
+                document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
                 console.error('Error:', err);
                 // alert('Error. Couldn`t Submit');
             }finally {
