@@ -1029,14 +1029,14 @@
 
             <div id="abcdpart" class="abcdpart">
                 <div class="container_abcd">
-                    <div class="roww1">
+                    <div class="roww1_23">
                         <div id="abcd_a" class="item_abcd_23"><span class="txt_cen">a)</span> <span class="abcd_span"
                                 id="abcd_span1"></span> </div>
                         <div id="abcd_b" class="item_abcd_23"><span class="txt_cen">b)</span> <span class="abcd_span"
                                 id="abcd_span2"></span></div>
                     </div>
                     <br>
-                    <div class="roww2">
+                    <div class="roww2_23">
                         <div id="abcd_c" class="item_abcd_23"><span class="txt_cen">c)</span> <span class="abcd_span"
                                 id="abcd_span3"></span></div>
                         <div id="abcd_d" class="item_abcd_23"><span class="txt_cen">d)</span> <span class="abcd_span"
@@ -1244,6 +1244,11 @@
             document.getElementById("static1").innerHTML = ``;
             document.getElementById("temp1").style.display = "flex"
             document.getElementById("static1").style.display = "none"
+            document.getElementById("abcd_span1").innerHTML = ``;
+            document.getElementById("abcd_span2").innerHTML = ``;
+            document.getElementById("abcd_span3").innerHTML = ``;
+            document.getElementById("abcd_span4").innerHTML = ``;
+            document.getElementById("abcdpart").style.display = "none"
 
             mathField.latex(``);
 
@@ -1325,7 +1330,7 @@
 
 
 
-            window.active_input66="two";
+            window.active_input66 = "two";
             // Delete the element
             element.style.display = "none"
             static1.innerHTML = fullLatex;
@@ -1342,15 +1347,77 @@
         window.next2 = async function () {
 
 
-            const elements = document.querySelectorAll('.abcd_span');
+
             let isEmptyFound = false;
 
-            elements.forEach(element => {
-                if (element.innerHTML.trim() === '') {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            if (window.abcd_json.a != undefined) {
+                if (window.abcd_json.a == "") {
                     alert('Please fill All Feilds');
                     isEmptyFound = true;
+                    return false;
                 }
-            });
+            } else {
+                alert('Please fill All Feilds');
+                isEmptyFound = true;
+                return false;
+            }
+
+            if (window.abcd_json.b != undefined) {
+                if (window.abcd_json.b == "") {
+                    alert('Please fill All Feilds');
+                    isEmptyFound = true;
+                    return false;
+                }
+            } else {
+                alert('Please fill All Feilds');
+                isEmptyFound = true;
+                return false;
+            }
+            if (window.abcd_json.c != undefined) {
+                if (window.abcd_json.c == "") {
+                    alert('Please fill All Feilds');
+                    isEmptyFound = true;
+                    return false;
+                }
+            } else {
+                alert('Please fill All Feilds');
+                isEmptyFound = true;
+                return false;
+            }
+            if (window.abcd_json.d != undefined) {
+                if (window.abcd_json.d == "") {
+                    alert('Please fill All Feilds');
+                    isEmptyFound = true;
+                    return false;
+                }
+            } else {
+                alert('Please fill All Feilds');
+                isEmptyFound = true;
+                return false;
+            }
+
+
+
+
+
+
             if (!isEmptyFound) {
 
 
@@ -1418,6 +1485,13 @@
 
                     if (ress.doc_idd != undefined) {
                         window.docidd = ress.doc_idd
+                        let currentUrl = window.location.href;
+
+
+                        let newUrl0 = currentUrl.replace('2.html', 'edit.html');
+
+                        const newUrl = `${newUrl0}?n=${getCookie("boi_edtech")}&id=${ress.doc_idd}`;
+                        history.pushState(null, '', newUrl);
                         document.getElementById("pubb0").style.display = "block"
 
                     }
@@ -1434,6 +1508,33 @@
 
 
 
+
+
+
+
+                    let aa = 'a)';
+                    let bb = 'b)';
+                    let cc = 'c)';
+                    let dd = 'd)';
+                    if (ress.received.ans == 0) {
+                        aa = `
+                                <svg width="3.3848648mm" height="2.8857117mm" viewBox="0 0 3.3848648 2.8857117" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2yu" /> <g id="layer1" transform="translate(-103.67948,-139.56686)"> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="104.13364" y="141.8338" id="text63"><tspan id="tspan61" style="stroke-width:0.264583" x="104.13364" y="141.8338">a)</tspan></text> </g> <g id="layer2" transform="translate(-103.67948,-139.56686)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="96.69558" y="152.24422" id="text130" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128" style="fill:#228b22;stroke-width:0.437221" x="96.69558" y="152.24422">✔</tspan></text> </g> </svg>
+                                `
+                    } else if (ress.received.ans == 1) {
+                        bb = `
+                              <svg width="3.3848648mm" height="2.916748mm" viewBox="0 0 3.3848648 2.916748" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2j" /> <g id="layer2" transform="translate(-75.09263,-145.91418)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="69.866943" y="159.04059" id="text130-3" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128-6" style="fill:#228b22;stroke-width:0.437221" x="69.866943" y="159.04059">✔</tspan></text> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="75.580551" y="148.32719" id="text2197"><tspan id="tspan2195" style="stroke-width:0.264583" x="75.580551" y="148.32719">b)</tspan></text> </g> </svg>
+                            `
+                    } else if (ress.received.ans == 2) {
+                        cc = `
+                            <svg width="3.3848648mm" height="2.7957001mm" viewBox="0 0 3.3848648 2.7957001" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2" /> <g id="layer2" transform="translate(-64.115602,-140.52894)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="59.565052" y="153.17343" id="text130-35" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128-62" style="fill:#228b22;stroke-width:0.437221" x="59.565052" y="153.17343">✔</tspan></text> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="64.460152" y="142.79588" id="text2201"><tspan id="tspan2199" style="stroke-width:0.264583" x="64.460152" y="142.79588">c)</tspan></text> </g> </svg>
+                            
+                            `
+
+                    } else if (ress.received.ans == 3) {
+                        dd = `
+                            <svg width="3.3848648mm" height="2.9454651mm" viewBox="0 0 3.3848648 2.9454651" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2" /> <g id="layer1" transform="translate(-65.524248,-146.21946)"> <text xml:space="preserve" style="font-size:3.175px;fill:#000000;stroke-width:0.264583" x="65.764465" y="148.63246" id="text2205"><tspan id="tspan2203" style="stroke-width:0.264583" x="65.764465" y="148.63246">d)</tspan></text> </g> <g id="layer2" transform="translate(-65.524248,-146.21946)"> <text xml:space="preserve" style="font-size:5.24665px;fill:#228b22;stroke-width:0.437221" x="60.887066" y="159.39647" id="text130-7" transform="scale(1.0655351,0.93849559)"><tspan id="tspan128-5" style="fill:#228b22;stroke-width:0.437221" x="60.887066" y="159.39647">✔</tspan></text> </g> </svg>
+                            `
+                    }
 
 
 
@@ -1468,7 +1569,7 @@ d="M15.75 5H8.25C7.55964 5 7 5.58763 7 6.3125V19L12 15.5L17 19V6.3125C17 5.58763
 stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 </svg>
 
-<span   class="stati1">
+<span id="id-${ress.count_updated}"  class="stati1">
     ${ress.received.Q}
 </span>
 
@@ -1486,17 +1587,17 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 <div id="abcdpart_23" class="abcdpart_23">
 <div class="container_abcd_23">
 <div class="roww1_23">
-<div id="abcd_a_23" class="item_abcd_23"><span class="txt_cen">a)</span> <span
-    class="abcd_span_23" >${ress.received.a}</span> </div>
-<div id="abcd_b_23" class="item_abcd_23"><span class="txt_cen">b)</span> <span
-    class="abcd_span_23" >${ress.received.b}</span></div>
+<div id="abcd_a${ress.count_updated}" class="item_abcd_23"><span class="txt_cen">${aa}</span> <span
+    class="abcd_span_23" ></span> </div>
+<div id="abcd_b${ress.count_updated}" class="item_abcd_23"><span class="txt_cen">${bb}</span> <span
+    class="abcd_span_23" ></span></div>
 </div>
 <br>
 <div class="roww2_23">
-<div id="abcd_c_23" class="item_abcd_23"><span class="txt_cen">c)</span> <span
-    class="abcd_span_23" >${ress.received.c}</span></div>
-<div id="abcd_d_23" class="item_abcd_23"><span class="txt_cen">d)</span> <span
-    class="abcd_span_23" >${ress.received.d}</span></div>
+<div id="abcd_c${ress.count_updated}" class="item_abcd_23"><span class="txt_cen">${cc}</span> <span
+    class="abcd_span_23" ></span></div>
+<div id="abcd_d${ress.count_updated}" class="item_abcd_23"><span class="txt_cen">${dd}</span> <span
+    class="abcd_span_23" ></span></div>
 </div>
 </div>
 
@@ -1514,10 +1615,18 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 `);
 
 
+                    calc(ress.received.Q, `id-${ress.count_updated}`)
+
+
+                    abcd_add(ress.received, ress.count_updated)
+
+
                     window.scrollTo({
                         top: document.documentElement.scrollHeight,
                         behavior: 'smooth'
                     });
+                    window.abcd_json = { a: "", b: "", c: "", d: "" }
+                    window.active_input66 = "one";
 
 
                 } else {
@@ -1609,7 +1718,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     if (i[0] == "\\") {
 
                         document.getElementById(ele_id).insertAdjacentHTML("beforeend", `<span class="mathh">${i} </span>`);
-                      
+
 
                     }
                     else if (i.includes("^")) {
@@ -1639,20 +1748,20 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
                 arr66.forEach(i66 => {
 
-              
+
 
 
                     if (i66[0] == "\\") {
                         document.getElementById("preview").insertAdjacentHTML("beforeend", `<span class="mathh">${i66} </span>`);
-             
-                      
+
+
                     } else if (String(i66).includes(`^`)) {
-                   
+
                         document.getElementById("preview").insertAdjacentHTML("beforeend", `<span class="mathh">${i66} </span>`);
                     }
                     else {
                         document.getElementById("preview").insertAdjacentHTML("beforeend", " " + i66);
-                             }
+                    }
 
 
 
@@ -1681,16 +1790,7 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
         function slideBg(n) {
             const fullLatex2 = mathField2.latex().replace(/\\/g, '\\\\');
 
-            if (activee == 0) {
-                abcd_json.a = fullLatex2
 
-            } else if (activee == 1) {
-                abcd_json.b = fullLatex2
-            } else if (activee == 2) {
-                abcd_json.c = fullLatex2
-            } else if (activee == 3) {
-                abcd_json.d = fullLatex2
-            } else { }
             activee = n;
 
             const bgOffset = WIDTH * n;
@@ -1706,13 +1806,16 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
             if (activee == 0) {
                 calc(fullLatex2, "abcd_span1")
-
+                abcd_json.a = fullLatex2
             } else if (activee == 1) {
                 calc(fullLatex2, "abcd_span2")
+                abcd_json.b = fullLatex2
             } else if (activee == 2) {
                 calc(fullLatex2, "abcd_span3")
+                abcd_json.c = fullLatex2
             } else if (activee == 3) {
                 calc(fullLatex2, "abcd_span4")
+                abcd_json.d = fullLatex2
             } else { }
 
 
@@ -1726,7 +1829,22 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
 
+  
+
+
+
+
+
+
+
         window.abcd_add = async function (element, iri0) {
+
+
+            console.warn(iri0);
+            console.log(document.getElementById(`abcd_a${iri0 - 1}`));
+            console.log(document.getElementById(`abcd_a${iri0}`));
+
+
 
 
 
@@ -1739,69 +1857,54 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                     let idd;
                     if (iri == 0) {
                         input = element.a;
-                        idd = "abcd_span_a";
+                        idd = "abcd_a";
                     } else if (iri == 1) {
                         input = element.b;
-                        idd = "abcd_span_b";
+                        idd = "abcd_b";
                     } else if (iri == 2) {
                         input = element.c;
-                        idd = "abcd_span_c";
+                        idd = "abcd_c";
                     } else if (iri == 3) {
                         input = element.d;
-                        idd = "abcd_span_d";
+                        idd = "abcd_d";
+                        console.warn(`${idd}${iri0}`);
+
+
                     } else { }
 
 
 
-                    for (let i = 0; i < input.length; i++) {
-                        await new Promise((resolve1) => {
 
 
-                            let startIndex = i;
-                            while (i < input.length && input[i] !== '\\') {
-                                i++;
-                            }
-                            if (i > startIndex) {
-                                arr.push(input.slice(startIndex, i));
-                            }
-
-                            if (i < input.length && input[i] === '\\') {
-                                startIndex = i;
-                                i++;
-                                while (i < input.length && input[i] !== ' ' && input[i] !== '\\') {
-                                    i++;
-                                }
-                                arr.push(input.slice(startIndex, i));
-                            }
-
-                            while (i < input.length && input[i] === ' ') {
-                                i++;
-                            }
-                            console.log(`Doing async work for item: ${i}`);
-                            resolve1();
-
-                        });
-                    }
+                    let arr66 = await latex_arr(input);
 
 
 
                     // console.warn(arr);
 
-                    for (let i = 0; i < arr.length; i++) {
+                    for (let i = 0; i < arr66.length; i++) {
                         await new Promise((resolve2) => {
-                            let itemm = arr[i]
+                            let itemm = arr66[i]
 
 
-                            if (itemm != "\\") {
 
-                                if (itemm[0] != "\\") {
-                                    document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", " " + arr[i] + " ");
-                                }
-                                else {
-                                    document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr[i]} </span>`);
-                                }
 
+
+                            if (itemm[0] == "\\") {
+                                document.getElementById(`${idd}${iri0}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr66[i]} </span>`);
                             }
+                            else if (itemm.includes("^")) {
+                                document.getElementById(`${idd}${iri0}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr66[i]} </span>`);
+                            }
+                            else {
+                                document.getElementById(`${idd}${iri0}`).insertAdjacentHTML("beforeend", " " + arr66[i] + " ");
+                            }
+
+
+
+
+
+
                             resolve2();
                         });
                     };
@@ -1814,7 +1917,12 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
 
+            var elements = document.getElementsByClassName('mathh');
 
+
+            for (var ddx of elements) {
+                MQ.StaticMath(ddx);
+            }
 
 
 
@@ -2175,202 +2283,202 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
     </script>
 
 
-<div id="keyboard-container" class="keyboard-container">
-    <button id="keyboard-toggle" class="toggle-btn ">⌨️</button>
-    <div id="keyboard" class="keyboard visible">
-        <div id="key_roww_1" class="row">
-            <button onclick="hide_row(2)" class="darkk button">Sin</button>
-            <button class="button" onclick="inn('a^2')">a^2</button>
-            <button class="button" onclick="inn('a^b')">a^b</button>
-            <button class="button" onclick="inn('sqrt{x}')">
-                \sqrt{x}</button>
-            <button class="button" onclick="inn('sqrt[n]{x}')">\sqrt[n]{x}</button>
+    <div id="keyboard-container" class="keyboard-container">
+        <button id="keyboard-toggle" class="toggle-btn ">⌨️</button>
+        <div id="keyboard" class="keyboard visible">
+            <div id="key_roww_1" class="row">
+                <button onclick="hide_row(2)" class="darkk button">Sin</button>
+                <button class="button" onclick="inn('a^2')">a^2</button>
+                <button class="button" onclick="inn('a^b')">a^b</button>
+                <button class="button" onclick="inn('sqrt{x}')">
+                    \sqrt{x}</button>
+                <button class="button" onclick="inn('sqrt[n]{x}')">\sqrt[n]{x}</button>
 
 
 
 
-            <button class="button" onclick="inn('frac{d}{dx}')">\frac{d}{dx}</button>
-            <button class="button" onclick="inn('int_a^b')">\int_a^b</button>
-            <button class="button" onclick="inn('lim_{x\\to a}')">\lim_{x\to a}</button>
-            <button class="button" onclick="inn('frac{a}{b}')">\frac{a}{b}</button>
-            <button onclick="hide_row(3)" class="darkk button">\alpha</button>
+                <button class="button" onclick="inn('frac{d}{dx}')">\frac{d}{dx}</button>
+                <button class="button" onclick="inn('int_a^b')">\int_a^b</button>
+                <button class="button" onclick="inn('lim_{x\\to a}')">\lim_{x\to a}</button>
+                <button class="button" onclick="inn('frac{a}{b}')">\frac{a}{b}</button>
+                <button onclick="hide_row(3)" class="darkk button">\alpha</button>
 
 
-        </div>
-        <div id="key_roww_2" class="row">
+            </div>
+            <div id="key_roww_2" class="row">
 
-            <button onclick="hide_row(1)" class="button darkk">a^2</button>
-            <button class="button" onclick="inn('sin')">sin</button>
-            <button class="button" onclick="inn('cos')">cos</button>
+                <button onclick="hide_row(1)" class="button darkk">a^2</button>
+                <button class="button" onclick="inn('sin')">sin</button>
+                <button class="button" onclick="inn('cos')">cos</button>
 
-            <button class="button" onclick="inn('tan')">tan</button>
-            <button onclick="inn('sin1')">sin <sup>-1</sup></button>
-            <button onclick="inn('cos1')">cos <sup>-1</sup></button>
-            <button onclick="inn('tan1')">tan <sup>-1</sup></button>
-
-
-        </div>
-        <div id="key_roww_3" class="row">
-            <button onclick="hide_row(1)" class="button darkk">a^2</button>
-            <button class="button" onclick="inn('alpha')">\alpha</button>
-            <button class="button" onclick="inn('beta')">\beta</button>
-            <button class="button" onclick="inn('gamma')">\gamma</button>
-            <button class="button" onclick="inn('delta')">\delta</button>
-            <button class="button" onclick="inn('theta')">\theta</button>
-            <button class="button" onclick="inn('sigma')">\sigma</button>
-            <button class="button" onclick="inn('omega')">\omega</button>
-            <button class="button" onclick="inn('infty')">\infty</button>
-            <button class="button" onclick="inn('approx')">\approx</button>
-            <button class="button" onclick="inn('ne')">\ne</button>
-            <button class="button" onclick="inn('phi')">\phi</button>
-            <button class="button" onclick="inn('perp')">\perp</button>
+                <button class="button" onclick="inn('tan')">tan</button>
+                <button onclick="inn('sin1')">sin <sup>-1</sup></button>
+                <button onclick="inn('cos1')">cos <sup>-1</sup></button>
+                <button onclick="inn('tan1')">tan <sup>-1</sup></button>
 
 
+            </div>
+            <div id="key_roww_3" class="row">
+                <button onclick="hide_row(1)" class="button darkk">a^2</button>
+                <button class="button" onclick="inn('alpha')">\alpha</button>
+                <button class="button" onclick="inn('beta')">\beta</button>
+                <button class="button" onclick="inn('gamma')">\gamma</button>
+                <button class="button" onclick="inn('delta')">\delta</button>
+                <button class="button" onclick="inn('theta')">\theta</button>
+                <button class="button" onclick="inn('sigma')">\sigma</button>
+                <button class="button" onclick="inn('omega')">\omega</button>
+                <button class="button" onclick="inn('infty')">\infty</button>
+                <button class="button" onclick="inn('approx')">\approx</button>
+                <button class="button" onclick="inn('ne')">\ne</button>
+                <button class="button" onclick="inn('phi')">\phi</button>
+                <button class="button" onclick="inn('perp')">\perp</button>
 
+
+
+            </div>
         </div>
     </div>
-</div>
-<style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        overflow-x: hidden;
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
 
-    }
+        }
 
-    .keyboard-container {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        z-index: 1000;
-    }
+        .keyboard-container {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1000;
+        }
 
-    .toggle-btn {
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
-        cursor: pointer;
-        margin-bottom: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s;
-        margin-right: auto;
-        margin-left: 18px;
-    }
+        .toggle-btn {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            margin-right: auto;
+            margin-left: 18px;
+        }
 
-    .toggle-btn:active {
-        transform: scale(0.95);
-    }
+        .toggle-btn:active {
+            transform: scale(0.95);
+        }
 
-    .keyboard {
-        background: linear-gradient(45deg, #43fb1f, #2c89e7);
-        border-radius: 10px 10px 0 0;
-        padding: 20px;
-        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
-        transform: translateY(100%);
-        transition: transform 0.4s ease-in-out;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+        .keyboard {
+            background: linear-gradient(45deg, #43fb1f, #2c89e7);
+            border-radius: 10px 10px 0 0;
+            padding: 20px;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(100%);
+            transition: transform 0.4s ease-in-out;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    .keyboard.visible {
-        transform: translateY(0);
-    }
+        .keyboard.visible {
+            transform: translateY(0);
+        }
 
-    .row {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 10px;
-    }
+        .row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
 
-    .row button {
-        background-color: white;
-        color: #333;
-        border: none;
-        border-radius: 5px;
-        padding: 10px 15px;
-        margin: 0 5px;
-        font-size: 18px;
-        cursor: pointer;
-        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-        transition: transform 0.2s, background-color 0.3s;
-    }
+        .row button {
+            background-color: white;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin: 0 5px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, background-color 0.3s;
+        }
 
-    .row button:active {
-        transform: scale(0.9);
-        background-color: #ddd;
-    }
+        .row button:active {
+            transform: scale(0.9);
+            background-color: #ddd;
+        }
 
-    .row button:hover {
-        background-color: #f0f0f0;
-    }
+        .row button:hover {
+            background-color: #f0f0f0;
+        }
 
-    .darkk {
-        background-color: #CCCCCC !important;
-    }
+        .darkk {
+            background-color: #CCCCCC !important;
+        }
 
-    #key_roww_2,
-    #key_roww_3 {
-        display: none;
-    }
-</style>
-<script>
-    const toggleBtn = document.getElementById("keyboard-toggle");
-    const keyboard = document.getElementById("keyboard");
+        #key_roww_2,
+        #key_roww_3 {
+            display: none;
+        }
+    </style>
+    <script>
+        const toggleBtn = document.getElementById("keyboard-toggle");
+        const keyboard = document.getElementById("keyboard");
 
-    toggleBtn.addEventListener("click", () => {
-        keyboard.classList.toggle("visible");
-        keyboard.classList.toggle("hidd");
+        toggleBtn.addEventListener("click", () => {
+            keyboard.classList.toggle("visible");
+            keyboard.classList.toggle("hidd");
 
-        if (keyboard.style.display === 'none') {
-            keyboard.style.setProperty('display', 'block', 'important'); // Show the element
+            if (keyboard.style.display === 'none') {
+                keyboard.style.setProperty('display', 'block', 'important'); // Show the element
             } else {
                 keyboard.style.setProperty('display', 'none', 'important'); // Hide the element
             }
-    });
+        });
 
-    var elements = document.querySelectorAll('.button');
+        var elements = document.querySelectorAll('.button');
 
 
-    for (var ddx of elements) {
-        console.log(ddx);
+        for (var ddx of elements) {
+            console.log(ddx);
 
-        MQ.StaticMath(ddx);
-    }
+            MQ.StaticMath(ddx);
+        }
 
-    window.hide_row = async function (r) {
-        if (r == 1) {
+        window.hide_row = async function (r) {
+            if (r == 1) {
 
-            document.getElementById("key_roww_1").style.display = "block"
-            document.getElementById("key_roww_2").style.display = "none"
-            document.getElementById("key_roww_3").style.display = "none"
+                document.getElementById("key_roww_1").style.display = "block"
+                document.getElementById("key_roww_2").style.display = "none"
+                document.getElementById("key_roww_3").style.display = "none"
 
-        } else if (r == 2) {
+            } else if (r == 2) {
 
-            document.getElementById("key_roww_1").style.display = "none"
-            document.getElementById("key_roww_2").style.display = "block"
-            document.getElementById("key_roww_3").style.display = "none"
-        } else if (r == 3) {
+                document.getElementById("key_roww_1").style.display = "none"
+                document.getElementById("key_roww_2").style.display = "block"
+                document.getElementById("key_roww_3").style.display = "none"
+            } else if (r == 3) {
 
-            document.getElementById("key_roww_1").style.display = "none"
-            document.getElementById("key_roww_2").style.display = "none"
-            document.getElementById("key_roww_3").style.display = "block"
+                document.getElementById("key_roww_1").style.display = "none"
+                document.getElementById("key_roww_2").style.display = "none"
+                document.getElementById("key_roww_3").style.display = "block"
+            }
+
+
         }
 
 
-    }
-
-
-</script>
-<script src="./key.js"></script>
+    </script>
+    <script src="./key.js"></script>
 </body>
 
 </html>

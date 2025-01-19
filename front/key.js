@@ -8,7 +8,7 @@ window.inn = async function (e) {
     }
 
 
-
+    mm66.focus();
 
     console.log(e);
     if (e == "a^2") {
