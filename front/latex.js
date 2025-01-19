@@ -1,6 +1,6 @@
 // import balanced from 'balanced-match';
 
-window.parseMathExpressions = async function(input) {
+window.parseMathExpressions = async function (input) {
     const result = [];
     let pos = 0;
     const len = input.length;
@@ -31,12 +31,17 @@ window.parseMathExpressions = async function(input) {
 
             // Process numerator and denominator using balanced match
             const numeratorMatch = balanced("{", "}", input.slice(pos));
-            fraction += `{${numeratorMatch.body}}`;
+            fraction += `{${numeratorMatch.body.replace(/\\\\/g, '\\')}}`;
             pos += numeratorMatch.end;
 
             const denominatorMatch = balanced("{", "}", input.slice(pos));
-            fraction += `{${denominatorMatch.body}}`;
+            
             pos += denominatorMatch.end;
+            console.log("----------------------------------------------------------------------------------------");
+            const output = denominatorMatch.body.replace(/\\\\/g, '\\');
+            fraction += `{${output}}`;
+            console.log("----------------------------------------------------------------------------------------");
+
 
 
             pos += 1
@@ -51,7 +56,7 @@ window.parseMathExpressions = async function(input) {
 
             // Process numerator and denominator using balanced match
             const numeratorMatch = balanced("{", "}", input.slice(pos));
-            fraction += `{${numeratorMatch.body}}`;
+            fraction += `{${numeratorMatch.body.replace(/\\\\/g, '\\')}}`;
             pos += numeratorMatch.end;
 
 
@@ -61,12 +66,12 @@ window.parseMathExpressions = async function(input) {
 
 
                 const denominatorMatch = balanced("{", "}", input.slice(pos));
-                fraction += `{${denominatorMatch.body}}`;
+                fraction += `^{${denominatorMatch.body.replace(/\\\\/g, '\\')}}`;
                 pos += denominatorMatch.end;
                 pos += 1
             } else {
 
-                fraction += `${input[pos + 1]}${input[pos + 2]}`
+                fraction += `${input[pos + 1].replace(/\\\\/g, '\\')}${input[pos + 2].replace(/\\\\/g, '\\')}`
                 pos += 3
 
             }
@@ -87,12 +92,12 @@ window.parseMathExpressions = async function(input) {
                 const sqrtMatch = balanced("{", "}", input.slice(pos));
 
 
-                sqrt += `${sqrtMatch.pre}{${sqrtMatch.body}}`;
+                sqrt += `${sqrtMatch.pre}{${sqrtMatch.body.replace(/\\\\/g, '\\')}}`;
                 pos += sqrtMatch.end;
 
             } else {
 
-                sqrt += `${input[pos]}${input[pos + 1]}${input[pos + 2]}`
+                sqrt += `${input[pos].replace(/\\\\/g, '\\')}${input[pos + 1].replace(/\\\\/g, '\\')}${input[pos + 2].replace(/\\\\/g, '\\')}`
                 pos += 3
 
             }
@@ -108,13 +113,13 @@ window.parseMathExpressions = async function(input) {
 
             // Process numerator and denominator using balanced match
             const numeratorMatch = balanced("[", "]", input.slice(pos));
-            sqrt += `${numeratorMatch.body}]`;
-            console.log(numeratorMatch.body);
+            sqrt += `${numeratorMatch.body.replace(/\\\\/g, '\\')}]`;
+            
 
             pos += numeratorMatch.end;
 
             const denominatorMatch = balanced("{", "}", input.slice(pos));
-            sqrt += `{${denominatorMatch.body}}`;
+            sqrt += `{${denominatorMatch.body.replace(/\\\\/g, '\\')}}`;
             pos += denominatorMatch.end;
 
             pos += 1
@@ -128,7 +133,7 @@ window.parseMathExpressions = async function(input) {
 
             // Process the argument inside the curly braces
             const sqrtMatch = balanced("{", "}", input.slice(pos));
-            sqrt += `{${sqrtMatch.body}}`;
+            sqrt += `{${sqrtMatch.body.replace(/\\\\/g, '\\')}}`;
             pos += sqrtMatch.end;
             pos += 1
             result.push(sqrt);
@@ -141,10 +146,57 @@ window.parseMathExpressions = async function(input) {
 
             // Process the argument inside the curly braces
             const sqrtMatch = balanced("{", "}", input.slice(pos));
-            sqrt += `{${sqrtMatch.body}}`;
+            sqrt += `{${sqrtMatch.body.replace(/\\\\/g, '\\')}}`;
             pos += sqrtMatch.end;
             pos += 1
             result.push(sqrt);
+        }
+        else if (input.startsWith("\\alpha", pos)) {
+            result.push("\\alpha");
+            pos += 6;
+        }
+        else if (input.startsWith("\\beta", pos)) {
+            result.push("\\beta");
+            pos += 5;
+        } else if (input.startsWith("\\gamma", pos)) {
+            result.push("\\gamma");
+            pos += 6;
+        }
+        else if (input.startsWith("\\delta", pos)) {
+            result.push("\\delta");
+            pos += 6;
+        }
+        else if (input.startsWith("\\theta", pos)) {
+            result.push("\\theta");
+            pos += 6;
+        }
+        else if (input.startsWith("\\sigma", pos)) {
+            result.push("\\sigma");
+            pos += 6;
+        }
+        else if (input.startsWith("\\omega", pos)) {
+            result.push("\\omega");
+            pos += 6;
+        }
+        else if (input.startsWith("\\infty", pos)) {
+            result.push("\\infty");
+            pos += 6;
+        }
+        else if (input.startsWith("\\approx", pos)) {
+            result.push("\\approx");
+            pos += 7;
+        }
+        else if (input.startsWith("\\ne", pos)) {
+            result.push("\\ne");
+            pos += 3;
+        }
+        else if (input.startsWith("\\phi", pos)) {
+            result.push("\\phi");
+            pos += 4;
+        }
+        else if (input.startsWith("\\perp", pos)) {
+            result.push("\\perp");
+            pos += 5;
         }
         // Handle spaces after '\\'
         else if (input[pos + 1] === ' ') {
@@ -166,8 +218,12 @@ const sentence = "Here is an example \\ of something \\frac{g}{\\frac{df}{ff}\\ 
 window.latex_arr = async function (latexx) {
 
     let aaa = await parseMathExpressions(latexx);
-    
-    
+
+
+
+
+
+
 
     return newArr = await aaa.flatMap(item => {
         if (!item.startsWith('\\') && item.includes("^")) {
@@ -220,7 +276,7 @@ window.latex_arr = async function (latexx) {
         return [item];
     });
 }
- 
+
 
 
 

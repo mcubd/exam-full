@@ -1131,8 +1131,8 @@
     <script type="module">
         import balanced from 'https://cdn.jsdelivr.net/npm/balanced-match@3.0.1/index.js';
         window.balanced = balanced;
-    
-      </script>
+
+    </script>
 
     <script src="./latex.js"></script>
 
@@ -1571,17 +1571,13 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                 }
             }
 
-            // Output
+
             console.log(input);
-
-            // console.log("Result:", arr);
-
-
-
 
 
 
             console.log(await latex_arr(input));
+            let arr66 = await latex_arr(input);
 
 
 
@@ -1589,15 +1585,6 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
 
 
 
-
-
-
-
-
-
-
-
-            const latexString = input
 
 
 
@@ -1616,22 +1603,25 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
                 document.getElementById(ele_id).innerHTML = ``
                 document.getElementById(ele_id).style.display = `block`
 
-                arr.forEach(i => {
+                arr66.forEach(i => {
 
-                    if (i != "\\") {
-                        if (i[0] != "\\") {
 
-                            document.getElementById(ele_id).insertAdjacentHTML("beforeend", " " + i + " ");
+                    if (i[0] != "\\") {
 
-                        }
-                        else {
-
-                            document.getElementById(ele_id).insertAdjacentHTML("beforeend", `<span class="mathh">${i} </span>`);
-
-                        }
-
+                        document.getElementById(ele_id).insertAdjacentHTML("beforeend", " " + i + " ");
 
                     }
+                    else if (i.includes("^")) {
+                        document.getElementById(ele_id).insertAdjacentHTML("beforeend", `<span class="mathh">${i} </span>`);
+
+                    }
+                    else {
+
+                        document.getElementById(ele_id).insertAdjacentHTML("beforeend", `<span class="mathh">${i} </span>`);
+
+                    }
+
+
 
                 });
                 var elements = document.getElementsByClassName('mathh');
@@ -1646,19 +1636,23 @@ stroke="grey" stroke-linecap="round" stroke-linejoin="round" />
             else {
                 document.getElementById("preview").innerHTML = ``
 
-                arr.forEach(i => {
+
+                arr66.forEach(i66 => {
+
+                    console.warn( i66);
 
 
+                    if (i66[0] != "\\") {
 
 
-                    if (i.startsWith("*!%)")) {
-                        // Handle normal text: Remove the prefix and insert it as normal text
-                        const normalText = i.substring(4); // Remove "*!%)" prefix
-
-                        document.getElementById("preview").insertAdjacentHTML("beforeend", " " + normalText);
-                    } else {
+                        document.getElementById("preview").insertAdjacentHTML("beforeend", " " + i66);
+                    } else if (String(i66).includes(`^`)) {
+                        console.warn(i66);
+                        document.getElementById("preview").insertAdjacentHTML("beforeend", `<span class="mathh">${i66} </span>`);
+                    }
+                    else {
                         // Handle math text
-                        document.getElementById("preview").insertAdjacentHTML("beforeend", `<span class="mathh">${i} </span>`);
+                        document.getElementById("preview").insertAdjacentHTML("beforeend", `<span class="mathh">${i66} </span>`);
                     }
 
 

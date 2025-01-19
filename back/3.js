@@ -18,14 +18,14 @@ function parseMathExpressions(input) {
     // Push the text before '\\'
     if (nextBackslash > pos) {
       result.push(input.slice(pos, nextBackslash));
-       
-      
+
+
     }
 
     pos = nextBackslash;
 
     // Check for '\\frac'  
-    if (input.startsWith("\\frac", pos)) {        
+    if (input.startsWith("\\frac", pos)) {
       let fraction = "\\frac";
       pos += 5; // Skip "\\frac" 
 
@@ -38,8 +38,8 @@ function parseMathExpressions(input) {
       fraction += `{${denominatorMatch.body}}`;
       pos += denominatorMatch.end;
 
-     
-      pos +=1
+
+      pos += 1
       result.push(fraction);
     }
     // Check for '\\int_{ }^{ } or \\int_{ }^h'  
@@ -63,14 +63,14 @@ function parseMathExpressions(input) {
         const denominatorMatch = balanced("{", "}", input.slice(pos));
         fraction += `{${denominatorMatch.body}}`;
         pos += denominatorMatch.end;
-        pos +=1
+        pos += 1
       } else {
 
         fraction += `${input[pos + 1]}${input[pos + 2]}`
         pos += 3
 
       }
-      
+
       result.push(fraction);
     }
     // Check for '\\int_c^{crr} or \\int_c^h'
@@ -96,31 +96,31 @@ function parseMathExpressions(input) {
         pos += 3
 
       }
-      pos +=1
+      pos += 1
       result.push(sqrt);
     }
- 
-       // Check for '\\sqrt[3]{2}
-       else if (input.startsWith("\\sqrt[", pos)) {
-        let sqrt = "\\sqrt[";
-        pos += 5;
-  
-  
-        // Process numerator and denominator using balanced match
-        const numeratorMatch = balanced("[", "]", input.slice(pos));
-        sqrt += `${numeratorMatch.body}]`;
-        console.log(numeratorMatch.body);
-  
-        pos += numeratorMatch.end;
-  
-        const denominatorMatch = balanced("{", "}", input.slice(pos));
-        sqrt += `{${denominatorMatch.body}}`;
-        pos += denominatorMatch.end;
-  
-        pos +=1
-  
-        result.push(sqrt);
-      }
+
+    // Check for '\\sqrt[3]{2}
+    else if (input.startsWith("\\sqrt[", pos)) {
+      let sqrt = "\\sqrt[";
+      pos += 5;
+
+
+      // Process numerator and denominator using balanced match
+      const numeratorMatch = balanced("[", "]", input.slice(pos));
+      sqrt += `${numeratorMatch.body}]`;
+      console.log(numeratorMatch.body);
+
+      pos += numeratorMatch.end;
+
+      const denominatorMatch = balanced("{", "}", input.slice(pos));
+      sqrt += `{${denominatorMatch.body}}`;
+      pos += denominatorMatch.end;
+
+      pos += 1
+
+      result.push(sqrt);
+    }
     // Check for '\\sqrt{2}'
     else if (input.startsWith("\\sqrt", pos)) {
       let sqrt = "\\sqrt";
@@ -130,10 +130,10 @@ function parseMathExpressions(input) {
       const sqrtMatch = balanced("{", "}", input.slice(pos));
       sqrt += `{${sqrtMatch.body}}`;
       pos += sqrtMatch.end;
-      pos +=1
+      pos += 1
       result.push(sqrt);
     }
- 
+
     // Check for '\\lim_'
     else if (input.startsWith("\\lim_", pos)) {
       let sqrt = "\\lim_";
@@ -143,9 +143,59 @@ function parseMathExpressions(input) {
       const sqrtMatch = balanced("{", "}", input.slice(pos));
       sqrt += `{${sqrtMatch.body}}`;
       pos += sqrtMatch.end;
-      pos +=1
+      pos += 1
       result.push(sqrt);
     }
+   
+    else if (input.startsWith("\\alpha", pos)) {
+      result.push("\\alpha");
+      pos += 6;  
+    }
+    else if (input.startsWith("\\beta", pos)) {
+      result.push("\\beta");
+      pos += 5;  
+    }  else if (input.startsWith("\\gamma", pos)) {
+      result.push("\\gamma");
+      pos += 6;  
+    }
+    else if (input.startsWith("\\delta", pos)) {
+      result.push("\\delta");
+      pos += 6;  
+    }
+    else if (input.startsWith("\\theta", pos)) {
+      result.push("\\theta");
+      pos += 6;  
+    }
+    else if (input.startsWith("\\sigma", pos)) {
+      result.push("\\sigma");
+      pos += 6;  
+    }
+    else if (input.startsWith("\\omega", pos)) {
+      result.push("\\omega");
+      pos += 6;  
+    }
+    else if (input.startsWith("\\infty", pos)) {
+      result.push("\\infty");
+      pos += 6;  
+    }
+    else if (input.startsWith("\\approx", pos)) {
+      result.push("\\approx");
+      pos += 7;  
+    }
+    else if (input.startsWith("\\ne", pos)) {
+      result.push("\\ne");
+      pos += 3;  
+    }
+    else if (input.startsWith("\\phi", pos)) {
+      result.push("\\phi");
+      pos += 4;  
+    }
+    else if (input.startsWith("\\perp", pos)) {
+      result.push("\\perp");
+      pos += 5;  
+    }
+    
+
     // Handle spaces after '\\'
     else if (input[pos + 1] === ' ') {
       result.push(" ");
@@ -159,8 +209,9 @@ function parseMathExpressions(input) {
 }
 
 // Example usage
-const sentence = "Here is an example \\ of something \\frac{g}{\\frac{df}{ff}\\ ff\\ \\frac{ffd}{r}} and a square root \\sqrt{5868458} who \\lim_{x^2\\to\\frac{a}{w}} andd \\int_{vc}^{c^2v} orrr \\int_b^{c^2v} \\int_b^k jj \\int_{bf}^dkk   kk t^3 y^{uu} b \\sqrt[j3]{f2} after.";
-
+const sentence0 = "Here is an example \\ of something \\frac{g}{\\frac{df}{ff}\\ ff\\ \\frac{ffd}{r}} and a square root \\sqrt{5868458} who \\lim_{x^2\\to\\frac{a}{w}} andd \\int_{vc}^{c^2v} orrr \\int_b^{c^2v} \\int_b^k jj \\int_{bf}^dkk   kk t^3 y^{uu} b \\sqrt[j3]{f2} gg \\alpha after.";
+const sentence =`g\\ \\frac{5}{\\frac{4}{4}}
+`
 let aaa = parseMathExpressions(sentence);
 
 
@@ -185,12 +236,12 @@ const newArr = aaa.flatMap(item => {
 
       i = caretIndex;
 
-   
+
       const nextChar = item[i + 1];
 
       if (nextChar === '{') {
         const bracketMatch = balanced('{', '}', item.slice(i + 1));
-    
+
         if (bracketMatch) {
           i += 1;
           arr66.push(`${item.slice(caretIndex - 1, caretIndex + 1)}{${bracketMatch.body}}`)
@@ -217,7 +268,10 @@ const newArr = aaa.flatMap(item => {
 
 console.log(aaa);
 
-console.log(newArr);
 
+
+if ("v^2".includes(`^`)) {
+  console.warn(88);
  
- 
+}
+
