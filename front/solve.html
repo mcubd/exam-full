@@ -126,7 +126,7 @@
             flex-direction: row;
             /* margin-top: 20px; */
             width: 30%;
-
+            align-items: center;
 
 
 
@@ -282,51 +282,47 @@
             border-radius: 10px;
         }
     </style>
-<!-- header footer style -->
-<style>
-    .header {
-               display: flex;
-               justify-content: space-between;
-               align-items: center;
-               background-color: #2c3e50;
-               color: white;
-               padding: 1rem 2rem;
-               box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-           }
-   
-           .header .logo {
-               font-size: 2rem;
-               font-weight: bold;
-               color: #ecf0f1;
-           }
-   
-           .header .company-name {
-               font-size: 1.5rem;
-               color: #ecf0f1;
-               text-transform: uppercase;
-           }
-   
-           .footer {
-               background-color: #34495e;
-               color: white;
-               text-align: center;
-               padding: 1.5rem 0;
-               margin-top: 4rem;
-          
-           }
-   
-           .footer p {
-               font-size: 1rem;
-           }
-   
-   
-   </style>
+    <!-- header footer style -->
+    <style>
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ecf0f1;
+        }
+
+        .header .company-name {
+            font-size: 1.5rem;
+            color: #ecf0f1;
+            text-transform: uppercase;
+        }
+
+        .footer {
+            background-color: #34495e;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 4rem;
+
+        }
+
+        .footer p {
+            font-size: 1rem;
+        }
+    </style>
 
 
     <!-- login style 2 style tag below -->
     <style>
-   
-
         .mobile-input {
             display: flex;
             align-items: center;
@@ -442,96 +438,96 @@
             border-radius: 8px;
             color: white;
         }
-    
-        .uname{
+
+        .uname {
             margin-left: auto;
             color: white;
             font-size: 28px;
             margin-right: 28px;
             font-family: sans-serif;
-             
+
         }
     </style>
 
-<style>
-    .lds-ring {
-        display: inline-block;
-        position: fixed;
-        top: 50vh;
-        left: 50vw;
-        width: 1.875rem;
-        height: 1.875rem
-    }
-
-    .lds-ring div {
-        box-sizing: border-box;
-        display: block;
-        position: absolute;
-        border: .3rem solid #AEC6CF;
-        border-radius: 50%;
-        border-color: #AEC6CF transparent transparent;
-        width: 1.875rem;
-        height: 1.875rem;
-        animation: lds-ring 1.2s cubic-bezier(.5, 0, .5, 1) infinite
-    }
-
-    .lds-ring div:nth-child(1) {
-        animation-delay: -.45s
-    }
-
-    .lds-ring div:nth-child(2) {
-        animation-delay: -.3s
-    }
-
-    .lds-ring div:nth-child(3) {
-        animation-delay: -.15s
-    }
-
-    @keyframes lds-ring {
-        0% {
-            transform: rotate(0)
+    <style>
+        .lds-ring {
+            display: inline-block;
+            position: fixed;
+            top: 50vh;
+            left: 50vw;
+            width: 1.875rem;
+            height: 1.875rem
         }
 
-        to {
-            transform: rotate(360deg)
+        .lds-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            border: .3rem solid #AEC6CF;
+            border-radius: 50%;
+            border-color: #AEC6CF transparent transparent;
+            width: 1.875rem;
+            height: 1.875rem;
+            animation: lds-ring 1.2s cubic-bezier(.5, 0, .5, 1) infinite
         }
-    }
-</style>
-<style>
-    .hidd {
-        display: none;
-    }
 
-    .overlay {
-        z-index: 2000;
-    }
+        .lds-ring div:nth-child(1) {
+            animation-delay: -.45s
+        }
 
-    .overlay2 {
-        z-index: 4000;
-    }
+        .lds-ring div:nth-child(2) {
+            animation-delay: -.3s
+        }
 
-    .overlay {
+        .lds-ring div:nth-child(3) {
+            animation-delay: -.15s
+        }
+
+        @keyframes lds-ring {
+            0% {
+                transform: rotate(0)
+            }
+
+            to {
+                transform: rotate(360deg)
+            }
+        }
+    </style>
+    <style>
+        .hidd {
+            display: none;
+        }
+
+        .overlay {
+            z-index: 2000;
+        }
+
+        .overlay2 {
+            z-index: 4000;
+        }
+
+        .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
-     
+
             transition: opacity 0.3s ease;
 
             opacity: 1;
             visibility: visible;
         }
 
-    .popup {
-        z-index: 3000;
-    }
+        .popup {
+            z-index: 3000;
+        }
 
-    .lds-ring {
-        z-index: 5000;
-    }
-</style>
+        .lds-ring {
+            z-index: 5000;
+        }
+    </style>
 </head>
 
 <body>
@@ -592,23 +588,31 @@
 
     <div id="restt">
 
-   
-    <div id="a"></div>
 
-    <div class="title0">
-        <p id="testt"> </p>
+        <div id="a"></div>
+
+        <div class="title0">
+            <p id="testt"> </p>
+        </div>
+
+        <div id="parent" class="parent">
+
+
+        </div>
+
     </div>
-
-    <div id="parent" class="parent">
-
-
-    </div>
-
-</div>
 
     <footer class="footer">
         <p>&copy; 2025 Acs Exam Portal. All rights reserved.</p>
     </footer>
+
+    <script type="module">
+        import balanced from 'https://cdn.jsdelivr.net/npm/balanced-match@3.0.1/index.js';
+        window.balanced = balanced;
+
+    </script>
+
+    <script src="./latex.js"></script>
 
     <!-- login 2 scripts below -->
     <script>
@@ -633,232 +637,232 @@
 
         function moveFocus(currentInput, nextInputId) {
 
-if (currentInput.value.length === 1 && nextInputId) {
-    document.getElementById(nextInputId).focus();
-}
-let allLengthOne = true;
+            if (currentInput.value.length === 1 && nextInputId) {
+                document.getElementById(nextInputId).focus();
+            }
+            let allLengthOne = true;
 
-let clss = document.getElementsByClassName("otp-input")
-for (let el of clss) {
-    console.log(el.value.length);
-    if (el.value.length != 1) {
-        allLengthOne = false;
-    }
-}
-let pnext = document.getElementById("pnext2")
-console.log();
+            let clss = document.getElementsByClassName("otp-input")
+            for (let el of clss) {
+                console.log(el.value.length);
+                if (el.value.length != 1) {
+                    allLengthOne = false;
+                }
+            }
+            let pnext = document.getElementById("pnext2")
+            console.log();
 
-if (allLengthOne) {
+            if (allLengthOne) {
 
-    pnext.style.backgroundColor = "#5468FF"
-
-
-} else {
+                pnext.style.backgroundColor = "#5468FF"
 
 
-    pnext.style.backgroundColor = "#CECFD8"
-
-}
+            } else {
 
 
-
-
-
-
-}
-
-// Enable back navigation with deletion
-const inputs = document.querySelectorAll('.otp-input');
-inputs.forEach(input => {
-input.addEventListener('keydown', function (event) {
-    if (event.key === 'Backspace' && !input.value) {
-        const previousInput = getPreviousNonEmptyInput(input);
-        if (previousInput) {
-            previousInput.focus();
-            previousInput.value = '';  // Clear the previous non-empty input
-        }
-    }
-});
-});
-
-function getPreviousNonEmptyInput(input) {
-let prev = input.previousElementSibling;
-while (prev && !prev.classList.contains('otp-input')) {
-    prev = prev.previousElementSibling;
-}
-while (prev && prev.value === '') {
-    prev = prev.previousElementSibling;
-}
-return prev && prev.value !== '' ? prev : null;
-}
-    </script>
-
-<script>
-    window.getCookie = function (name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-    }
-
-    window.restt_post = async function (uri, obj) {
-        try {
-
-
-            const res = await fetch(uri, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(obj),
-            });
-            if (res.status === 200) {
-                let ress = await res.json()
-                return ress;
-
+                pnext.style.backgroundColor = "#CECFD8"
 
             }
-            else {
-                alert('Error. status !200');
+
+
+
+
+
+
+        }
+
+        // Enable back navigation with deletion
+        const inputs = document.querySelectorAll('.otp-input');
+        inputs.forEach(input => {
+            input.addEventListener('keydown', function (event) {
+                if (event.key === 'Backspace' && !input.value) {
+                    const previousInput = getPreviousNonEmptyInput(input);
+                    if (previousInput) {
+                        previousInput.focus();
+                        previousInput.value = '';  // Clear the previous non-empty input
+                    }
+                }
+            });
+        });
+
+        function getPreviousNonEmptyInput(input) {
+            let prev = input.previousElementSibling;
+            while (prev && !prev.classList.contains('otp-input')) {
+                prev = prev.previousElementSibling;
+            }
+            while (prev && prev.value === '') {
+                prev = prev.previousElementSibling;
+            }
+            return prev && prev.value !== '' ? prev : null;
+        }
+    </script>
+
+    <script>
+        window.getCookie = function (name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        window.restt_post = async function (uri, obj) {
+            try {
+
+
+                const res = await fetch(uri, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(obj),
+                });
+                if (res.status === 200) {
+                    let ress = await res.json()
+                    return ress;
+
+
+                }
+                else {
+                    alert('Error. status !200');
+                    return false;
+                }
+
+
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Error. in Post Request' + err);
                 return false;
             }
 
 
-        } catch (err) {
-            console.error('Error:', err);
-            alert('Error. in Post Request' + err);
-            return false;
         }
 
+        if (getCookie("boi_uuid") == undefined) {
+            document.getElementById("login").classList.remove("hidd")
+            document.getElementById("restt").classList.add("hidd")
+        } else {
 
-    }
+            document.getElementById("logoo1").innerHTML = getCookie("boi_uname")
 
-    if (getCookie("boi_uuid") == undefined) {
-        document.getElementById("login").classList.remove("hidd")
-        document.getElementById("restt").classList.add("hidd")
-    }else{
-        
-        document.getElementById("logoo1").innerHTML=getCookie("boi_uname")
-      
-    }
+        }
 
-    window.get_otp = async function () {
-        let val = document.getElementById('phone').value;
-        let len = val.length
-        if (len == 11) {
+        window.get_otp = async function () {
+            let val = document.getElementById('phone').value;
+            let len = val.length
+            if (len == 11) {
 
-            if (document.getElementById('phone').value.startsWith("01")) {
-                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
+                if (document.getElementById('phone').value.startsWith("01")) {
+                    document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
 
-                let res = await restt_post("http://192.168.0.103:3000/gen_otp", { num: val })
-                if (res != false) {
+                    let res = await restt_post("http://192.168.0.103:3000/gen_otp", { num: val })
+                    if (res != false) {
+                        document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
+                        console.log(res);
+                        document.cookie = `boi_unum=${val}; max-age=15552000; path=/`;
+                        document.getElementById('mobile').classList.add("hidd")
+                        document.getElementById('otp').classList.remove("hidd")
+
+                    }
+
+
+
+                } else {
                     document.getElementById("loadingg_slow_vercel").classList.add("hidd");
 
-                    console.log(res);
-                    document.cookie = `boi_unum=${val}; max-age=15552000; path=/`;
-                    document.getElementById('mobile').classList.add("hidd")
-                    document.getElementById('otp').classList.remove("hidd")
+                    alert("Bangladeshi Number Plz");
 
                 }
-
 
 
             } else {
                 document.getElementById("loadingg_slow_vercel").classList.add("hidd");
 
-                alert("Bangladeshi Number Plz");
+                alert("Number is Not Valid,Plz Cheak The Number You Enterd.");
 
             }
 
-
-        } else {
-            document.getElementById("loadingg_slow_vercel").classList.add("hidd");
-
-            alert("Number is Not Valid,Plz Cheak The Number You Enterd.");
-
         }
 
-    }
 
-
-    window.verify_otp = async function () {
-        let otp = '';
+        window.verify_otp = async function () {
+            let otp = '';
 
 
 
 
 
-        let allLengthOne = true;
+            let allLengthOne = true;
 
-        let clss = document.getElementsByClassName("otp-input")
-        for (let el of clss) {
+            let clss = document.getElementsByClassName("otp-input")
+            for (let el of clss) {
 
-            if (el.value.length != 1) {
-                allLengthOne = false;
+                if (el.value.length != 1) {
+                    allLengthOne = false;
+                }
             }
-        }
 
-        if (!allLengthOne) { return false; }
+            if (!allLengthOne) { return false; }
 
-        console.log("verifying...");
-        document.querySelectorAll('.otp-input').forEach(input => {
-            otp += input.value; // Concatenate all values
-        });
-        let unum = getCookie("boi_unum")
-
-       
-
-        try {
-
-            document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
-
-            const res = await fetch("http://192.168.0.103:3000/verify_otp", {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({num: unum, otp: otp}),
+            console.log("verifying...");
+            document.querySelectorAll('.otp-input').forEach(input => {
+                otp += input.value; // Concatenate all values
             });
-            if (res.status == 200) {
-                let ress = await res.json()
+            let unum = getCookie("boi_unum")
+
+
+
+            try {
+
+                document.getElementById("loadingg_slow_vercel").classList.remove("hidd");
+
+                const res = await fetch("http://192.168.0.103:3000/verify_otp", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ num: unum, otp: otp }),
+                });
+                if (res.status == 200) {
+                    let ress = await res.json()
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
+                    let doc = ress.doc;
+                    console.log(doc);
+                    document.cookie = `boi_uuid=${doc["_id"]}; max-age=15552000; path=/`;
+                    document.cookie = `boi_uname=${doc["uname"]}; max-age=15552000; path=/`;
+                    document.cookie = `boi_unum=${doc["unum"]}; max-age=15552000; path=/`;
+
+                    window.location.reload()
+
+
+
+                }
+                else {
+                    document.getElementById("loadingg_slow_vercel").classList.add("hidd");
+
+                    alert('Wrong otp');
+
+                }
+
+
+            } catch (err) {
                 document.getElementById("loadingg_slow_vercel").classList.add("hidd");
-               
-                let doc = ress.doc;
-            console.log(doc);
-            document.cookie = `boi_uuid=${doc["_id"]}; max-age=15552000; path=/`;
-            document.cookie = `boi_uname=${doc["uname"]}; max-age=15552000; path=/`;
-            document.cookie = `boi_unum=${doc["unum"]}; max-age=15552000; path=/`;
 
-            window.location.reload()
-
-
+                console.error('Error:', err);
+                alert('Error. in Post Request' + err);
 
             }
-            else {
-                document.getElementById("loadingg_slow_vercel").classList.add("hidd");
-
-                alert('Wrong otp');
-               
-            }
 
 
-        } catch (err) {
-            document.getElementById("loadingg_slow_vercel").classList.add("hidd");
 
-            console.error('Error:', err);
-            alert('Error. in Post Request' + err);
-            
+
+
+
+
+
+
+
+
         }
 
 
-
-
-
-
-
-
-  
-
-
-    }
-
-
-</script>
+    </script>
 
     <script>
 
@@ -903,10 +907,10 @@ return prev && prev.value !== '' ? prev : null;
                     console.log(resss);
                     document.getElementById("testt").innerHTML = `${resss.ans.titlee} solve`
                     document.getElementById("logoo").innerHTML = nValue
-                    if(getCookie("boi_uname") != undefined){
+                    if (getCookie("boi_uname") != undefined) {
                         document.getElementById("logoo1").innerHTML = getCookie("boi_uname");
                     }
-        
+
 
                     let shuffledArray = ress;
 
@@ -915,13 +919,9 @@ return prev && prev.value !== '' ? prev : null;
                     for (let iri = 0; iri < shuffledArray.length; iri++) {
                         const element = shuffledArray[iri];
 
-                        // await new Promise((resolve0) => {
-                        //     setTimeout(() => {
-                        //         console.log(`Doing async work for item: ${item}`);
-                        //         resolve0();
-                        //     }, 1000);
-                        // });
+
                         if (element.dlt != undefined) { if (element.dlt == "yes") { continue; } }
+
                         await new Promise(async (resolve0) => {
 
 
@@ -989,7 +989,7 @@ return prev && prev.value !== '' ? prev : null;
 
 
 
- 
+
                             document.getElementById("parent").insertAdjacentHTML("beforeend", `
         <div class="item">
 
@@ -1063,56 +1063,31 @@ a
                             let input = element.question
 
 
-                            for (let i = 0; i < input.length; i++) {
-                                await new Promise((resolve1) => {
+                            let arr66 = await latex_arr(input);
 
 
 
-                                    let startIndex = i;
-                                    while (i < input.length && input[i] !== '\\') {
-                                        i++;
-                                    }
-                                    if (i > startIndex) {
-                                        arr.push(input.slice(startIndex, i));
-                                    }
-
-                                    if (i < input.length && input[i] === '\\') {
-                                        startIndex = i;
-                                        i++;
-                                        while (i < input.length && input[i] !== ' ' && input[i] !== '\\') {
-                                            i++;
-                                        }
-                                        arr.push(input.slice(startIndex, i));
-                                    }
-
-                                    while (i < input.length && input[i] === ' ') {
-                                        i++;
-                                    }
-                                    console.log(`Doing async work for item: ${i}`);
-                                    resolve1();
-
-                                });
-                            }
-
-
-
-                            // console.warn(arr);
-
-                            for (let i = 0; i < arr.length; i++) {
+                            for (let i = 0; i < arr66.length; i++) {
                                 await new Promise((resolve2) => {
-                                    let itemm = arr[i]
+                                    let itemm = arr66[i]
 
 
-                                    if (itemm != "\\") {
 
-                                        if (itemm[0] != "\\") {
-                                            document.getElementById(`id-${iri + 1}`).insertAdjacentHTML("beforeend", " " + arr[i] + " ");
-                                        }
-                                        else {
-                                            document.getElementById(`id-${iri + 1}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr[i]} </span>`);
-                                        }
-
+                                    if (itemm[0] == "\\") {
+                                        document.getElementById(`id-${iri + 1}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr66[i]} </span>`);
                                     }
+                                    else if (itemm.includes("^")) {
+                                        document.getElementById(`id-${iri + 1}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr66[i]} </span>`);
+                                    }
+                                    else {
+                                        document.getElementById(`id-${iri + 1}`).insertAdjacentHTML("beforeend", " " + arr66[i] + " ");
+                                    }
+
+
+
+
+
+
                                     resolve2();
                                 });
                             };
@@ -1138,7 +1113,7 @@ a
                         elemenst.innerHTML = `Q No.${i + 1}`
 
                     })
-                    
+
                     var elements = document.getElementsByClassName('mathh');
                     for (var ddx of elements) {
                         MQ.StaticMath(ddx);
@@ -1165,8 +1140,8 @@ a
 
         }; loadd()
         window.homee = async function () {
-            window.open(`./${window.cnamee}.html`,"_self")
-        
+            window.open(`./${window.cnamee}.html`, "_self")
+
         }
 
         window.abcd_add = async function (element, iri0) {
@@ -1196,55 +1171,30 @@ a
 
 
 
-                    for (let i = 0; i < input.length; i++) {
-                        await new Promise((resolve1) => {
+                    let arr66 = await latex_arr(input);
 
-
-                            let startIndex = i;
-                            while (i < input.length && input[i] !== '\\') {
-                                i++;
-                            }
-                            if (i > startIndex) {
-                                arr.push(input.slice(startIndex, i));
-                            }
-
-                            if (i < input.length && input[i] === '\\') {
-                                startIndex = i;
-                                i++;
-                                while (i < input.length && input[i] !== ' ' && input[i] !== '\\') {
-                                    i++;
-                                }
-                                arr.push(input.slice(startIndex, i));
-                            }
-
-                            while (i < input.length && input[i] === ' ') {
-                                i++;
-                            }
-                            console.log(`Doing async work for item: ${i}`);
-                            resolve1();
-
-                        });
-                    }
-
-
-
-                    // console.warn(arr);
-
-                    for (let i = 0; i < arr.length; i++) {
+                    for (let i = 0; i < arr66.length; i++) {
                         await new Promise((resolve2) => {
-                            let itemm = arr[i]
+                            let itemm = arr66[i]
 
 
-                            if (itemm != "\\") {
 
-                                if (itemm[0] != "\\") {
-                                    document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", " " + arr[i] + " ");
-                                }
-                                else {
-                                    document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr[i]} </span>`);
-                                }
-
+                            if (itemm[0] == "\\") {
+                                document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr66[i]} </span>`);
                             }
+                            else if (itemm.includes("^")) {
+                                document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr66[i]} </span>`);
+                            }
+                            else {
+                                document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", " " + arr66[i] + " ");
+                            }
+
+
+
+
+
+
+
                             resolve2();
                         });
                     };
@@ -1256,7 +1206,12 @@ a
             }
 
 
+            var elements = document.getElementsByClassName('mathh');
 
+
+            for (var ddx of elements) {
+                MQ.StaticMath(ddx);
+            }
 
 
 

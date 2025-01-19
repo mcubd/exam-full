@@ -128,7 +128,7 @@
             /* margin-top: 20px; */
             width: 30%;
 
-
+            align-items: center;
 
 
         }
@@ -646,6 +646,13 @@
         <p>&copy; 2025 Acs Exam Portal. All rights reserved.</p>
     </footer>
 
+    <script type="module">
+        import balanced from 'https://cdn.jsdelivr.net/npm/balanced-match@3.0.1/index.js';
+        window.balanced = balanced;
+
+    </script>
+
+    <script src="./latex.js"></script>
 
 
         <!-- login 2 scripts below -->
@@ -1125,57 +1132,26 @@ a
                             let i = 0;
                             let input = element.question
 
+                            let arr66 = await latex_arr(input);
 
-                            for (let i = 0; i < input.length; i++) {
-                                await new Promise((resolve1) => {
-
-
-
-                                    let startIndex = i;
-                                    while (i < input.length && input[i] !== '\\') {
-                                        i++;
-                                    }
-                                    if (i > startIndex) {
-                                        arr.push(input.slice(startIndex, i));
-                                    }
-
-                                    if (i < input.length && input[i] === '\\') {
-                                        startIndex = i;
-                                        i++;
-                                        while (i < input.length && input[i] !== ' ' && input[i] !== '\\') {
-                                            i++;
-                                        }
-                                        arr.push(input.slice(startIndex, i));
-                                    }
-
-                                    while (i < input.length && input[i] === ' ') {
-                                        i++;
-                                    }
-                                    console.log(`Doing async work for item: ${i}`);
-                                    resolve1();
-
-                                });
-                            }
-
-
-
-                            // console.warn(arr);
-
-                            for (let i = 0; i < arr.length; i++) {
+                            for (let i = 0; i < arr66.length; i++) {
                                 await new Promise((resolve2) => {
-                                    let itemm = arr[i]
+                                    let itemm = arr66[i]
 
-
-                                    if (itemm != "\\") {
-
-                                        if (itemm[0] != "\\") {
-                                            document.getElementById(`id-${iri + 1}`).insertAdjacentHTML("beforeend", " " + arr[i] + " ");
-                                        }
-                                        else {
-                                            document.getElementById(`id-${iri + 1}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr[i]} </span>`);
-                                        }
-
+                                    if (itemm[0] == "\\") {
+                                        document.getElementById(`id-${iri + 1}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr66[i]} </span>`);
                                     }
+                                    else if (itemm.includes("^")) {
+                                        document.getElementById(`id-${iri + 1}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr66[i]} </span>`);
+                                    }
+                                    else {
+                                        document.getElementById(`id-${iri + 1}`).insertAdjacentHTML("beforeend", " " + arr66[i] + " ");
+                                    }
+
+                              
+
+                                  
+ 
                                     resolve2();
                                 });
                             };
@@ -1257,56 +1233,27 @@ a
                     } else { }
 
 
+                    let arr66 = await latex_arr(input);
 
-                    for (let i = 0; i < input.length; i++) {
-                        await new Promise((resolve1) => {
-
-
-                            let startIndex = i;
-                            while (i < input.length && input[i] !== '\\') {
-                                i++;
-                            }
-                            if (i > startIndex) {
-                                arr.push(input.slice(startIndex, i));
-                            }
-
-                            if (i < input.length && input[i] === '\\') {
-                                startIndex = i;
-                                i++;
-                                while (i < input.length && input[i] !== ' ' && input[i] !== '\\') {
-                                    i++;
-                                }
-                                arr.push(input.slice(startIndex, i));
-                            }
-
-                            while (i < input.length && input[i] === ' ') {
-                                i++;
-                            }
-                            console.log(`Doing async work for item: ${i}`);
-                            resolve1();
-
-                        });
-                    }
-
-
-
-                    // console.warn(arr);
-
-                    for (let i = 0; i < arr.length; i++) {
+                    for (let i = 0; i < arr66.length; i++) {
                         await new Promise((resolve2) => {
-                            let itemm = arr[i]
+                            let itemm = arr66[i]
 
 
-                            if (itemm != "\\") {
-
-                                if (itemm[0] != "\\") {
-                                    document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", " " + arr[i] + " ");
-                                }
-                                else {
-                                    document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr[i]} </span>`);
-                                }
-
+                            if (itemm[0] == "\\") {
+                                document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr66[i]} </span>`);
                             }
+                            else if (itemm.includes("^")) {
+                                document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", `<span class="mathh">${arr66[i]} </span>`);
+                            }
+                            else {
+                                document.getElementById(`${idd + iri0}`).insertAdjacentHTML("beforeend", " " + arr66[i] + " ");
+                            }
+
+
+    
+
+                        
                             resolve2();
                         });
                     };
@@ -1320,6 +1267,12 @@ a
 
 
 
+            var elements = document.getElementsByClassName('mathh');
+
+
+            for (var ddx of elements) {
+                MQ.StaticMath(ddx);
+            }
 
 
 
