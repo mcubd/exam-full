@@ -37,10 +37,8 @@ window.parseMathExpressions = async function (input) {
             const denominatorMatch = balanced("{", "}", input.slice(pos));
             
             pos += denominatorMatch.end;
-            console.log("----------------------------------------------------------------------------------------");
             const output = denominatorMatch.body.replace(/\\\\/g, '\\');
             fraction += `{${output}}`;
-            console.log("----------------------------------------------------------------------------------------");
 
 
 
